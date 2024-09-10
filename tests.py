@@ -1,5 +1,6 @@
 __package__ = 'tests'
 
+import shutil
 from metrics import *
 from tools import *
 import numpy as np
@@ -454,7 +455,7 @@ def testCompareResults():
     QkNormalShiftedDistances = kDistances(QNormalShiftedSamples, hyperparam['k'], hyperparam['nJobs'])
     QkUniformDistances = kDistances(QUniformSamples, hyperparam['k'], hyperparam['nJobs'])
 
-    with open('log.txt', 'w') as log_file:
+    with open('./results/log.txt', 'w') as log_file:
         log_message(log_file, 'Comparing results of my implementation with the actual implementation')
         log_message(log_file, '-------------------------------------------------------------')
         log_message(log_file, 'Improved Precision and Recall Metric Comparisons')
@@ -478,11 +479,11 @@ def testCompareResults():
 def testButterflies():
     n_images = 896
     n_bins = 256*3
-    PSamplesImages = [f"data/butterflies/g_{i:05d}.jpg" for i in range(n_images)]
-    QSamplesImages = [f"data/generated_butterflies/g_{i:05d}.jpg" for i in range(n_images)]
+    PSamplesImages = [f"data/butterflies_train/t_{i:05d}.jpg" for i in range(n_images)]
+    QSamplesImages = [f"data/butterflies/g_{i:05d}.jpg" for i in range(n_images)]
 
-    PSamples = np.array([compute_histogram(image,int(n_bins/3)) for image in PSamplesImages])
-    QSamples = np.array([compute_histogram(image,int(n_bins/3)) for image in QSamplesImages])
+    PSamples = np.array([tuple(compute_histogram(image,int(n_bins/3))) for image in PSamplesImages])
+    QSamples = np.array([tuple(compute_histogram(image,int(n_bins/3))) for image in QSamplesImages])
 
     #plot PSamples[0] histogram
 
@@ -499,16 +500,42 @@ def testButterflies():
     print(f"Number of different images over {n_images}: {len(QSamplesSet)}")
     print()
 
-    h = {'k': int(math.sqrt(n_images)), 'nJobs': 8, 'Gamma': [], 'Lambda': [1]}
+    h = {'k': int(math.sqrt(n_images)), 'nJobs': 8, 'Gamma': [], 'Lambda': []}
+    g = 1001
+    l = 5001
+    gammas = [np.tan(np.pi/2 *i/(g+1)) for i in range(1, g)]
+    lambdas = [np.tan(np.pi/2 *i/(l+1)) for i in range(1, l)]
+    gammas.insert(0, 0.)
+    gammas.append(100000000) #np.inf leads to overflow
+
+    h['Gamma'] = gammas
+    h['Lambda'] = lambdas
     
     Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, 0.75)
     #1 for pSamples, 0 for qSamples
 
-    #func = iprClassifier(Dtrain, h)
-    func = covClassifier(Dtrain, h)
+    #plot prcurve
+
+    func = iprClassifier(Dtrain, h)
+    #func = covClassifier(Dtrain, h)
     #func = knnClassifier(Dtrain, h)
     #func = parzenClassifier(Dtrain, h)
 
+    #prd = estimatePRCurve(PSamples, QSamples, h, iprClassifier)
+    #x = [v[0] for v in prd]
+    #y = [v[1] for v in prd]
+#
+    #plt.figure(figsize=(7, 7))
+    #plt.plot(x, y, linestyle='-', label=f'ipr')
+    #plt.xlim(0, 1)
+    #plt.ylim(0, 1)
+    #plt.legend()
+    #plt.title('PR Curve')
+    #plt.xlabel('Recall')
+    #plt.ylabel('Precision')
+    #plt.grid(True)
+    #plt.savefig(f'./images/PRCurveIpr_butterflies.png')
+    
     n_examples = 5
     fpr = 0
     fnr = 0
@@ -540,11 +567,19 @@ def testButterflies():
     print()
 
     ###
+    #clear the false positive and false negative folders
+    shutil.rmtree('./results/false_positive_butterflies')
+    os.mkdir('./results/false_positive_butterflies')
+
+    shutil.rmtree('./results/false_negative_butterflies')
+    os.mkdir('./results/false_negative_butterflies')
+
     set_of_indices = set()
     for example in fp_example:
         for i in range(n_images):
             if np.array_equal(QSamples[i], example) and i not in set_of_indices:
                 print(f"False positive example: {i}")
+                shutil.copyfile(QSamplesImages[i], f"./results/false_positive_butterflies/{i}.jpg")
                 set_of_indices.add(i)
                 break
 
@@ -553,8 +588,18 @@ def testButterflies():
         for i in range(n_images):
             if np.array_equal(PSamples[i], example) and i not in set_of_indices:
                 print(f"False negative example: {i}")
+                shutil.copyfile(PSamplesImages[i], f"./results/false_negative_butterflies/{i}.jpg")
                 set_of_indices.add(i)
                 break
+
+    for example in fp_example:
+        example = np.array(example)
+        distances = np.linalg.norm(PSamples - example, axis=1)
+        closest_image = np.argmin(distances)
+        min_distance = distances[closest_image]
+        print(f"Closest image to false positive example: {closest_image}")
+        print(f"Distance: {min_distance}")
+        
 
     #plot the histogtams of the examples
     # Compute the average histogram of PSamples
@@ -563,7 +608,7 @@ def testButterflies():
     height = 1500
 
     # Plot histograms
-    fig, axs = plt.subplots(n_examples+2, figsize=(12, 20))
+    fig, axs = plt.subplots(len(fp_example)+2, figsize=(12, 6+3*len(fp_example)))
 
     axs[0].plot(avg_psample, color='red')
     axs[0].set_title("Average PSample")
@@ -583,7 +628,7 @@ def testButterflies():
     plt.tight_layout()
     plt.savefig("./images/fp_histograms.png")
     
-    fig, axs = plt.subplots(n_examples+2, figsize=(12, 20))
+    fig, axs = plt.subplots(len(fn_example)+2, figsize=(12, 6+3*len(fn_example)))
 
     axs[0].plot(avg_psample, color='red')
     axs[0].set_title("Average PSample")

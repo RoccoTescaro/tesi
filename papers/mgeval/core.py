@@ -6,10 +6,14 @@ import pretty_midi
 import numpy as np
 import sys
 import os
-import mido #changed from midi to mido
+import midi
 import glob
 import math
 
+#symusic
+
+#clone
+#pip install -e .
 
 # feature extractor
 def extract_feature(_file):
@@ -24,8 +28,8 @@ def extract_feature(_file):
     """
     feature = {
                 'pretty_midi': pretty_midi.PrettyMIDI(_file),
-                #changed from midi.read_midifile(_file)}
-                'midi_pattern': mido.MidiFile(_file)
+                'midi_pattern': midi.read_midifile(_file)
+                #'midi_pattern': mido.MidiFile(_file)
             }
     return feature
 

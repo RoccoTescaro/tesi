@@ -52,10 +52,10 @@ def kDistances(samples, k, nJobs=1, f_dist = np.linalg.norm):
 
     #return dist
     
-def realismScore(PSamples, QSample, hyperparam, PkDistances = [], f_dist = np.linalg.norm):
+def realismScore(PSamples, QSample, hyperparam, PkDistances = [], nJobs = 1, f_dist = np.linalg.norm):
 
     if len(PkDistances) == 0:
-        PkDistances = kDistances(PSamples, hyperparam['k'], f_dist)
+        PkDistances = kDistances(PSamples, hyperparam['k'], nJobs, f_dist)
 
     max_dist = 0
    
@@ -104,11 +104,14 @@ def drawManifold(samples, hyperparam, kDistances = [], sampleColor = None, sampl
 
 def compute_histogram(image_path, bins=256):
     image = cv2.imread(image_path)
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    #image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    #image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
     hist_r = cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
     hist_g = cv2.calcHist([image], [1], None, [bins], [0, 256]).flatten()
     hist_b = cv2.calcHist([image], [2], None, [bins], [0, 256]).flatten()
     return np.concatenate((hist_r, hist_g, hist_b))
+    #return cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
 
 
 

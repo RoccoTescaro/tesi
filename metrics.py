@@ -445,8 +445,7 @@ def parzenClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
             return int( lambda_*sumP_ >= sumQ_ )
     
     return func
-def estimatePRD(func, Dtest, hyperparam, f_dist = np.linalg.norm):
-
+def estimatePRD(func, Dtest, hyperparam):
     PRD = []
     errRates = []
         
@@ -456,7 +455,7 @@ def estimatePRD(func, Dtest, hyperparam, f_dist = np.linalg.norm):
         fnr = 0
 
         for val, res in Dtest:
-            fVal = func(val, g, f_dist)
+            fVal = func(val, g)
             N[res] += 1
             
             if fVal == 1 and res == 0:
@@ -476,6 +475,6 @@ def estimatePRD(func, Dtest, hyperparam, f_dist = np.linalg.norm):
     return PRD
 def estimatePRCurve(PSamples, QSamples, hyperparam, classifier, f_dist = np.linalg.norm):
     Dtrain, Dtest = createDtrainDtest(PSamples, QSamples)
-    func = classifier(Dtrain, hyperparam)
-    return estimatePRD(func, Dtest, hyperparam, f_dist)
+    func = classifier(Dtrain, hyperparam, f_dist)
+    return estimatePRD(func, Dtest, hyperparam)
 
