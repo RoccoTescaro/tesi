@@ -25,15 +25,63 @@ def midi2np(filepath):
                 for n in track.notes
             ]
     
-    return np.array(cloud) #dtype=np.uint16
+    return np.array(cloud), score.time_signatures, resolution
+
+def measures(cloud, time_signatures, resolution):
+    measures = []
+    
+    measure_boundaries = []
+    for i, ts in enumerate(time_signatures):
+        start_time = ts.time*resolution
+        nominator = ts.numerator
+        denominator = ts.denominator
+
+        # Calculate the ticks per measure: 
+        # resolution gives us ticks per beat, and the nominator gives the number of beats in a measure
+        ticks_per_measure = resolution * nominator * (4 / denominator)
+        
+        # Define the measure boundaries for this time signature
+        if i + 1 < len(time_signatures):
+            next_ts_time = time_signatures[i + 1].time*resolution
+        else:
+            next_ts_time = max([note[2] + note[3] for note in cloud])  # last note end time
+        
+        measure_time = start_time
+        while measure_time < next_ts_time:
+            measure_boundaries.append((measure_time, measure_time + ticks_per_measure))
+            measure_time += ticks_per_measure
+    
+    # For each measure, extract the notes from the cloud that fall within the measure's boundaries
+    for start, end in measure_boundaries:
+        measure_notes = [note for note in cloud if start <= note[2] < end]
+        measures.append(measure_notes)
+    
+    return measures
 
 def nPitches(cloud):
-    return len(set(cloud[:,1]))
+    return len(set([note[1] for note in cloud]))
+
+def nPitchesPerMeasure(path):
+    cloud, time_signatures, resolution = midi2np(path)
+    n_pitches = []
+    measures_ = measures(cloud, time_signatures, resolution)
+    for measure in measures_:
+        n_pitches.append(nPitches(np.array(measure)))
+    return n_pitches
 
 def nNotes(cloud):
     return len(cloud)
 
-def pitchClassHist(cloud):
+def nNotesPerMeasure(path):
+    cloud, time_signatures, resolution = midi2np(path)
+    n_notes = []
+    measures_ = measures(cloud, time_signatures, resolution)
+    for measure in measures_:
+        n_notes.append(nNotes(np.array(measure)))
+    return n_notes
+
+def pitchClassHist(path):
+    cloud, _, _ = midi2np(path)
     hist, _ = np.histogram(cloud[:,1] % 12, bins = 12)
     return hist / len(cloud)
     
@@ -67,8 +115,9 @@ def avgPitchShift(cloud):
 def avgIOI(cloud):
     return np.mean(cloud[1:,2] - cloud[:-1,2])
 
-def noteLengthHist(cloud, resolution):
-    bins = 4 * resolution
+def noteLengthHist(path):
+    cloud, _, _ = midi2np(path)
+    bins = 24
     hist, _ = np.histogram(cloud[:,3], bins = bins)
     return hist / len(cloud)
 

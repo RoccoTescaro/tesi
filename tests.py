@@ -3,10 +3,11 @@ __package__ = 'tests'
 import shutil
 from metrics import *
 from tools import *
+from music import *
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib.colors import LinearSegmentedColormap, Normalize
-#from scipy.interpolate import interp1d
+import glob
+#from time import perf_counter_ns as pc
 
 #silence tensorflow warnings
 import os
@@ -18,6 +19,22 @@ from papers.Probablistic_precision_recall.pp_pr import *
 from papers.precision_recall_distributions.prd_score import *
 
 def testKSamples(distribution_):
+    def calculate_fidelity_metrics(PSamples, QSamples, hyperparams, PkDistances, QkDistances, nJobs):
+        return [
+            precisionCover(PSamples, QSamples, hyperparams, QkDistances, nJobs),
+            improvedPrecisionCover(PSamples, QSamples, hyperparams, PkDistances, nJobs),
+            density(PSamples, QSamples, hyperparams, PkDistances, nJobs),
+            probPrecisionCover(PSamples, QSamples, hyperparams, nJobs)
+        ]
+
+    def calculate_diversity_metrics(PSamples, QSamples, hyperparams, PkDistances, QkDistances, nJobs):
+        return [
+            recallCover(PSamples, QSamples, hyperparams, PkDistances, nJobs),
+            improvedRecallCover(PSamples, QSamples, hyperparams, QkDistances, nJobs),
+            coverage(PSamples, QSamples, hyperparams, PkDistances, nJobs),
+            probRecallCover(PSamples, QSamples, hyperparams, nJobs)
+        ]    
+
     N = [500, 1000, 2000, 4000, 8000, 16000]
     K = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     dim = 64
@@ -32,15 +49,7 @@ def testKSamples(distribution_):
 
     for i, n in enumerate(N):
 
-        PSamples = None
-        QSamples = None
-
-        if distribution == 'uniform':
-            PSamples = uniformData(dim, n)
-            QSamples = uniformData(dim, n)
-        elif distribution == 'normal':
-            PSamples = normalData(dim, n)
-            QSamples = normalData(dim, n)
+        PSamples, QSamples = generate_samples(distribution, dim, n)
 
         for j, k in enumerate(K):
 
@@ -54,69 +63,19 @@ def testKSamples(distribution_):
             hyperparams['Rp'] = getRThreshold(PSamples, hyperparams, PkDistances, nJobs)
             hyperparams['Rq'] = getRThreshold(QSamples, hyperparams, QkDistances, nJobs)
 
-            fidelityMatrix[i, j, 0] = precisionCover(PSamples, QSamples, hyperparams, QkDistances, nJobs)
-            print(f'Precision: {fidelityMatrix[i, j, 0]}')
-            fidelityMatrix[i, j, 1] = improvedPrecisionCover(PSamples, QSamples, hyperparams, PkDistances, nJobs)
-            print(f'iPrecision: {fidelityMatrix[i, j, 1]}')
-            fidelityMatrix[i, j, 2] = density(PSamples, QSamples, hyperparams, PkDistances, nJobs)
-            print(f'Density: {fidelityMatrix[i, j, 2]}')
-            fidelityMatrix[i, j, 3] = probPrecisionCover(PSamples, QSamples, hyperparams, nJobs)
-            print(f'pPrecision: {fidelityMatrix[i, j, 3]}')
+            fidelityMatrix[i, j] = calculate_fidelity_metrics(PSamples, QSamples, hyperparams, PkDistances, QkDistances, nJobs)
+            diversityMatrix[i, j] = calculate_diversity_metrics(PSamples, QSamples, hyperparams, PkDistances, QkDistances, nJobs)
 
-            diversityMatrix[i, j, 0] = recallCover(PSamples, QSamples, hyperparams, PkDistances, nJobs)
-            print(f'Recall: {diversityMatrix[i, j, 0]}')
-            diversityMatrix[i, j, 1] = improvedRecallCover(PSamples, QSamples, hyperparams, QkDistances, nJobs)
-            print(f'iRecall: {diversityMatrix[i, j, 1]}')
-            diversityMatrix[i, j, 2] = coverage(PSamples, QSamples, hyperparams, PkDistances, nJobs)
-            print(f'Coverage: {diversityMatrix[i, j, 2]}')
-            diversityMatrix[i, j, 3] = probRecallCover(PSamples, QSamples, hyperparams, nJobs)
-            print(f'pRecall: {diversityMatrix[i, j, 3]}')
-
+            for idx, metric in enumerate(fidelityMetrics):
+                print(f'{metric}: {fidelityMatrix[idx]}')
+            for idx, metric in enumerate(diversityMetrics):
+                print(f'{metric}: {diversityMatrix[idx]}')
             print()
 
     np.save(f'./data/{distribution}FidelityMatrix.npy', fidelityMatrix)
     np.save(f'./data/{distribution}DiversityMatrix.npy', diversityMatrix)
 
-    for i in range(len(fidelityMetrics)):
-        plt.clf()
-
-        cmap = LinearSegmentedColormap.from_list('custom_cmap', ['green', 'yellow', 'red'])
-        fig, axs = plt.subplots(1, 2, figsize=(12, 6))
-
-        #add title to the figure
-        fig.suptitle(f'{distribution} {fidelityMetrics[i]} and {diversityMetrics[i]}')
-
-        data1 = fidelityMatrix[:, :, i]
-        data2 = diversityMatrix[:, :, i]
-
-        im1 = axs[0].imshow(data1, cmap=cmap, norm=Normalize(vmin=0, vmax=1))
-        axs[0].set_title(fidelityMetrics[i])
-        axs[0].invert_yaxis()
-        
-        axs[0].set_xticks(np.arange(len(K)))
-        axs[0].set_yticks(np.arange(len(N)))
-        axs[0].set_xticklabels(K)
-        axs[0].set_yticklabels(N)
-        axs[0].set_xlabel('k')
-        axs[0].set_ylabel('Samples')
-
-        im2 = axs[1].imshow(data2, cmap=cmap, norm=Normalize(vmin=0, vmax=1))
-        axs[1].set_title(diversityMetrics[i])
-        axs[1].invert_yaxis() 
-
-        axs[1].set_xticks(np.arange(len(K)))
-        axs[1].set_yticks(np.arange(len(N)))
-        axs[1].set_xticklabels(K)
-        axs[1].set_yticklabels(N)
-        axs[1].set_xlabel('k')
-        axs[1].set_ylabel('Samples')
-
-        cbar = fig.colorbar(im1, ax=axs, orientation='vertical', fraction=0.02, pad=0.04)
-
-        #plt.tight_layout()
-
-        plt.savefig(f'./images/{distribution}_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
-
+    plot_matrices(distribution, fidelityMatrix, diversityMatrix, fidelityMetrics, diversityMetrics, N, K)
 def testNormShift():
     N = 1000
     delta = 0.05
@@ -240,7 +199,6 @@ def testNormShift():
         axs[1].set_ylim([0, 1])
 
         plt.savefig(f'./images/shift_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
-
 def testSampleDimN():
     N = [50, 100, 200, 400, 800, 1600]
     D = [2, 4, 8, 16, 32, 64]
@@ -311,7 +269,6 @@ def testSampleDimN():
         axs[1].set_ylabel(diversityMetrics[i])
 
         plt.savefig(f'./images/sampleDimN_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
-
 def testCurve(classifier, filename, l=5001, g=1001, k_mod="4", shift=1):
     #def f(x):
         #erf(((2x)/(m))) + ℯ^(x - m + 3)
@@ -360,7 +317,6 @@ def testCurve(classifier, filename, l=5001, g=1001, k_mod="4", shift=1):
     #plt.ylabel('Precision')
     #plt.grid(True)
     #plt.savefig(f'./images/PRCurve_{filename}.png')
-
 def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     filenames = ['cov', 'ipr', 'knn', 'parzen']
     functions = [covClassifier, iprClassifier, knnClassifier, parzenClassifier]
@@ -391,7 +347,6 @@ def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     plt.ylabel('Precision')
     plt.grid(True)
     plt.savefig(f'./images/PRCurve_k{k_mod}_s{shift}.png')
-
 def testCompareResults():
     def log_message(log_file, message):
         print(message)
@@ -475,8 +430,8 @@ def testCompareResults():
         compare_probabilisticPrecisionRecall(log_file, PNormalSamples, QNormalSamples, hyperparam, PkNormalDistances, QkNormalDistances, 'normal distribution')
         compare_probabilisticPrecisionRecall(log_file, PNormalSamples, QNormalShiftedSamples, hyperparam, PkNormalDistances, QkNormalShiftedDistances, 'shifted normal distribution')
         compare_probabilisticPrecisionRecall(log_file, PUniformSamples, QUniformSamples, hyperparam, PkUniformDistances, QkUniformDistances, 'uniform distribution')
-
 def testButterflies():
+    #load data
     n_images = 896
     n_bins = 256*3
     PSamplesImages = [f"data/butterflies_train/t_{i:05d}.jpg" for i in range(n_images)]
@@ -485,95 +440,71 @@ def testButterflies():
     PSamples = np.array([tuple(compute_histogram(image,int(n_bins/3))) for image in PSamplesImages])
     QSamples = np.array([tuple(compute_histogram(image,int(n_bins/3))) for image in QSamplesImages])
 
-    #plot PSamples[0] histogram
 
-    #print(PSamples.shape)
-    #print(QSamples.shape)#
+    #split the data
+    #Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, 0.5)
+    #no split
+    Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+    Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
 
-    prdc = compute_prdc(PSamples, QSamples, 3)
+    k = int(np.sqrt(len(Dtrain)))
+    #k = 5
+
+    #compute prdc
+    prdc = compute_prdc([ x for x, y in Dtrain if y == 1], [ x for x, y in Dtrain if y == 0], k)
     for key, value in prdc.items():
         print(f"{key}: {value}")
 
-    PSamplesSet = set(map(tuple, PSamples))
-    QSamplesSet = set(map(tuple, QSamples))
-    print(f"Number of different images over {n_images}: {len(PSamplesSet)}")
-    print(f"Number of different images over {n_images}: {len(QSamplesSet)}")
-    print()
-
-    h = {'k': int(math.sqrt(n_images)), 'nJobs': 8, 'Gamma': [], 'Lambda': []}
-    g = 1001
-    l = 5001
-    gammas = [np.tan(np.pi/2 *i/(g+1)) for i in range(1, g)]
-    lambdas = [np.tan(np.pi/2 *i/(l+1)) for i in range(1, l)]
-    gammas.insert(0, 0.)
-    gammas.append(100000000) #np.inf leads to overflow
-
-    h['Gamma'] = gammas
-    h['Lambda'] = lambdas
+    h = {'k': k, 'nJobs': 8}
     
-    Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, 0.75)
-    #1 for pSamples, 0 for qSamples
-
-    #plot prcurve
-
-    func = iprClassifier(Dtrain, h)
-    #func = covClassifier(Dtrain, h)
-    #func = knnClassifier(Dtrain, h)
-    #func = parzenClassifier(Dtrain, h)
-
-    #prd = estimatePRCurve(PSamples, QSamples, h, iprClassifier)
-    #x = [v[0] for v in prd]
-    #y = [v[1] for v in prd]
-#
-    #plt.figure(figsize=(7, 7))
-    #plt.plot(x, y, linestyle='-', label=f'ipr')
-    #plt.xlim(0, 1)
-    #plt.ylim(0, 1)
-    #plt.legend()
-    #plt.title('PR Curve')
-    #plt.xlabel('Recall')
-    #plt.ylabel('Precision')
-    #plt.grid(True)
-    #plt.savefig(f'./images/PRCurveIpr_butterflies.png')
-    
+    func = supportClassifier(Dtrain, h)
+  
     n_examples = 5
     fpr = 0
     fnr = 0
     N = [0, 0]
     fp_example = []
     fn_example = []
+    tp_example = []
 
     for val, res in Dtest:
-        fVal = func(val, 1)
+        inP, inQ = func(val)
         N[res] += 1
 
-        if fVal == 1 and res == 0:
-            fpr += 1
-            if len(fp_example) < n_examples:
-                fp_example.append(val)
-                print('false positive realism score wrt PSamples', realismScore(PSamples, val, h))
-                #print('false positive realism score wrt QSamples', realismScore(np.array([q for q in QSamples if not np.array_equal(q, val)]), val, h))
+        if inP and inQ and res == 0: #memorize only qSamples that are inside the PSamples support
+            tp_example.append(val)
 
-
-        elif fVal == 0 and res == 1:
+        if inP and not inQ:
             fnr += 1
             if len(fn_example) < n_examples:
                 fn_example.append(val)
-                print('false negative realism score wrt QSamples', realismScore(QSamples, val, h))
+                #print('false negative realism score wrt QSamples', realismScore(QSamples, val, h))
                 #print('false negative realism score wrt PSamples', realismScore(np.array([p for p in PSamples if not np.array_equal(p, val)]), val, h))
+        
+        elif not inP and inQ:
+            fpr += 1
+            if len(fp_example) < n_examples:
+                fp_example.append(val)
+                #print('false positive realism score wrt PSamples', realismScore(PSamples, val, h))
+                #print('false positive realism score wrt QSamples', realismScore(np.array([q for q in QSamples if not np.array_equal(q, val)]), val, h))
 
     print(f"False positive rate: {fpr/N[0]}")
     print(f"False negative rate: {fnr/N[1]}")
+    print(f"True positive rate: {1 - fnr/N[1]}")
+    print(f"n of false positives: {fpr}")
+    print(f"n of false negatives: {fnr}")
+    print(f"n of true positives/true negatives: {len(tp_example)}")
     print()
 
-    ###
     #clear the false positive and false negative folders
     shutil.rmtree('./results/false_positive_butterflies')
     os.mkdir('./results/false_positive_butterflies')
 
     shutil.rmtree('./results/false_negative_butterflies')
     os.mkdir('./results/false_negative_butterflies')
+    os.mkdir('./results/false_positive_butterflies/closest_images')
 
+    #save the examples
     set_of_indices = set()
     for example in fp_example:
         for i in range(n_images):
@@ -592,58 +523,73 @@ def testButterflies():
                 set_of_indices.add(i)
                 break
 
-    for example in fp_example:
+    for i, example in enumerate(fp_example):
         example = np.array(example)
         distances = np.linalg.norm(PSamples - example, axis=1)
         closest_image = np.argmin(distances)
         min_distance = distances[closest_image]
         print(f"Closest image to false positive example: {closest_image}")
         print(f"Distance: {min_distance}")
+        #save the closest image
+        shutil.copyfile(PSamplesImages[closest_image], f"./results/false_positive_butterflies/closest_images/{closest_image}.jpg")
         
+    for example in tp_example:
+        for i in range(n_images):
+            if np.array_equal(QSamples[i], example):
+                print(f"True positive example: {i}")
 
-    #plot the histogtams of the examples
-    # Compute the average histogram of PSamples
-    avg_psample = np.mean(PSamples, axis=0)
-    avg_qsample = np.mean(QSamples, axis=0)
-    height = 1500
+                example = np.array(example)
+                distances = np.linalg.norm(PSamples - example, axis=1)
+                closest_image = np.argmin(distances)
+                print(f"Closest image to true positive example: {closest_image}")
 
-    # Plot histograms
-    fig, axs = plt.subplots(len(fp_example)+2, figsize=(12, 6+3*len(fp_example)))
+    plotHistComparison(PSamples, QSamples, fp_example, 'fp')
+    plotHistComparison(PSamples, QSamples, fn_example, 'fn')
 
-    axs[0].plot(avg_psample, color='red')
-    axs[0].set_title("Average PSample")
-    axs[0].set_ylim([0, height])
+def testScarlatti():
+    #load data 
+    #fluidsynth /usr/share/soundfonts/FluidR3_GM.sf2 data/Scarlatti/real/val/0/0/8/8/0/000000000880_00.mid
 
-    axs[1].plot(avg_qsample, color='green')
-    axs[1].set_title("Average QSample")
-    axs[1].set_ylim([0, height])
+    PPaths = glob.glob('data/Scarlatti/real/**/*.mid', recursive=True)
+    QPaths = glob.glob('data/Scarlatti/fake/model_011809.ckpt/*.mid', recursive=False)
 
-    for idx, example in enumerate(fp_example):
-        axs[idx+2].plot(avg_psample, color='red', linestyle='dotted')
-        axs[idx+2].plot(avg_qsample, color='green', linestyle='dotted')
-        axs[idx+2].plot(example)
-        axs[idx+2].set_title(f"FP Example {idx+1}")
-        axs[idx+2].set_ylim([0, height])
-
-    plt.tight_layout()
-    plt.savefig("./images/fp_histograms.png")
+    metrics = [
+                nPitchesPerMeasure,
+                nNotesPerMeasure, 
+                pitchClassHist,
+                noteLengthHist 
+            ]
     
-    fig, axs = plt.subplots(len(fn_example)+2, figsize=(12, 6+3*len(fn_example)))
+    print(f'PPaths: {len(PPaths)}')
+    print(f'PPaths example: {PPaths[0]}')
+    print(f'QPaths: {len(QPaths)}')
+    print(f'QPaths example: {QPaths[0]}')
 
-    axs[0].plot(avg_psample, color='red')
-    axs[0].set_title("Average PSample")
-    axs[0].set_ylim([0, height])
+    for m in metrics:
+        print(f'{m.__name__}')
 
-    axs[1].plot(avg_qsample, color='green')
-    axs[1].set_title("Average QSample")
-    axs[1].set_ylim([0, height])
+        cloud = midi2np(PPaths[0])
+        print(f'cloud shape: {cloud[0].shape}')
+        print(f'time signature for PPaths[0]: {cloud[1]}')
+        print(f'{m.__name__} for PPaths[0]: {m(PPaths[0])}')
 
-    for idx, example in enumerate(fn_example):
-        axs[idx+2].plot(avg_psample, color='red', linestyle='dotted')
-        axs[idx+2].plot(avg_qsample, color='green', linestyle='dotted')
-        axs[idx+2].plot(example)
-        axs[idx+2].set_title(f"FN Example {idx+1}")
-        axs[idx+2].set_ylim([0, height])
+        cloud = midi2np(QPaths[0])
+        print(f'cloud shape: {cloud[0].shape}')
+        print(f'{m.__name__} for QPaths[0]: {m(QPaths[0])}')
 
-    plt.tight_layout()
-    plt.savefig("./images/fn_histograms.png")
+        #PSamples = np.array([m(p) for p in PPaths])
+        #QSamples = np.array([m(q) for q in QPaths])
+#
+        #print(f'PSamples shape: {PSamples.shape}')
+        #print(f'QSamples shape: {QSamples.shape}')
+        #print(f'PSamples: {PSamples}')
+        #print(f'QSamples: {QSamples}')
+        #print(f'PSamples example: {PSamples[0]}')
+        #print(f'QSamples example: {QSamples[0]}')
+#
+        ##compute prdc
+        #prdc = compute_prdc(PSamples, QSamples, 3)
+        #for key, value in prdc.items():
+        #    print(f"{key}: {value}")
+#
+        #print()

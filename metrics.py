@@ -272,7 +272,9 @@ def iprClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
     sumP = {}
     sumQ = {}
 
-    def func(x, lambda_):    
+    def func(x, lambda_):
+        x = tuple(x)
+
         sumP_ = 0
         sumQ_ = 0
 
@@ -318,6 +320,7 @@ def covClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
     nJobs = hyperparam['nJobs']
 
     def func(x, lambda_):
+        x = tuple(x)
 
         if x in sumP and x in sumQ:
             if lambda_ < 1:
@@ -377,6 +380,7 @@ def knnClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
     nJobs = hyperparam['nJobs']
 
     def func(x, lambda_):
+        x = tuple(x)
 
         if x in sumP and x in sumQ:
             if lambda_ < 1:
@@ -421,6 +425,8 @@ def parzenClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
     sumQ = {}
 
     def func(x, lambda_):
+        x = tuple(x)
+
         if x in sumP and x in sumQ:
             if lambda_ < 1:
                 return int( lambda_*sumP[x] > sumQ[x] )
@@ -478,3 +484,24 @@ def estimatePRCurve(PSamples, QSamples, hyperparam, classifier, f_dist = np.lina
     func = classifier(Dtrain, hyperparam, f_dist)
     return estimatePRD(func, Dtest, hyperparam)
 
+def supportClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
+    #return a tuple of boolean values if the sample is in the support of P or Q
+
+    PSamples = np.array([x for x, y in Dtrain if y == 1])
+    QSamples = np.array([x for x, y in Dtrain if y == 0])
+
+    k = hyperparam['k']
+    nJobs = hyperparam['nJobs']
+
+    PkDistances = kDistances(PSamples, k, nJobs, f_dist)
+    QkDistances = kDistances(QSamples, k, nJobs, f_dist)
+
+    def func(x):
+        distancesP = f_dist(PSamples - x, axis=1)
+        inP = np.any(distancesP <= PkDistances)
+        distancesQ = f_dist(QSamples - x, axis=1)
+        inQ = np.any(distancesQ <= QkDistances)
+
+        return inP, inQ
+    
+    return func
