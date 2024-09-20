@@ -6,6 +6,8 @@ from joblib import Parallel, delayed
 import matplotlib.pyplot as plt
 import cv2
 from matplotlib.colors import LinearSegmentedColormap, Normalize
+from scipy.spatial.distance import pdist, cdist
+from fastkde import fastKDE
 
 def kDistances(samples, k, nJobs=1, f_dist = np.linalg.norm):
 
@@ -144,33 +146,45 @@ def rgb_histogram(image_path, bins=256):
     hist_b = cv2.calcHist([image], [2], None, [bins], [0, 256]).flatten()
     return np.concatenate((hist_r, hist_g, hist_b))
 
-def plotHistComparison(pSamples, qSamples, examples, filename):
+def plotKDE(psamples, qsamples, filename, dist='euclidean'):
+    #print(psamples.shape)
+    #print(qsamples.shape)
+    PSamplesIntraDistances = pdist(psamples, metric=dist)
+    QSamplesIntraDistances = pdist(qsamples, metric=dist)
+    InterDistances = cdist(psamples, qsamples, metric=dist).flatten()
 
-    def plot_average_histogram(ax, data, title, color, height):
-        ax.plot(data, color=color)
-        ax.set_title(title)
-        ax.set_ylim([0, height])
+    pintra_kde = fastKDE.pdf(PSamplesIntraDistances)
+    qintra_kde = fastKDE.pdf(QSamplesIntraDistances)
+    inter_kde = fastKDE.pdf(InterDistances)
 
-    def plot_example_histogram(ax, avg_psample, avg_qsample, example, filename, idx, height):
-        ax.plot(avg_psample, color='red', linestyle='dotted')
-        ax.plot(avg_qsample, color='green', linestyle='dotted')
-        ax.plot(example)
-        ax.set_title(f"{filename} example {idx}")
-        ax.set_ylim([0, height])
+    l = max(len(pintra_kde), len(qintra_kde), len(inter_kde))
+    x = np.linspace(min(PSamplesIntraDistances.min(), QSamplesIntraDistances.min(), InterDistances.min()), max(PSamplesIntraDistances.max(), QSamplesIntraDistances.max(), InterDistances.max()), l)                       
 
-    avg_psample = np.mean(pSamples, axis=0)
-    avg_qsample = np.mean(qSamples, axis=0)
-    height = 1500  # should be set based on nbins
+    pintra_kde_interp = np.interp(x, np.linspace(PSamplesIntraDistances.min(), PSamplesIntraDistances.max(), len(pintra_kde)), pintra_kde)
+    qintra_kde_interp = np.interp(x, np.linspace(QSamplesIntraDistances.min(), QSamplesIntraDistances.max(), len(qintra_kde)), qintra_kde)
+    inter_kde_interp = np.interp(x, np.linspace(InterDistances.min(), InterDistances.max(), len(inter_kde)), inter_kde)
 
-    fig, axs = plt.subplots(len(examples) + 2, figsize=(12, 6 + 3 * len(examples)))
+    pintra_kde = pintra_kde_interp
+    qintra_kde = qintra_kde_interp
+    inter_kde = inter_kde_interp
 
-    plot_average_histogram(axs[0], avg_psample, "Average PSample", 'red', height)
-    plot_average_histogram(axs[1], avg_qsample, "Average QSample", 'green', height)
+    overlap_area_pq = np.trapz(np.minimum(pintra_kde, qintra_kde), x)
+    overlap_area_pi = np.trapz(np.minimum(pintra_kde, inter_kde), x)
+    overlap_area_qi = np.trapz(np.minimum(qintra_kde, inter_kde), x)
 
-    for idx, example in enumerate(examples):
-        plot_example_histogram(axs[idx + 2], avg_psample, avg_qsample, example, filename, idx + 1, height)
+    print(f'Overlap area between P and Q: {overlap_area_pq}')
+    print(f'Overlap area between P and Inter: {overlap_area_pi}')
+    print(f'Overlap area between Q and Inter: {overlap_area_qi}')
 
-    plt.tight_layout()
+    plt.clf()
+    plt.figure(figsize=(7, 7))
+    plt.grid()
+
+    plt.plot(x, pintra_kde, label='P Intra')
+    plt.plot(x, qintra_kde, label='Q Intra')
+    plt.plot(x, inter_kde, label='Inter')
+
+    plt.legend()
     plt.savefig(filename)
 
 def generate_samples(distribution, dim, n):
@@ -207,3 +221,6 @@ def plot_matrices(distribution, fidelityMatrix, diversityMatrix, fidelityMetrics
         fig.colorbar(axs[0].images[0], ax=axs, orientation='vertical', fraction=0.02, pad=0.04)
         plt.savefig(f'./images/{distribution}_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
 
+def log_message(log_file, message):
+    print(message)
+    log_file.write(message + '\n')

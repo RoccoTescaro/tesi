@@ -1,0 +1,64 @@
+-------------------------------------------------------------
+Metric: hue_histogram
+precision: 0.5186246418338109
+recall: 0.994579945799458
+density: 0.08089045624862243
+coverage: 0.2953929539295393
+False positive rate: 0.6292134831460674
+False negative rate: 0.0
+True positive rate: 1.0
+n of false positives: 56
+n of false negatives: 0
+n of true positives/true negatives: 33
+
+False positive examples: {2, 4, 6, 43, 54}
+True positive examples: {774, 778, 267, 15, 784, 657, 152, 665, 553, 180, 569, 59, 189, 703, 704, 834, 197, 840, 87, 216, 89, 478, 608, 485, 104, 492, 621, 622, 879, 499, 503, 250, 893}
+
+-------------------------------------------------------------
+Metric: saturation_histogram
+precision: 0.6448863636363636
+recall: 1.0
+density: 0.18028846153846154
+coverage: 0.7762430939226519
+False positive rate: 0.29292929292929293
+False negative rate: 0.0
+True positive rate: 1.0
+n of false positives: 29
+n of false negatives: 0
+n of true positives/true negatives: 70
+
+False positive examples: {96, 72, 118, 24, 27}
+True positive examples: {387, 891, 7, 263, 649, 10, 11, 139, 15, 272, 17, 529, 658, 659, 666, 668, 670, 798, 545, 36, 550, 39, 295, 554, 810, 173, 430, 685, 818, 310, 313, 573, 701, 192, 65, 449, 706, 454, 710, 712, 201, 458, 459, 843, 590, 723, 343, 731, 348, 477, 606, 861, 98, 355, 866, 741, 742, 489, 234, 236, 748, 370, 628, 884, 246, 375, 758, 377, 250, 885}
+
+-------------------------------------------------------------
+Metric: hsv_histogram
+precision: 0.18518518518518517
+recall: 0.9972375690607734
+density: 0.02194787379972565
+coverage: 0.1408839779005525
+False positive rate: 0.8041237113402062
+False negative rate: 0.01694915254237288
+True positive rate: 0.9830508474576272
+n of false positives: 78
+n of false negatives: 1
+n of true positives/true negatives: 19
+
+False positive examples: {0, 32, 6, 21, 25}
+True positive examples: {140, 22, 542, 171, 691, 439, 570, 827, 707, 324, 712, 75, 208, 82, 860, 238, 369, 114, 891}
+
+-------------------------------------------------------------
+Metric: rgb_histogram
+precision: 0.03954802259887006
+recall: 1.0
+density: 0.011408083441981747
+coverage: 0.2050561797752809
+False positive rate: 0.9058823529411765
+False negative rate: 0.0
+True positive rate: 1.0
+n of false positives: 77
+n of false negatives: 0
+n of true positives/true negatives: 8
+
+False positive examples: {2, 36, 42, 21, 26}
+True positive examples: {545, 738, 743, 397, 343, 156, 893, 798}
+

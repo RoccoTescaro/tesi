@@ -351,10 +351,6 @@ def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     plt.grid(True)
     plt.savefig(f'./images/PRCurve_k{k_mod}_s{shift}.png')
 def testCompareResults():
-    def log_message(log_file, message):
-        print(message)
-        log_file.write(message + '\n')
-
     def printComparison(log_file, test, x, y):
         if x != y:
             log_message(log_file, f'{test} failed')
@@ -413,7 +409,7 @@ def testCompareResults():
     QkNormalShiftedDistances = kDistances(QNormalShiftedSamples, hyperparam['k'], hyperparam['nJobs'])
     QkUniformDistances = kDistances(QUniformSamples, hyperparam['k'], hyperparam['nJobs'])
 
-    with open('./log.txt', 'w') as log_file:
+    with open('./logs/ext_impl_comp_log.txt', 'w') as log_file:
         log_message(log_file, 'Comparing results of my implementation with the actual implementation')
         log_message(log_file, '-------------------------------------------------------------')
         log_message(log_file, 'Improved Precision and Recall Metric Comparisons')
@@ -439,352 +435,200 @@ def testButterflies():
     n_bins = 64
     n_examples = 5
 
-
     metrics = [hue_histogram, saturation_histogram, hsv_histogram, rgb_histogram] #, value_histogram, grayscale_histogram]
     PPaths = [f"data/butterflies_train/t_{i:05d}.jpg" for i in range(n_images)]
     QPaths = [f"data/butterflies/g_{i:05d}.jpg" for i in range(n_images)]
 
-    for m in metrics:    
-        print('-------------------------------------------------------------')
-        print(f"Metric: {m.__name__}")
-        PSamples = np.array([tuple(m(image,n_bins)) for image in PPaths])
-        QSamples = np.array([tuple(m(image,n_bins)) for image in QPaths])
+    with open('./logs/butterflies_log.txt', 'w') as log_file:
+        for m in metrics:    
+            log_message(log_file, '-------------------------------------------------------------')
+            log_message(log_file, f"Metric: {m.__name__}")
+            PSamples = np.array([tuple(m(image,n_bins)) for image in PPaths])
+            QSamples = np.array([tuple(m(image,n_bins)) for image in QPaths])
 
-        #split the data
-        split_ratio = 0.8
-        Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, split_ratio)
-        #no split
-        #Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
-        #Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+            #split the data
+            split_ratio = 0.8
+            Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, split_ratio)
+            #no split
+            #Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+            #Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
 
-        #k = 3
-        k = int(np.sqrt(len(Dtrain)))
+            #k = 3
+            k = int(np.sqrt(len(Dtrain)))
 
-        #compute prdc
-        prdc = compute_prdc([ x for x, y in Dtrain if y == 1], [ x for x, y in Dtrain if y == 0], k)
-        for key, value in prdc.items():
-            print(f"{key}: {value}")
+            #compute prdc
+            prdc = compute_prdc([ x for x, y in Dtrain if y == 1], [ x for x, y in Dtrain if y == 0], k)
+            for key, value in prdc.items():
+                log_message(log_file, f"{key}: {value}")
 
-        h = {'k': k, 'nJobs': 8}
-        #norm1
-        ord_ = 1
-        #norm2
-        #ord_ = 2
-        
-        def norm(x, axis = None):
-            return np.linalg.norm(x, axis=axis, ord=ord_)
-
-        func = supportClassifier(Dtrain, h, norm)
-    
-        fpr = 0
-        fnr = 0
-        N = [0, 0]
-        fp_example = []
-        fn_example = []
-        tp_example = []
-
-        for val, res in Dtest:
-            inP, inQ = func(val)
-            N[res] += 1
-
-            if inP and inQ and res == 0: #memorize only qSamples that are inside the PSamples support
-                tp_example.append(val)
-
-            if inP and not inQ:
-                fnr += 1
-                if len(fn_example) < n_examples:
-                    fn_example.append(val)
-                    #print('false negative realism score wrt QSamples', realismScore(QSamples, val, h))
-                    #print('false negative realism score wrt PSamples', realismScore(np.array([p for p in PSamples if not np.array_equal(p, val)]), val, h))
+            h = {'k': k, 'nJobs': 8}
+            #norm1
+            ord_ = 1
+            #norm2
+            #ord_ = 2
             
-            elif not inP and inQ:
-                fpr += 1
-                if len(fp_example) < n_examples:
-                    fp_example.append(val)
-                    #print('false positive realism score wrt PSamples', realismScore(PSamples, val, h))
-                    #print('false positive realism score wrt QSamples', realismScore(np.array([q for q in QSamples if not np.array_equal(q, val)]), val, h))
+            def norm(x, axis = None):
+                return np.linalg.norm(x, axis=axis, ord=ord_)
 
-        print(f"False positive rate: {fpr/N[0]}")
-        print(f"False negative rate: {fnr/N[1]}")
-        print(f"True positive rate: {1 - fnr/N[1]}")
-        print(f"n of false positives: {fpr}")
-        print(f"n of false negatives: {fnr}")
-        print(f"n of true positives/true negatives: {len(tp_example)}")
-        print()
-
-        #save the examples
-        set_of_indices = set()
-        for example in fp_example:
-            for i in range(n_images):
-                if np.array_equal(QSamples[i], example) and i not in set_of_indices:
-                    #print(f"False positive example: {i}")
-                    set_of_indices.add(i)
-                    break
+            func = supportClassifier(Dtrain, h, norm)
         
-        print(f"False positive examples: {set_of_indices}")
-        fp_example = [i for i in set_of_indices]
-
-        #set_of_indices.clear()
-        #for example in fn_example:
-        #    for i in range(n_images):
-        #        if np.array_equal(PSamples[i], example) and i not in set_of_indices:
-        #            #print(f"False negative example: {i}")
-        #            set_of_indices.add(i)
-        #            break
-        #
-        #print(f"False negative examples: {set_of_indices}")
-        #fn_example = [i for i in set_of_indices]
-
-        set_of_indices.clear()
-        for example in tp_example:
-            for i in range(n_images):
-                if np.array_equal(QSamples[i], example) and i not in set_of_indices:
-                    #print(f"True positive example: {i}")
-                    set_of_indices.add(i)
-                    break
-            
-        print(f"True positive examples: {set_of_indices}")
-        tp_example = [i for i in set_of_indices]
-
-        fp_closest_images = []
-        for index in fp_example:
-            example = np.array(QSamples[index])
-            distances = np.linalg.norm(PSamples - example, axis=1, ord=ord_)
-            closest_image = np.argmin(distances)
-            #min_distance = distances[closest_image]
-            #print(f"Closest image to false positive example: {closest_image}")
-            #print(f"Distance: {min_distance}")
-            fp_closest_images.append((QPaths[index], PPaths[closest_image]))
-            
-        tp_closest_images = []
-        for index in tp_example:
-            example = np.array(QSamples[index])
-            distances = np.linalg.norm(PSamples - example, axis=1, ord=ord_)
-            closest_image = np.argmin(distances)
-            #min_distance = distances[closest_image]
-            #print(f"Closest image to true positive example: {closest_image}")
-            #print(f"Distance: {min_distance}")
-            tp_closest_images.append((QPaths[index], PPaths[closest_image]))
-                                     
-
-        #make a graph of false positives and closest images
-        # Plot false positives and closest real images
-
-        if len(tp_example) < n_examples or len(fp_example) < n_examples:
-            print('not enough examples to plot')
-            return
-        
-        fig, axs = plt.subplots(4, n_examples, figsize=(5 * n_examples, 5 * 4 ))
-        fig.suptitle('False Positives and Closest Real Images')
-        
-        for i in range(n_examples):
-            fp_path, fp_closest_image_path = fp_closest_images[i]
-            tp_path, tp_closest_image_path = tp_closest_images[i]
-
-            fp_image = cv2.imread(fp_path)
-            fp_closest_image = cv2.imread(fp_closest_image_path)
-            tp_image = cv2.imread(tp_path)
-            tp_closest_image = cv2.imread(tp_closest_image_path)  
-
-            axs[0, i].imshow(fp_image)
-            axs[0, i].xaxis.set_visible(False)
-            axs[0, i].set_yticks([])
-
-            axs[1, i].imshow(fp_closest_image)
-            axs[1, i].xaxis.set_visible(False)
-            axs[1, i].set_yticks([])
-
-            axs[2, i].imshow(tp_image)
-            axs[2, i].xaxis.set_visible(False)
-            axs[2, i].set_yticks([])
-
-            axs[3, i].imshow(tp_closest_image)
-            axs[3, i].xaxis.set_visible(False)
-            axs[3, i].set_yticks([])
-
-        for ax, row in zip(axs[:, 0], ['False Positive', 'Closest Real Image', 'True Positive', 'Closest Real Image']):
-            ax.set_ylabel(row, rotation=90, size='large')
-        
-        #plt.tight_layout()
-        plt.savefig(f'./images/fp_{m.__name__}.png')
-
-        #plotHistComparison(PSamples, QSamples, fp_example, f'./images/fp_comp_{m.__name__}.png')
-        #plotHistComparison(PSamples, QSamples, fn_example, f'./images/fn_comp_{m.__name__}.png')
-
-        #plot kde
-        
-
-        print()
-
-'''
-def testScarlatti():
-    #load data 
-    #fluidsynth /usr/share/soundfonts/FluidR3_GM.sf2 data/Scarlatti/real/val/0/0/8/8/0/000000000880_00.mid
-
-    PPaths = glob.glob('data/Scarlatti/real/**/*.mid', recursive=True)
-    #QPaths = glob.glob('data/Scarlatti/fake/model_011809.ckpt/*.mid', recursive=False)
-    QPaths = [f'data/Scarlatti/fake/model_7969400.ckpt/{i:010d}.mid' for i in range(100,900)]
-
-    #TODO unire test e validation sets e computare l'interset kde
-    #TODO fare lo stesso fra training e generated samples (escludendo i primi 100 e gli ultimi 100)
-
-    metrics = [
-                nNotesPerMeasure,  
-                nPitchesPerMeasure ,
-                pitchClassHist,
-                pitchClassTransMatrix,
-                noteLengthHist,
-                noteLengthTransMatrix,
-            ]
-    
-    for m in metrics:
-        print(f'{m.__name__}')
-
-        PSamples = np.array([m(p) for p in PPaths])
-        QSamples = np.array([m(q) for q in QPaths])
-
-        print(f'PSamples shape: {PSamples.shape}')
-        print(f'QSamples shape: {QSamples.shape}')
-
-        #split the data
-        size = min(len(PSamples), len(QSamples))
-        Dtrain, Dtest = createDtrainDtest(PSamples[:size], QSamples[:size], 0.8)
-
-        k = int(np.sqrt(len(Dtrain)))
-
-        #compute prdc
-        prdc = compute_prdc(PSamples, QSamples, k)
-        for key, value in prdc.items():
-            print(f"{key}: {value}")
-
-
-        h = {'k': k, 'nJobs': 8, 'Gammas': []}
-        g = 5001
-        gammas = [np.tan(np.pi/2 *i/(g+1)) for i in range(1, g)]
-        gammas.append(100000000) #np.inf leads to overflow
-        gammas.append(0.)
-        h['Gammas'] = gammas
-        func = iprClassifier(Dtrain, h)
-
-        best_gamma_index = 0
-        best_gamma = gammas[best_gamma_index]
-        for gamma, i in enumerate(gammas):
             fpr = 0
             fnr = 0
             N = [0, 0]
+            fp_example = []
+            fn_example = []
+            tp_example = []
+
             for val, res in Dtest:
-                pred = func(val, gamma)
+                inP, inQ = func(val)
                 N[res] += 1
-                if pred and res == 0:
-                    fpr += 1
-                elif not pred and res == 1:
+
+                if inP and inQ and res == 0: #memorize only qSamples that are inside the PSamples support
+                    tp_example.append(val)
+
+                if inP and not inQ:
                     fnr += 1
+                    if len(fn_example) < n_examples:
+                        fn_example.append(val)
+                        #log_message(log_file,'false negative realism score wrt QSamples', realismScore(QSamples, val, h))
+                        #log_message(log_file,'false negative realism score wrt PSamples', realismScore(np.array([p for p in PSamples if not np.array_equal(p, val)]), val, h))
+                
+                elif not inP and inQ:
+                    fpr += 1
+                    if len(fp_example) < n_examples:
+                        fp_example.append(val)
+                        #log_message(log_file,'false positive realism score wrt PSamples', realismScore(PSamples, val, h))
+                        #log_message(log_file,'false positive realism score wrt QSamples', realismScore(np.array([q for q in QSamples if not np.array_equal(q, val)]), val, h))
+
+            log_message(log_file,f"False positive rate: {fpr/N[0]}")
+            log_message(log_file,f"False negative rate: {fnr/N[1]}")
+            log_message(log_file,f"True positive rate: {1 - fnr/N[1]}")
+            log_message(log_file,f"n of false positives: {fpr}")
+            log_message(log_file,f"n of false negatives: {fnr}")
+            log_message(log_file,f"n of true positives/true negatives: {len(tp_example)}")
+            log_message(log_file,"")
+
+            #save the examples
+            set_of_indices = set()
+            for example in fp_example:
+                for i in range(n_images):
+                    if np.array_equal(QSamples[i], example) and i not in set_of_indices:
+                        #log_message(log_file,f"False positive example: {i}")
+                        set_of_indices.add(i)
+                        break
             
-            fpr /= N[0]
-            fnr /= N[1]
+            log_message(log_file,f"False positive examples: {set_of_indices}")
+            fp_example = [i for i in set_of_indices]
 
-            if fpr + fnr < best_gamma:
-                best_gamma = fpr + fnr
-                best_gamma_index = i
+            #set_of_indices.clear()
+            #for example in fn_example:
+            #    for i in range(n_images):
+            #        if np.array_equal(PSamples[i], example) and i not in set_of_indices:
+            #            #log_message(log_file,f"False negative example: {i}")
+            #            set_of_indices.add(i)
+            #            break
+            #
+            #log_message(log_file,f"False negative examples: {set_of_indices}")
+            #fn_example = [i for i in set_of_indices]
+
+            set_of_indices.clear()
+            for example in tp_example:
+                for i in range(n_images):
+                    if np.array_equal(QSamples[i], example) and i not in set_of_indices:
+                        #log_message(log_file,f"True positive example: {i}")
+                        set_of_indices.add(i)
+                        break
+                
+            log_message(log_file,f"True positive examples: {set_of_indices}")
+            tp_example = [i for i in set_of_indices]
+
+            fp_closest_images = []
+            for index in fp_example:
+                example = np.array(QSamples[index])
+                distances = np.linalg.norm(PSamples - example, axis=1, ord=ord_)
+                closest_image = np.argmin(distances)
+                #min_distance = distances[closest_image]
+                #log_message(log_file,f"Closest image to false positive example: {closest_image}")
+                #log_message(log_file,f"Distance: {min_distance}")
+                fp_closest_images.append((QPaths[index], PPaths[closest_image]))
+                
+            tp_closest_images = []
+            for index in tp_example:
+                example = np.array(QSamples[index])
+                distances = np.linalg.norm(PSamples - example, axis=1, ord=ord_)
+                closest_image = np.argmin(distances)
+                #min_distance = distances[closest_image]
+                #log_message(log_file,f"Closest image to true positive example: {closest_image}")
+                #log_message(log_file,f"Distance: {min_distance}")
+                tp_closest_images.append((QPaths[index], PPaths[closest_image]))
+                                        
+
+            #make a graph of false positives and closest images
+            # Plot false positives and closest real images
+
+            if len(tp_example) < n_examples or len(fp_example) < n_examples:
+                log_message(log_file,'not enough examples to plot')
+                return
             
-        fpr = 0
-        fnr = 0
-        n_examples = 5
-        fp_example = []
-        fn_example = []
-        tn_example = []
-
-        for val, res in Dtest:
-            pred = func(val, gammas[best_gamma_index])
-            N[res] += 1
-            if pred and res == 0:
-                fpr += 1
-                if len(fp_example) < n_examples:
-                    fp_example.append(val)
-            elif not pred and res == 1:
-                fnr += 1
-                if len(fn_example) < n_examples:
-                    fn_example.append(val)
-            elif not pred and res == 0:
-                if len(tn_example) < n_examples:
-                    tn_example.append(val)
+            fig, axs = plt.subplots(4, n_examples, figsize=(5 * n_examples, 5 * 4 ))
+            fig.suptitle('False Positives and Closest Real Images')
             
-        fpr /= N[0]
-        fnr /= N[1]
+            for i in range(n_examples):
+                fp_path, fp_closest_image_path = fp_closest_images[i]
+                tp_path, tp_closest_image_path = tp_closest_images[i]
 
-        print(f"False positive rate: {fpr}")
-        print(f"False negative rate: {fnr}")
-        print(f"True positive rate: {1 - fnr}")
-        print()
+                fp_image = cv2.imread(fp_path)
+                fp_closest_image = cv2.imread(fp_closest_image_path)
+                tp_image = cv2.imread(tp_path)
+                tp_closest_image = cv2.imread(tp_closest_image_path)  
 
-        #clear the false positive and false negative folders
-        shutil.rmtree('./results/false_positive_scarlatti')
-        os.mkdir('./results/false_positive_scarlatti')
+                axs[0, i].imshow(fp_image)
+                axs[0, i].xaxis.set_visible(False)
+                axs[0, i].set_yticks([])
 
-        shutil.rmtree('./results/false_negative_scarlatti')
-        os.mkdir('./results/false_negative_scarlatti')
+                axs[1, i].imshow(fp_closest_image)
+                axs[1, i].xaxis.set_visible(False)
+                axs[1, i].set_yticks([])
 
-        os.mkdir('./results/false_positive_scarlatti/closest_results')
+                axs[2, i].imshow(tp_image)
+                axs[2, i].xaxis.set_visible(False)
+                axs[2, i].set_yticks([])
 
-        shutil.rmtree('./results/true_negative_scarlatti')
-        os.mkdir('./results/true_negative_scarlatti')
+                axs[3, i].imshow(tp_closest_image)
+                axs[3, i].xaxis.set_visible(False)
+                axs[3, i].set_yticks([])
 
-        #save the examples
-        set_of_indices = set()
-        for example in fp_example:
-            for i in range(len(QSamples)):
-                if np.array_equal(QSamples[i], example) and i not in set_of_indices:
-                    print(f"False positive example: {i}")
-                    shutil.copyfile(QPaths[i], f"./results/false_positive_scarlatti/{i}.mid")
-                    set_of_indices.add(i)
-                    break
+            for ax, row in zip(axs[:, 0], ['False Positive', 'Closest Real Image', 'True Positive', 'Closest Real Image']):
+                ax.set_ylabel(row, rotation=90, size='large')
+            
+            #plt.tight_layout()
+            plt.savefig(f'./images/fp_{m.__name__}.png')
 
-        set_of_indices.clear()
-        for example in fn_example:
-            for i in range(len(PSamples)):
-                if np.array_equal(PSamples[i], example) and i not in set_of_indices:
-                    print(f"False negative example: {i}")
-                    print(example)
-                    shutil.copyfile(PPaths[i], f"./results/false_negative_scarlatti/{i}.mid")
-                    set_of_indices.add(i)
-                    break
-
-        set_of_indices.clear()
-        for example in tn_example:
-            for i in range(len(PSamples)):
-                if np.array_equal(PSamples[i], example) and i not in set_of_indices:
-                    print(f"True negative example: {i}")
-                    print(example)
-                    shutil.copyfile(PPaths[i], f"./results/true_negative_scarlatti/{i}.mid")
-                    set_of_indices.add(i)
-                    break
-
-        for i, example in enumerate(fp_example):
-            example = np.array(example)
-            distances = np.linalg.norm(PSamples - example, axis=1)
-            closest_image = np.argmin(distances)
-            min_distance = distances[closest_image]
-            print(f"Closest image to false positive example: {closest_image}")
-            print(f"Distance: {min_distance}")
-            #save the closest image
-            shutil.copyfile(PPaths[closest_image], f"./results/false_positive_scarlatti/closest_results/{i}.mid")
-'''
-def testKDEReal():
+            plotKDE(PSamples, QSamples, f'./images/kde_{m.__name__}.png')
+            log_message(log_file,"")  
+def testScarlattiReal():
     PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
 
     QPaths = np.array(glob.glob('data/Scarlatti/real/test/**/*.mid', recursive=True))
     QPaths = np.concatenate((QPaths , np.array(glob.glob('data/Scarlatti/real/val/**/*.mid', recursive=True))))
 
-    print(PPaths.shape)
-    print(QPaths.shape)
+    #print(PPaths.shape)
+    #print(QPaths.shape)
 
     metrics = [
                 nNotesPerMeasure,  
                 nPitchesPerMeasure ,
                 pitchClassHist,
+                pitchClassHistPerMeasure,
                 pitchClassTransMatrix,
+                #pitchClassTransMatrixPerMeasure,
+                pitchRange,
+                avgPitchShift,
+                avgIOI,
                 noteLengthHist,
+                noteLengthHistPerMeasure,
                 noteLengthTransMatrix,
+                #noteLengthTransMatrixPerMeasure
             ]
     
     for m in metrics:
@@ -793,156 +637,216 @@ def testKDEReal():
         PSamples = np.array([m(p) for p in PPaths])
         QSamples = np.array([m(p) for p in QPaths])
 
-        #print('PSamples', PSamples.shape)
-        #print('QSamples', QSamples.shape)
-
-        #cityblock
-        PSamplesIntraDistances = pdist(PSamples, metric='euclidean')
-        #print('PSamplesIntraDistances', PSamplesIntraDistances.shape)
-        QSamplesIntraDistances = pdist(QSamples, metric='euclidean')
-        #print('QSamplesIntraDistances', QSamplesIntraDistances.shape)
-        InterDistances = cdist(PSamples, QSamples, metric='euclidean').flatten()
-        #print('InterDistances', InterDistances.shape)
-
-        pintra_kde = fastKDE.pdf(PSamplesIntraDistances)
-        qintra_kde = fastKDE.pdf(QSamplesIntraDistances)
-        inter_kde = fastKDE.pdf(InterDistances)
-
-        
-        #print('pintra_kde', pintra_kde.shape)
-        #print('qintra_kde', qintra_kde.shape)
-        #print('inter_kde', inter_kde.shape)
-
-        l = max(len(pintra_kde), len(qintra_kde), len(inter_kde))
-        x = np.linspace(min(PSamplesIntraDistances.min(), QSamplesIntraDistances.min(), InterDistances.min()), max(PSamplesIntraDistances.max(), QSamplesIntraDistances.max(), InterDistances.max()), l)                       
-
-        pintra_kde_interp = np.interp(x, np.linspace(PSamplesIntraDistances.min(), PSamplesIntraDistances.max(), len(pintra_kde)), pintra_kde)
-        qintra_kde_interp = np.interp(x, np.linspace(QSamplesIntraDistances.min(), QSamplesIntraDistances.max(), len(qintra_kde)), qintra_kde)
-        inter_kde_interp = np.interp(x, np.linspace(InterDistances.min(), InterDistances.max(), len(inter_kde)), inter_kde)
-
-        pintra_kde = pintra_kde_interp
-        qintra_kde = qintra_kde_interp
-        inter_kde = inter_kde_interp
-
-        overlap_area_pq = np.trapz(np.minimum(pintra_kde, qintra_kde), x)
-        overlap_area_pi = np.trapz(np.minimum(pintra_kde, inter_kde), x)
-        overlap_area_qi = np.trapz(np.minimum(qintra_kde, inter_kde), x)
-
-        print(f'Overlap area between P and Q: {overlap_area_pq}')
-        print(f'Overlap area between P and Inter: {overlap_area_pi}')
-        print(f'Overlap area between Q and Inter: {overlap_area_qi}')
-
-        plt.clf()
-        plt.figure(figsize=(7, 7))
-        plt.grid()
-
-        plt.plot(x, pintra_kde, label='P Intra')
-        plt.plot(x, qintra_kde, label='Q Intra')
-        plt.plot(x, inter_kde, label='Inter')
-
-        plt.legend()
-        plt.savefig(f'images/TrainVSTest_{m.__name__}.png')
-def testKDEFake():
+        #dist = 'cityblock'
+        plotKDE(PSamples, QSamples, f'images/TrainVSTest_{m.__name__}.png')
+def testScarlatti():
     PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
-    models = ['model_011809.ckpt', 'model_2077006.ckpt', 'model_7969400.ckpt']
+    models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']
 
     metrics = [
-        nNotesPerMeasure,  
-        nPitchesPerMeasure ,
+        nNotesPerMeasure,
+        nPitchesPerMeasure,
         pitchClassHist,
+        pitchClassHistPerMeasure,
         pitchClassTransMatrix,
+        #pitchClassTransMatrixPerMeasure,
+        pitchRange,
+        avgPitchShift,
+        avgIOI,
         noteLengthHist,
+        noteLengthHistPerMeasure,
         noteLengthTransMatrix,
+        #noteLengthTransMatrixPerMeasure
     ]
 
     dist = 'cityblock' #'euclidean'
+    if dist == 'cityblock':
+        ord_ = 1
+    else:
+        ord_ = 2
+
     method = 'scott'
+    n_examples = 5 #want to see about all the false positives
+    n_samples = 1000
+    min_index_sample = 150
+    max_index_sample = n_samples - min_index_sample
 
-    for m in metrics:
+    with open('./logs/scarlatti_log.txt', 'w') as log_file:
+        for m in metrics:
+            log_message(log_file,'========================================')
+            log_message(log_file,m.__name__)
+            log_message(log_file,'========================================')
 
-        print(m.__name__)
+            plt.clf()
+            fig, axs = plt.subplots(1, len(models), figsize=(3*len(models), 8), sharey=True)
+            fig.suptitle(f'Train vs Fake {m.__name__}')
 
-        plt.clf()
-        fig, axs = plt.subplots(1, len(models), figsize=(3*len(models), 8), sharey=True)
-        fig.suptitle(f'Train vs Fake {m.__name__}')
+            PSamples = np.array([m(p) for p in PPaths[:max_index_sample-min_index_sample]])
+            PSamplesIntraDistances = pdist(PSamples, metric=dist)
+            pintra_kde = fastKDE.pdf(PSamplesIntraDistances)
 
-        PSamples = np.array([m(p) for p in PPaths])
-        PSamplesIntraDistances = pdist(PSamples, metric=dist)
-        pintra_kde = fastKDE.pdf(PSamplesIntraDistances)
+            overlap_area = []
+            fp = []
 
-        for i, mod in enumerate(models):
+            for i, mod in enumerate(models):
+                log_message(log_file, f'- MODEL - {mod}')
 
-            QPaths = np.array([f'data/Scarlatti/fake/{mod}/{i:010d}.mid' for i in range(1000)])
+                QPaths = np.array([f'data/Scarlatti/fake/{mod}/{i:010d}.mid' for i in range(min_index_sample, max_index_sample)])
+                QSamples = np.array([m(p) for p in QPaths])
 
-            QSamples = np.array([m(p) for p in QPaths])
+                #CLASSIFICATION TASK
 
-            #print('PSamples', PSamples.shape)
-            #print('QSamples', QSamples.shape)
+                #no split ( we dont want to split the data to retrieve the examples and since models are preatty accurate and we want a samplesset for false positives)
+                Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+                Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
 
-            #cityblock
-            #print('PSamplesIntraDistances', PSamplesIntraDistances.shape)
-            QSamplesIntraDistances = pdist(QSamples, metric=dist)
-            #print('QSamplesIntraDistances', QSamplesIntraDistances.shape)
-            InterDistances = cdist(PSamples, QSamples, metric=dist).flatten()
+                k = 4
+                #k = int(np.sqrt(len(Dtrain)))
 
-            qintra_kde = fastKDE.pdf(QSamplesIntraDistances)
-            inter_kde = fastKDE.pdf(InterDistances)
+                #compute prdc
+                prdc = compute_prdc([ x for x, y in Dtrain if y == 1], [ x for x, y in Dtrain if y == 0], k)
+                for key, value in prdc.items():
+                    log_message(log_file,f"{key}: {value}")
+
+                h = {'k': k, 'nJobs': 8}
+                                
+                def norm(x, axis = None):
+                    return np.linalg.norm(x, axis=axis, ord=ord_)
+
+                func = supportClassifier(Dtrain, h, norm)
             
-            #print('pintra_kde', pintra_kde.shape)
-            #print('qintra_kde', qintra_kde.shape)
+                fpr = 0
+                fnr = 0
+                N = [0, 0]
+                fp_example = []
+                fn_example = []
+                tp_example = []
 
-            l = max(len(pintra_kde), len(qintra_kde), len(inter_kde))
-            x = np.linspace(min(PSamplesIntraDistances.min(), QSamplesIntraDistances.min(), InterDistances.min()), max(PSamplesIntraDistances.max(), QSamplesIntraDistances.max(), InterDistances.max()), l)
+                index = 0
+                for val, res in Dtest:
+                    inP, inQ = func(val)
+                    N[res] += 1
 
-            pintra_kde_interp = np.interp(x, np.linspace(PSamplesIntraDistances.min(), PSamplesIntraDistances.max(), len(pintra_kde)), pintra_kde)
-            qintra_kde_interp = np.interp(x, np.linspace(QSamplesIntraDistances.min(), QSamplesIntraDistances.max(), len(qintra_kde)), qintra_kde)
-            inter_kde_interp = np.interp(x, np.linspace(InterDistances.min(), InterDistances.max(), len(inter_kde)), inter_kde)
+                    if inP and inQ and res == 0: #memorize only qSamples that are inside the PSamples support
+                        tp_example.append(N[0]-1)
 
-            pintra_kde = pintra_kde_interp
-            qintra_kde = qintra_kde_interp
-            inter_kde = inter_kde_interp
+                    if inP and not inQ:
+                        fnr += 1
+                        if len(fn_example) < n_examples:
+                            fn_example.append(N[1]-1)
+                            #log_message(log_file,'false negative realism score wrt QSamples', realismScore(QSamples, val, h))
+                            #log_message(log_file,'false negative realism score wrt PSamples', realismScore(np.array([p for p in PSamples if not np.array_equal(p, val)]), val, h))
+                    
+                    elif not inP and inQ:
+                        fpr += 1
+                        if len(fp_example) < n_examples:
+                            fp_example.append(N[0]-1)
+                            #log_message(log_file,'false positive realism score wrt PSamples', realismScore(PSamples, val, h))
+                            #log_message(log_file,'false positive realism score wrt QSamples', realismScore(np.array([q for q in QSamples if not np.array_equal(q, val)]), val, h))
 
-            overlap_area_pq = np.trapz(np.minimum(pintra_kde, qintra_kde), x)
+                log_message(log_file,f"False positive rate: {fpr/N[0]}")
+                log_message(log_file,f"False negative rate: {fnr/N[1]}")
+                log_message(log_file,f"True positive rate: {1 - fnr/N[1]}")
+                log_message(log_file,f"n of false positives: {fpr}")
+                log_message(log_file,f"n of false negatives: {fnr}")
+                log_message(log_file,f"n of true positives/true negatives: {len(tp_example)}")
+                log_message(log_file,"")
+                
+                if len(fp_example) > 0:
+                    log_message(log_file,f'[')
+                    fp_example_paths = [f'data/Scarlatti/fake/{mod}/{(min_index_sample+i):010d}.mid' for i in fp_example]
+                    for path in fp_example_paths:
+                        log_message(log_file,f'    {path},')                
+                    log_message(log_file,f']')
+                
+                    log_message(log_file,"")
 
-            print(f'{mod} - Overlap area between P and Q: {overlap_area_pq}')
+                fp.append(fpr)
 
-            sns.violinplot(data=PSamplesIntraDistances, bw_method=method, orient='v', inner=None, color='steelblue', saturation=0.75, linewidth=0, ax=axs[i])
-            sns.violinplot(data=QSamplesIntraDistances, bw_method=method, orient='v', inner=None, color='mediumseagreen', saturation=0.75, linewidth=0, ax=axs[i])
-            
-            # Hide the right half for pintra_kde (first violin)
-            for collection in axs[i].collections[::2]:  # Every other element corresponds to pintra_kde
-                for path in collection.get_paths():
-                    path.vertices[:, 0] = np.clip(path.vertices[:, 0], -np.inf, 0)  # Keep only left half (clip on x-axis)
+                #KDE TASK
 
-            # Hide the left half for qintra_kde (second violin)
-            for collection in axs[i].collections[1::2]:  # Every other element corresponds to qintra_kde
-                for path in collection.get_paths():
-                    path.vertices[:, 0] = np.clip(path.vertices[:, 0], 0, np.inf)  # Keep only right half (clip on x-axis)
+                #log_message(log_file,'PSamples', PSamples.shape)
+                #log_message(log_file,'QSamples', QSamples.shape)
 
-            sns.boxplot(data=InterDistances, orient='v', color='whitesmoke',linecolor='darkslategray', saturation=0.75, width=0.02, fliersize=0, linewidth=2, ax=axs[i])
-            axs[i].set_xlabel(f'dist {mod}')
+                #cityblock
+                #log_message(log_file,'PSamplesIntraDistances', PSamplesIntraDistances.shape)
+                QSamplesIntraDistances = pdist(QSamples, metric=dist)
+                #log_message(log_file,'QSamplesIntraDistances', QSamplesIntraDistances.shape)
+                InterDistances = cdist(PSamples, QSamples, metric=dist).flatten()
 
-            # Remove the spines (borders) of each subplot
-            axs[i].spines['top'].set_visible(True)
-            axs[i].spines['right'].set_visible(False)
-            axs[i].spines['left'].set_visible(False)
-            axs[i].spines['bottom'].set_visible(True)
+                qintra_kde = fastKDE.pdf(QSamplesIntraDistances)
+                inter_kde = fastKDE.pdf(InterDistances)
+                
+                #log_message(log_file,'pintra_kde', pintra_kde.shape)
+                #log_message(log_file,'qintra_kde', qintra_kde.shape)
 
-            axs[i].set_xmargin(0.05)
-            axs[i].set_ymargin(0.05)
+                l = max(len(pintra_kde), len(qintra_kde), len(inter_kde))
+                x = np.linspace(min(PSamplesIntraDistances.min(), QSamplesIntraDistances.min(), InterDistances.min()), max(PSamplesIntraDistances.max(), QSamplesIntraDistances.max(), InterDistances.max()), l)
 
-            # Only show the bottom spine for the first subplot
-            if i == 0:
-                axs[i].spines['left'].set_visible(True)
-                axs[i].set_ylabel('Density')
+                pintra_kde_interp = np.interp(x, np.linspace(PSamplesIntraDistances.min(), PSamplesIntraDistances.max(), len(pintra_kde)), pintra_kde)
+                qintra_kde_interp = np.interp(x, np.linspace(QSamplesIntraDistances.min(), QSamplesIntraDistances.max(), len(qintra_kde)), qintra_kde)
+                inter_kde_interp = np.interp(x, np.linspace(InterDistances.min(), InterDistances.max(), len(inter_kde)), inter_kde)
 
-            if i == len(models) - 1:
-                axs[i].spines['right'].set_visible(True)
+                pintra_kde = pintra_kde_interp
+                qintra_kde = qintra_kde_interp
+                inter_kde = inter_kde_interp
 
-            # Remove y-ticks for all but the first subplot
-            if i != 0:
-                axs[i].tick_params(left=False)
+                overlap_area_pq = np.trapz(np.minimum(pintra_kde, qintra_kde), x)
 
-        plt.tight_layout()
-        plt.savefig(f'images/TrainVSFake_{m.__name__}.png')
+                log_message(log_file,f'Overlap area between P and Q: {overlap_area_pq}')
+                log_message(log_file,'-------------------------------------------------------------')
+                
+                overlap_area.append(overlap_area_pq)
+
+                sns.violinplot(data=PSamplesIntraDistances, bw_method=method, orient='v', inner=None, color='steelblue', saturation=0.75, linewidth=0, ax=axs[i])
+                sns.violinplot(data=QSamplesIntraDistances, bw_method=method, orient='v', inner=None, color='mediumseagreen', saturation=0.75, linewidth=0, ax=axs[i])
+                
+                # Hide the right half for pintra_kde (first violin)
+                for collection in axs[i].collections[::2]:  # Every other element corresponds to pintra_kde
+                    for path in collection.get_paths():
+                        path.vertices[:, 0] = np.clip(path.vertices[:, 0], -np.inf, 0)  # Keep only left half (clip on x-axis)
+
+                # Hide the left half for qintra_kde (second violin)
+                for collection in axs[i].collections[1::2]:  # Every other element corresponds to qintra_kde
+                    for path in collection.get_paths():
+                        path.vertices[:, 0] = np.clip(path.vertices[:, 0], 0, np.inf)  # Keep only right half (clip on x-axis)
+
+                sns.boxplot(data=InterDistances, orient='v', color='whitesmoke',linecolor='darkslategray', saturation=0.75, width=0.02, fliersize=0, linewidth=2, ax=axs[i])
+                axs[i].set_xlabel(f'dist {mod}')
+
+                # Remove the spines (borders) of each subplot
+                axs[i].spines['top'].set_visible(True)
+                axs[i].spines['right'].set_visible(False)
+                axs[i].spines['left'].set_visible(False)
+                axs[i].spines['bottom'].set_visible(True)
+
+                axs[i].set_xmargin(0.05)
+                axs[i].set_ymargin(0.05)
+
+                # Only show the bottom spine for the first subplot
+                if i == 0:
+                    axs[i].spines['left'].set_visible(True)
+                    axs[i].set_ylabel('Density')
+
+                if i == len(models) - 1:
+                    axs[i].spines['right'].set_visible(True)
+
+                # Remove y-ticks for all but the first subplot
+                if i != 0:
+                    axs[i].tick_params(left=False)
+
+            plt.tight_layout()
+            plt.savefig(f'images/TrainVSFake_{m.__name__}.png')
+
+            log_message(log_file,'')
+            log_message(log_file,'')
+            best_oa = np.argmax(overlap_area)
+            best_fp = np.argmin(fp)
+            log_message(log_file,f'Best by overlap area: {models[best_oa]}')
+            log_message(log_file,f'Best by numb. of false positives: {models[best_fp]}')
+
+            log_message(log_file,'')
+            log_message(log_file,'')
+
+
 

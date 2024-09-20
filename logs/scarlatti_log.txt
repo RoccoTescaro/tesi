@@ -1,0 +1,1281 @@
+========================================
+nNotesPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.66
+recall: 0.8042857142857143
+density: 0.3407142857142857
+coverage: 0.36857142857142855
+False positive rate: 0.3171428571428571
+False negative rate: 0.19142857142857142
+True positive rate: 0.8085714285714286
+n of false positives: 222
+n of false negatives: 134
+n of true positives/true negatives: 478
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000161.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000164.mid,
+]
+
+Overlap area between P and Q: 0.714503558567706
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.8785714285714286
+recall: 0.6714285714285714
+density: 0.6482142857142857
+coverage: 0.6185714285714285
+False positive rate: 0.11
+False negative rate: 0.27714285714285714
+True positive rate: 0.7228571428571429
+n of false positives: 77
+n of false negatives: 194
+n of true positives/true negatives: 621
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000153.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000156.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000162.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000163.mid,
+]
+
+Overlap area between P and Q: 0.7287270135063981
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.8228571428571428
+recall: 0.7785714285714286
+density: 0.5910714285714286
+coverage: 0.5657142857142857
+False positive rate: 0.15857142857142856
+False negative rate: 0.19857142857142857
+True positive rate: 0.8014285714285714
+n of false positives: 111
+n of false negatives: 139
+n of true positives/true negatives: 589
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000160.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000165.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000166.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000177.mid,
+]
+
+Overlap area between P and Q: 0.8034201478418803
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.8342857142857143
+recall: 0.7871428571428571
+density: 0.61
+coverage: 0.62
+False positive rate: 0.15142857142857144
+False negative rate: 0.19428571428571428
+True positive rate: 0.8057142857142857
+n of false positives: 106
+n of false negatives: 136
+n of true positives/true negatives: 594
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000161.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000173.mid,
+]
+
+Overlap area between P and Q: 0.8019232524369557
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.8528571428571429
+recall: 0.7657142857142857
+density: 0.605
+coverage: 0.6142857142857143
+False positive rate: 0.12428571428571429
+False negative rate: 0.2057142857142857
+True positive rate: 0.7942857142857143
+n of false positives: 87
+n of false negatives: 144
+n of true positives/true negatives: 612
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000162.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000165.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000172.mid,
+]
+
+Overlap area between P and Q: 0.7975133345301317
+-------------------------------------------------------------
+
+
+Best by overlap area: model_2077006.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+nPitchesPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.7442857142857143
+recall: 0.8042857142857143
+density: 0.44142857142857145
+coverage: 0.5542857142857143
+False positive rate: 0.16714285714285715
+False negative rate: 0.15285714285714286
+True positive rate: 0.8471428571428572
+n of false positives: 117
+n of false negatives: 107
+n of true positives/true negatives: 583
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000161.mid,
+]
+
+Overlap area between P and Q: 0.813662088314738
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.8714285714285714
+recall: 0.7514285714285714
+density: 0.6589285714285714
+coverage: 0.7342857142857143
+False positive rate: 0.07857142857142857
+False negative rate: 0.18428571428571427
+True positive rate: 0.8157142857142857
+n of false positives: 55
+n of false negatives: 129
+n of true positives/true negatives: 645
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000156.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000162.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000173.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000182.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000184.mid,
+]
+
+Overlap area between P and Q: 0.7837273162241825
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.8257142857142857
+recall: 0.8285714285714286
+density: 0.6025
+coverage: 0.7214285714285714
+False positive rate: 0.12571428571428572
+False negative rate: 0.12285714285714286
+True positive rate: 0.8771428571428571
+n of false positives: 88
+n of false negatives: 86
+n of true positives/true negatives: 612
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000165.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000170.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000178.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000187.mid,
+]
+
+Overlap area between P and Q: 0.8610002130451243
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.8571428571428571
+recall: 0.86
+density: 0.6246428571428572
+coverage: 0.7714285714285715
+False positive rate: 0.09428571428571429
+False negative rate: 0.12285714285714286
+True positive rate: 0.8771428571428571
+n of false positives: 66
+n of false negatives: 86
+n of true positives/true negatives: 634
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000160.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000161.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000174.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000178.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000182.mid,
+]
+
+Overlap area between P and Q: 0.9152774854763865
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.8428571428571429
+recall: 0.86
+density: 0.6435714285714286
+coverage: 0.8128571428571428
+False positive rate: 0.09714285714285714
+False negative rate: 0.10428571428571429
+True positive rate: 0.8957142857142857
+n of false positives: 68
+n of false negatives: 73
+n of true positives/true negatives: 631
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000154.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000166.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000179.mid,
+]
+
+Overlap area between P and Q: 0.900359013750071
+-------------------------------------------------------------
+
+
+Best by overlap area: model_7083228.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+pitchClassHist
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.8971428571428571
+recall: 0.8614285714285714
+density: 0.7796428571428572
+coverage: 0.7271428571428571
+False positive rate: 0.11714285714285715
+False negative rate: 0.13857142857142857
+True positive rate: 0.8614285714285714
+n of false positives: 82
+n of false negatives: 97
+n of true positives/true negatives: 618
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000156.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000170.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000176.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000181.mid,
+]
+
+Overlap area between P and Q: 0.7627508802207554
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.9528571428571428
+recall: 0.8785714285714286
+density: 1.105357142857143
+coverage: 0.8657142857142858
+False positive rate: 0.047142857142857146
+False negative rate: 0.12428571428571429
+True positive rate: 0.8757142857142857
+n of false positives: 33
+n of false negatives: 87
+n of true positives/true negatives: 667
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000181.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000190.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000210.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000223.mid,
+]
+
+Overlap area between P and Q: 0.8976133253561194
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.9557142857142857
+recall: 0.9428571428571428
+density: 0.9010714285714285
+coverage: 0.9028571428571428
+False positive rate: 0.05857142857142857
+False negative rate: 0.07142857142857142
+True positive rate: 0.9285714285714286
+n of false positives: 41
+n of false negatives: 50
+n of true positives/true negatives: 658
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000172.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000178.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000185.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000199.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000233.mid,
+]
+
+Overlap area between P and Q: 0.8223670202468578
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.9328571428571428
+recall: 0.9585714285714285
+density: 0.8971428571428571
+coverage: 0.9414285714285714
+False positive rate: 0.06714285714285714
+False negative rate: 0.05
+True positive rate: 0.95
+n of false positives: 47
+n of false negatives: 35
+n of true positives/true negatives: 653
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000171.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000186.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000197.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000199.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000213.mid,
+]
+
+Overlap area between P and Q: 0.7565200035587092
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.9385714285714286
+recall: 0.9357142857142857
+density: 0.9
+coverage: 0.9271428571428572
+False positive rate: 0.07
+False negative rate: 0.05
+True positive rate: 0.95
+n of false positives: 49
+n of false negatives: 35
+n of true positives/true negatives: 651
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000153.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000181.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000198.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000203.mid,
+]
+
+Overlap area between P and Q: 0.7249569340428091
+-------------------------------------------------------------
+
+
+Best by overlap area: model_516209.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+pitchClassHistPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.63
+recall: 0.67
+density: 0.4232142857142857
+coverage: 0.5814285714285714
+False positive rate: 0.2857142857142857
+False negative rate: 0.24571428571428572
+True positive rate: 0.7542857142857142
+n of false positives: 200
+n of false negatives: 172
+n of true positives/true negatives: 500
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000154.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000164.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000175.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000176.mid,
+]
+
+Overlap area between P and Q: 0.8778402377807777
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.71
+recall: 0.6785714285714286
+density: 0.5857142857142857
+coverage: 0.7614285714285715
+False positive rate: 0.2
+False negative rate: 0.22285714285714286
+True positive rate: 0.7771428571428571
+n of false positives: 140
+n of false negatives: 156
+n of true positives/true negatives: 560
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000161.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000175.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000178.mid,
+]
+
+Overlap area between P and Q: 0.932584100134197
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.6871428571428572
+recall: 0.8014285714285714
+density: 0.5478571428571428
+coverage: 0.7742857142857142
+False positive rate: 0.1757142857142857
+False negative rate: 0.11714285714285715
+True positive rate: 0.8828571428571429
+n of false positives: 123
+n of false negatives: 82
+n of true positives/true negatives: 577
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000162.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000165.mid,
+]
+
+Overlap area between P and Q: 0.6548794357435601
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.7471428571428571
+recall: 0.8142857142857143
+density: 0.6275
+coverage: 0.8528571428571429
+False positive rate: 0.14142857142857143
+False negative rate: 0.10857142857142857
+True positive rate: 0.8914285714285715
+n of false positives: 99
+n of false negatives: 76
+n of true positives/true negatives: 601
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000154.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000178.mid,
+]
+
+Overlap area between P and Q: 0.44584009903349814
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.7628571428571429
+recall: 0.8128571428571428
+density: 0.6332142857142857
+coverage: 0.81
+False positive rate: 0.14142857142857143
+False negative rate: 0.14142857142857143
+True positive rate: 0.8585714285714285
+n of false positives: 99
+n of false negatives: 99
+n of true positives/true negatives: 601
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000160.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000170.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000190.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000208.mid,
+]
+
+Overlap area between P and Q: 0.4040609228145082
+-------------------------------------------------------------
+
+
+Best by overlap area: model_516209.ckpt
+Best by numb. of false positives: model_7083228.ckpt
+
+
+========================================
+pitchClassTransMatrix
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.8214285714285714
+recall: 0.26571428571428574
+density: 0.8703571428571428
+coverage: 0.6471428571428571
+False positive rate: 0.26285714285714284
+False negative rate: 0.6357142857142857
+True positive rate: 0.3642857142857143
+n of false positives: 184
+n of false negatives: 445
+n of true positives/true negatives: 516
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000155.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000166.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000168.mid,
+]
+
+Overlap area between P and Q: 0.6293147733017956
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.9371428571428572
+recall: 0.45
+density: 1.8285714285714285
+coverage: 0.9271428571428572
+False positive rate: 0.04
+False negative rate: 0.5714285714285714
+True positive rate: 0.4285714285714286
+n of false positives: 28
+n of false negatives: 400
+n of true positives/true negatives: 671
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000167.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000170.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000191.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000195.mid,
+]
+
+Overlap area between P and Q: 0.7395904583253518
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.9185714285714286
+recall: 0.6357142857142857
+density: 1.1882142857142857
+coverage: 0.94
+False positive rate: 0.07
+False negative rate: 0.33285714285714285
+True positive rate: 0.6671428571428571
+n of false positives: 49
+n of false negatives: 233
+n of true positives/true negatives: 651
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000155.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000197.mid,
+]
+
+Overlap area between P and Q: 0.9240900365748459
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.9228571428571428
+recall: 0.7471428571428571
+density: 1.0414285714285714
+coverage: 0.9528571428571428
+False positive rate: 0.06285714285714286
+False negative rate: 0.20714285714285716
+True positive rate: 0.7928571428571428
+n of false positives: 44
+n of false negatives: 145
+n of true positives/true negatives: 657
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000169.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000186.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000187.mid,
+]
+
+Overlap area between P and Q: 0.9832073428775967
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.9
+recall: 0.7528571428571429
+density: 1.0253571428571429
+coverage: 0.9485714285714286
+False positive rate: 0.08
+False negative rate: 0.20142857142857143
+True positive rate: 0.7985714285714286
+n of false positives: 56
+n of false negatives: 141
+n of true positives/true negatives: 644
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000154.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000201.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000203.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000206.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000208.mid,
+]
+
+Overlap area between P and Q: 0.953998485181298
+-------------------------------------------------------------
+
+
+Best by overlap area: model_7083228.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+pitchRange
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.10857142857142857
+recall: 0.04
+density: 0.0875
+coverage: 0.015714285714285715
+False positive rate: 0.02
+False negative rate: 0.03428571428571429
+True positive rate: 0.9657142857142857
+n of false positives: 14
+n of false negatives: 24
+n of true positives/true negatives: 685
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000168.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000268.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000326.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000443.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000466.mid,
+]
+
+Overlap area between P and Q: 0.9330701621968678
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.04857142857142857
+recall: 0.03857142857142857
+density: 0.03428571428571429
+coverage: 0.03
+False positive rate: 0.0014285714285714286
+False negative rate: 0.015714285714285715
+True positive rate: 0.9842857142857143
+n of false positives: 1
+n of false negatives: 11
+n of true positives/true negatives: 696
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000639.mid,
+]
+
+Overlap area between P and Q: 0.6114592710913638
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.05714285714285714
+recall: 0.014285714285714285
+density: 0.0475
+coverage: 0.027142857142857142
+False positive rate: 0.0
+False negative rate: 0.002857142857142857
+True positive rate: 0.9971428571428571
+n of false positives: 0
+n of false negatives: 2
+n of true positives/true negatives: 699
+
+Overlap area between P and Q: 0.38617353153753636
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.07
+recall: 0.03571428571428571
+density: 0.04928571428571429
+coverage: 0.03
+False positive rate: 0.0
+False negative rate: 0.0
+True positive rate: 1.0
+n of false positives: 0
+n of false negatives: 0
+n of true positives/true negatives: 700
+
+Overlap area between P and Q: 0.3019434207079199
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.08285714285714285
+recall: 0.018571428571428572
+density: 0.0625
+coverage: 0.03
+False positive rate: 0.0
+False negative rate: 0.0
+True positive rate: 1.0
+n of false positives: 0
+n of false negatives: 0
+n of true positives/true negatives: 700
+
+Overlap area between P and Q: 0.2972160825443244
+-------------------------------------------------------------
+
+
+Best by overlap area: model_011809.ckpt
+Best by numb. of false positives: model_2077006.ckpt
+
+
+========================================
+avgPitchShift
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.9428571428571428
+recall: 0.9628571428571429
+density: 0.8875
+coverage: 0.8742857142857143
+False positive rate: 0.01
+False negative rate: 0.01
+True positive rate: 0.99
+n of false positives: 7
+n of false negatives: 7
+n of true positives/true negatives: 695
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000519.mid,
+]
+
+Overlap area between P and Q: 0.9424749770779515
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.9485714285714286
+recall: 0.9557142857142857
+density: 0.8921428571428571
+coverage: 0.8842857142857142
+False positive rate: 0.012857142857142857
+False negative rate: 0.02
+True positive rate: 0.98
+n of false positives: 9
+n of false negatives: 14
+n of true positives/true negatives: 688
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000182.mid,
+]
+
+Overlap area between P and Q: 0.9308126220011068
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.9457142857142857
+recall: 0.9614285714285714
+density: 0.8892857142857142
+coverage: 0.8914285714285715
+False positive rate: 0.011428571428571429
+False negative rate: 0.015714285714285715
+True positive rate: 0.9842857142857143
+n of false positives: 8
+n of false negatives: 11
+n of true positives/true negatives: 692
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000225.mid,
+]
+
+Overlap area between P and Q: 0.9266330477758922
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.9571428571428572
+recall: 0.96
+density: 0.9064285714285715
+coverage: 0.8928571428571429
+False positive rate: 0.014285714285714285
+False negative rate: 0.012857142857142857
+True positive rate: 0.9871428571428571
+n of false positives: 10
+n of false negatives: 9
+n of true positives/true negatives: 691
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000445.mid,
+]
+
+Overlap area between P and Q: 0.9107503542546111
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.9542857142857143
+recall: 0.9528571428571428
+density: 0.91
+coverage: 0.8857142857142857
+False positive rate: 0.014285714285714285
+False negative rate: 0.02857142857142857
+True positive rate: 0.9714285714285714
+n of false positives: 10
+n of false negatives: 20
+n of true positives/true negatives: 690
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000373.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000380.mid,
+]
+
+Overlap area between P and Q: 0.9063368129845457
+-------------------------------------------------------------
+
+
+Best by overlap area: model_011809.ckpt
+Best by numb. of false positives: model_011809.ckpt
+
+
+========================================
+avgIOI
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.5585714285714286
+recall: 0.45571428571428574
+density: 0.3939285714285714
+coverage: 0.25857142857142856
+False positive rate: 0.18142857142857144
+False negative rate: 0.22142857142857142
+True positive rate: 0.7785714285714286
+n of false positives: 127
+n of false negatives: 155
+n of true positives/true negatives: 577
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
+]
+
+Overlap area between P and Q: 0.7362427457749672
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.41285714285714287
+recall: 0.39285714285714285
+density: 0.31035714285714283
+coverage: 0.24714285714285714
+False positive rate: 0.06714285714285714
+False negative rate: 0.14285714285714285
+True positive rate: 0.8571428571428572
+n of false positives: 47
+n of false negatives: 100
+n of true positives/true negatives: 643
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
+]
+
+Overlap area between P and Q: 0.7118959183855187
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.53
+recall: 0.4928571428571429
+density: 0.3603571428571429
+coverage: 0.2571428571428571
+False positive rate: 0.12857142857142856
+False negative rate: 0.11285714285714285
+True positive rate: 0.8871428571428571
+n of false positives: 90
+n of false negatives: 79
+n of true positives/true negatives: 604
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
+]
+
+Overlap area between P and Q: 0.7086283855381386
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.5571428571428572
+recall: 0.59
+density: 0.3875
+coverage: 0.31857142857142856
+False positive rate: 0.12428571428571429
+False negative rate: 0.07857142857142857
+True positive rate: 0.9214285714285715
+n of false positives: 87
+n of false negatives: 55
+n of true positives/true negatives: 610
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
+]
+
+Overlap area between P and Q: 0.753072232573587
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.5142857142857142
+recall: 0.51
+density: 0.36428571428571427
+coverage: 0.28
+False positive rate: 0.11
+False negative rate: 0.09285714285714286
+True positive rate: 0.9071428571428571
+n of false positives: 77
+n of false negatives: 65
+n of true positives/true negatives: 624
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
+]
+
+Overlap area between P and Q: 0.7200924894808369
+-------------------------------------------------------------
+
+
+Best by overlap area: model_7083228.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+noteLengthHist
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.8714285714285714
+recall: 0.8857142857142857
+density: 0.8014285714285714
+coverage: 0.7685714285714286
+False positive rate: 0.1357142857142857
+False negative rate: 0.11571428571428571
+True positive rate: 0.8842857142857143
+n of false positives: 95
+n of false negatives: 81
+n of true positives/true negatives: 605
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000153.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000156.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000171.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000172.mid,
+]
+
+Overlap area between P and Q: 0.8504661744800532
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.9357142857142857
+recall: 0.8057142857142857
+density: 1.0114285714285713
+coverage: 0.8242857142857143
+False positive rate: 0.06142857142857143
+False negative rate: 0.18285714285714286
+True positive rate: 0.8171428571428572
+n of false positives: 43
+n of false negatives: 128
+n of true positives/true negatives: 656
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000156.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000161.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000169.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000170.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000175.mid,
+]
+
+Overlap area between P and Q: 0.8846599879005131
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.8971428571428571
+recall: 0.8614285714285714
+density: 0.7957142857142857
+coverage: 0.7957142857142857
+False positive rate: 0.13
+False negative rate: 0.12857142857142856
+True positive rate: 0.8714285714285714
+n of false positives: 91
+n of false negatives: 90
+n of true positives/true negatives: 609
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000156.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000166.mid,
+]
+
+Overlap area between P and Q: 0.8465968424121886
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.8628571428571429
+recall: 0.8914285714285715
+density: 0.77
+coverage: 0.8157142857142857
+False positive rate: 0.11571428571428571
+False negative rate: 0.10428571428571429
+True positive rate: 0.8957142857142857
+n of false positives: 81
+n of false negatives: 73
+n of true positives/true negatives: 619
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000153.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000160.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000173.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000174.mid,
+]
+
+Overlap area between P and Q: 0.8622495711574345
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.8642857142857143
+recall: 0.87
+density: 0.785
+coverage: 0.8114285714285714
+False positive rate: 0.11285714285714285
+False negative rate: 0.13142857142857142
+True positive rate: 0.8685714285714285
+n of false positives: 79
+n of false negatives: 92
+n of true positives/true negatives: 620
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000157.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000168.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000170.mid,
+]
+
+Overlap area between P and Q: 0.8458238675184218
+-------------------------------------------------------------
+
+
+Best by overlap area: model_516209.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+noteLengthHistPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.8414285714285714
+recall: 0.8942857142857142
+density: 0.7492857142857143
+coverage: 0.7871428571428571
+False positive rate: 0.17285714285714285
+False negative rate: 0.10714285714285714
+True positive rate: 0.8928571428571429
+n of false positives: 121
+n of false negatives: 75
+n of true positives/true negatives: 579
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000171.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000172.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000174.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000188.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000192.mid,
+]
+
+Overlap area between P and Q: 0.8680253040246992
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.8771428571428571
+recall: 0.8614285714285714
+density: 0.825
+coverage: 0.8385714285714285
+False positive rate: 0.06
+False negative rate: 0.14714285714285713
+True positive rate: 0.8528571428571429
+n of false positives: 42
+n of false negatives: 103
+n of true positives/true negatives: 658
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000162.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000188.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000226.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000234.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000248.mid,
+]
+
+Overlap area between P and Q: 0.9377928409551812
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.8657142857142858
+recall: 0.8857142857142857
+density: 0.8507142857142858
+coverage: 0.85
+False positive rate: 0.10571428571428572
+False negative rate: 0.11285714285714285
+True positive rate: 0.8871428571428571
+n of false positives: 74
+n of false negatives: 79
+n of true positives/true negatives: 626
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000151.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000159.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000172.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000179.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000205.mid,
+]
+
+Overlap area between P and Q: 0.9701820154958627
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.8628571428571429
+recall: 0.8885714285714286
+density: 0.8517857142857143
+coverage: 0.8714285714285714
+False positive rate: 0.09714285714285714
+False negative rate: 0.10142857142857142
+True positive rate: 0.8985714285714286
+n of false positives: 68
+n of false negatives: 71
+n of true positives/true negatives: 632
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000152.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000171.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000175.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000180.mid,
+]
+
+Overlap area between P and Q: 0.9459756170159939
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.8485714285714285
+recall: 0.9057142857142857
+density: 0.8521428571428571
+coverage: 0.8785714285714286
+False positive rate: 0.10428571428571429
+False negative rate: 0.10285714285714286
+True positive rate: 0.8971428571428571
+n of false positives: 73
+n of false negatives: 72
+n of true positives/true negatives: 627
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000158.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000166.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000176.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000183.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000185.mid,
+]
+
+Overlap area between P and Q: 0.9326535987296165
+-------------------------------------------------------------
+
+
+Best by overlap area: model_2077006.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+
+========================================
+noteLengthTransMatrix
+========================================
+- MODEL - model_011809.ckpt
+precision: 0.9657142857142857
+recall: 0.8228571428571428
+density: 0.9939285714285714
+coverage: 0.6942857142857143
+False positive rate: 0.10857142857142857
+False negative rate: 0.20857142857142857
+True positive rate: 0.7914285714285714
+n of false positives: 76
+n of false negatives: 146
+n of true positives/true negatives: 624
+
+[
+    data/Scarlatti/fake/model_011809.ckpt/0000000163.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000165.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000198.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000199.mid,
+    data/Scarlatti/fake/model_011809.ckpt/0000000208.mid,
+]
+
+Overlap area between P and Q: 0.8867143784205607
+-------------------------------------------------------------
+- MODEL - model_516209.ckpt
+precision: 0.9857142857142858
+recall: 0.8285714285714286
+density: 1.125357142857143
+coverage: 0.8642857142857143
+False positive rate: 0.03142857142857143
+False negative rate: 0.22857142857142856
+True positive rate: 0.7714285714285715
+n of false positives: 22
+n of false negatives: 160
+n of true positives/true negatives: 678
+
+[
+    data/Scarlatti/fake/model_516209.ckpt/0000000166.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000229.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000238.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000275.mid,
+    data/Scarlatti/fake/model_516209.ckpt/0000000339.mid,
+]
+
+Overlap area between P and Q: 0.8857065458619413
+-------------------------------------------------------------
+- MODEL - model_2077006.ckpt
+precision: 0.9671428571428572
+recall: 0.9314285714285714
+density: 1.0292857142857144
+coverage: 0.9071428571428571
+False positive rate: 0.07142857142857142
+False negative rate: 0.12857142857142856
+True positive rate: 0.8714285714285714
+n of false positives: 50
+n of false negatives: 90
+n of true positives/true negatives: 650
+
+[
+    data/Scarlatti/fake/model_2077006.ckpt/0000000177.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000178.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000220.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000233.mid,
+    data/Scarlatti/fake/model_2077006.ckpt/0000000238.mid,
+]
+
+Overlap area between P and Q: 0.9441374129793227
+-------------------------------------------------------------
+- MODEL - model_7083228.ckpt
+precision: 0.9585714285714285
+recall: 0.9271428571428572
+density: 0.9839285714285714
+coverage: 0.9314285714285714
+False positive rate: 0.07428571428571429
+False negative rate: 0.09
+True positive rate: 0.91
+n of false positives: 52
+n of false negatives: 63
+n of true positives/true negatives: 648
+
+[
+    data/Scarlatti/fake/model_7083228.ckpt/0000000171.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000183.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000203.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000204.mid,
+    data/Scarlatti/fake/model_7083228.ckpt/0000000205.mid,
+]
+
+Overlap area between P and Q: 0.9586989978679017
+-------------------------------------------------------------
+- MODEL - model_7969400.ckpt
+precision: 0.9685714285714285
+recall: 0.9428571428571428
+density: 1.0114285714285713
+coverage: 0.9371428571428572
+False positive rate: 0.06857142857142857
+False negative rate: 0.09142857142857143
+True positive rate: 0.9085714285714286
+n of false positives: 48
+n of false negatives: 64
+n of true positives/true negatives: 652
+
+[
+    data/Scarlatti/fake/model_7969400.ckpt/0000000164.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000166.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000227.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000256.mid,
+    data/Scarlatti/fake/model_7969400.ckpt/0000000283.mid,
+]
+
+Overlap area between P and Q: 0.9534357700772236
+-------------------------------------------------------------
+
+
+Best by overlap area: model_7083228.ckpt
+Best by numb. of false positives: model_516209.ckpt
+
+

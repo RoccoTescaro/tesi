@@ -26,30 +26,30 @@ Probabilistic Precision Recall Comparisons
 Rp test for normal distribution passed
 Rq test for normal distribution passed
 p_precision test for normal distribution failed
-my value: 0.9783924342212819
-actual value: 0.978392434221282
-difference: -1.1102230246251565e-16
+my value: 0.981095048981837
+actual value: 0.9810950489818356
+difference: 1.3322676295501878e-15
 p_recall test for normal distribution failed
-my value: 0.9811364538440827
-actual value: 0.9811364538440803
-difference: 2.3314683517128287e-15
+my value: 0.9775533303203306
+actual value: 0.9775533303203258
+difference: 4.884981308350689e-15
 Rp test for shifted normal distribution passed
 Rq test for shifted normal distribution passed
 p_precision test for shifted normal distribution failed
-my value: 0.9038503652269628
-actual value: 0.9038503652269594
-difference: 3.4416913763379853e-15
+my value: 0.9104156125446563
+actual value: 0.910415612544652
+difference: 4.3298697960381105e-15
 p_recall test for shifted normal distribution failed
-my value: 0.9068501417810305
-actual value: 0.9068501417810266
-difference: 3.885780586188048e-15
+my value: 0.905988614155707
+actual value: 0.905988614155709
+difference: -1.9984014443252818e-15
 Rp test for uniform distribution passed
 Rq test for uniform distribution passed
 p_precision test for uniform distribution failed
-my value: 0.9988590120109293
-actual value: 0.998859012010921
-difference: 8.326672684688674e-15
+my value: 0.9988846906966684
+actual value: 0.9988846906966649
+difference: 3.552713678800501e-15
 p_recall test for uniform distribution failed
-my value: 0.9991506797737689
-actual value: 0.9991506797737632
-difference: 5.773159728050814e-15
+my value: 0.9990566477464335
+actual value: 0.9990566477464318
+difference: 1.7763568394002505e-15
