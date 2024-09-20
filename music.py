@@ -1,7 +1,9 @@
 __package__ = "music"
 
 import numpy as np
-from symusic import Score, TimeUnit
+from symusic import Score, TimeUnit, TimeSignature
+
+n_measures = 8
 
 def midi2np(filepath):
     score = Score(filepath, ttype=TimeUnit.quarter)
@@ -14,6 +16,7 @@ def midi2np(filepath):
     if len(track.pedals) != 0:
         raise ValueError("Pedals are not supported")
     
+    #n_measures = 8
     resolution = 32
     instrument = 0 #symusic does not support instruments?
     cloud = [
@@ -25,10 +28,15 @@ def midi2np(filepath):
                 for n in track.notes
             ]
     
-    return np.array(cloud), score.time_signatures, resolution
+    ts = score.time_signatures
+    if len(ts) == 0:
+        ts = [TimeSignature(0, 4, 4)]
+        #raise ValueError("No time signature found")
+    
+    return np.array(cloud), ts, resolution
 
 def measures(cloud, time_signatures, resolution):
-    measures = []
+    measures_ = []
     
     measure_boundaries = []
     for i, ts in enumerate(time_signatures):
@@ -54,9 +62,11 @@ def measures(cloud, time_signatures, resolution):
     # For each measure, extract the notes from the cloud that fall within the measure's boundaries
     for start, end in measure_boundaries:
         measure_notes = [note for note in cloud if start <= note[2] < end]
-        measures.append(measure_notes)
+        measures_.append(measure_notes)
     
-    return measures
+    return measures_
+
+#TODO add trans matrix by measure
 
 def nPitches(cloud):
     return len(set([note[1] for note in cloud]))
@@ -67,6 +77,9 @@ def nPitchesPerMeasure(path):
     measures_ = measures(cloud, time_signatures, resolution)
     for measure in measures_:
         n_pitches.append(nPitches(np.array(measure)))
+
+    if len(n_pitches) != n_measures:
+        n_pitches += [0] * (n_measures - len(n_pitches))
     return n_pitches
 
 def nNotes(cloud):
@@ -78,6 +91,9 @@ def nNotesPerMeasure(path):
     measures_ = measures(cloud, time_signatures, resolution)
     for measure in measures_:
         n_notes.append(nNotes(np.array(measure)))
+
+    if len(n_notes) != n_measures:
+        n_notes += [0] * (n_measures - len(n_notes))
     return n_notes
 
 def pitchClassHist(path):
@@ -85,26 +101,14 @@ def pitchClassHist(path):
     hist, _ = np.histogram(cloud[:,1] % 12, bins = 12)
     return hist / len(cloud)
     
-def pitchClassTransMatrix(cloud, norm = 0):
+def pitchClassTransMatrix(path):
+    cloud, _, _ = midi2np(path)
     transition_matrix = np.zeros((12,12))
     for i in range(len(cloud)-1):
         transition_matrix[cloud[i][1] % 12, cloud[i+1][1] % 12] += 1
     transition_matrix /= len(cloud) 
-
-    if norm == 0:
-        return transition_matrix
-
-    elif norm == 1:
-        sums = np.sum(transition_matrix, axis=1)
-        sums[sums == 0] = 1
-        return transition_matrix / sums.reshape(-1, 1)
-
-    elif norm == 2:
-        return transition_matrix / np.sum(transition_matrix)
-
-    else:
-        print("invalid normalization mode, return unnormalized matrix")
-        return transition_matrix
+    
+    return transition_matrix.flatten()
     
 def pitchRange(cloud):
     return np.max(cloud[:,1]) - np.min(cloud[:,1])
@@ -117,29 +121,16 @@ def avgIOI(cloud):
 
 def noteLengthHist(path):
     cloud, _, _ = midi2np(path)
-    bins = 24
-    hist, _ = np.histogram(cloud[:,3], bins = bins)
+    hist, _ = np.histogram(cloud[:3] % 24, bins = 24)
     return hist / len(cloud)
 
-def noteLengthTransMatrix(cloud, resolution, norm = 0):
-    bins = 4 * resolution
+def noteLengthTransMatrix(path):
+    cloud, _, _ = midi2np(path)
+    bins = 24
     transition_matrix = np.zeros((bins,bins))
+
     for i in range(len(cloud)-1):
-        transition_matrix[cloud[i][3], cloud[i+1][3]] += 1
+        transition_matrix[cloud[i][3] % bins, cloud[i+1][3] % bins] += 1
     transition_matrix /= len(cloud) 
 
-    if norm == 0:
-        return transition_matrix
-
-    elif norm == 1:
-        sums = np.sum(transition_matrix, axis=1)
-        sums[sums == 0] = 1
-        return transition_matrix / sums.reshape(-1, 1)
-
-    elif norm == 2:
-        return transition_matrix / np.sum(transition_matrix)
-
-    else:
-        print("invalid normalization mode, return unnormalized matrix")
-        return transition_matrix
-
+    return transition_matrix.flatten()

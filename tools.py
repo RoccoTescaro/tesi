@@ -103,16 +103,46 @@ def drawManifold(samples, hyperparam, kDistances = [], sampleColor = None, sampl
     
     plt.savefig(fileName)
 
-def compute_histogram(image_path, bins=256):
+
+def hue_histogram(image_path, bins=256):
     image = cv2.imread(image_path)
-    ##image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
-    ##image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    hist = cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
+    return hist
+
+def saturation_histogram(image_path, bins=256):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    hist = cv2.calcHist([image], [1], None, [bins], [0, 256]).flatten()
+    return hist
+
+def value_histogram(image_path, bins=256):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    hist = cv2.calcHist([image], [2], None, [bins], [0, 256]).flatten()
+    return hist
+
+def grayscale_histogram(image_path, bins=256):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+    hist = cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
+    return hist
+
+def hsv_histogram(image_path, bins=256):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+    hist_h = cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
+    hist_s = cv2.calcHist([image], [1], None, [bins], [0, 256]).flatten()
+    hist_v = cv2.calcHist([image], [2], None, [bins], [0, 256]).flatten()
+    return np.concatenate((hist_h, hist_s, hist_v))
+
+def rgb_histogram(image_path, bins=256):
+    image = cv2.imread(image_path)
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     hist_r = cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
     hist_g = cv2.calcHist([image], [1], None, [bins], [0, 256]).flatten()
     hist_b = cv2.calcHist([image], [2], None, [bins], [0, 256]).flatten()
     return np.concatenate((hist_r, hist_g, hist_b))
-    #return cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
 
 def plotHistComparison(pSamples, qSamples, examples, filename):
 
@@ -141,7 +171,7 @@ def plotHistComparison(pSamples, qSamples, examples, filename):
         plot_example_histogram(axs[idx + 2], avg_psample, avg_qsample, example, filename, idx + 1, height)
 
     plt.tight_layout()
-    plt.savefig(f"./images/{filename}_histograms.png")
+    plt.savefig(filename)
 
 def generate_samples(distribution, dim, n):
     if distribution == 'uniform':

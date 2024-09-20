@@ -104,3 +104,57 @@ True positive rate: 0.7738095238095238
 n of false positives: 71
 n of false negatives: 19
 n of true positives/true negatives: 0
+
+EUCLIDEAN
+
+nNotesPerMeasure
+model_011809.ckpt - Overlap area between P and Q: 0.7699647746725302
+model_2077006.ckpt - Overlap area between P and Q: 0.8636888215103269
+model_7969400.ckpt - Overlap area between P and Q: 0.8851394077446415
+nPitchesPerMeasure
+model_011809.ckpt - Overlap area between P and Q: 0.8232189358086448
+model_2077006.ckpt - Overlap area between P and Q: 0.7083336845274256
+model_7969400.ckpt - Overlap area between P and Q: 0.6450257680342077
+pitchClassHist
+model_011809.ckpt - Overlap area between P and Q: 0.8162784541965256
+model_2077006.ckpt - Overlap area between P and Q: 0.89776155368933
+model_7969400.ckpt - Overlap area between P and Q: 0.9673146304652096
+pitchClassTransMatrix
+model_011809.ckpt - Overlap area between P and Q: 0.598631437881217
+model_2077006.ckpt - Overlap area between P and Q: 0.9066982080277084
+model_7969400.ckpt - Overlap area between P and Q: 0.9797503852976487
+noteLengthHist
+model_011809.ckpt - Overlap area between P and Q: 0.8330055679209756
+model_2077006.ckpt - Overlap area between P and Q: 0.546059425351255
+model_7969400.ckpt - Overlap area between P and Q: 0.33942201891364376
+noteLengthTransMatrix
+model_011809.ckpt - Overlap area between P and Q: 0.913595315015175
+model_2077006.ckpt - Overlap area between P and Q: 0.9438071176875462
+model_7969400.ckpt - Overlap area between P and Q: 0.9514543689014003
+
+CITYBLOCK
+
+nNotesPerMeasure
+model_011809.ckpt - Overlap area between P and Q: 0.7819241937897858
+model_2077006.ckpt - Overlap area between P and Q: 0.8717993158751003
+model_7969400.ckpt - Overlap area between P and Q: 0.8909373262235907
+nPitchesPerMeasure
+model_011809.ckpt - Overlap area between P and Q: 0.8463138654283454
+model_2077006.ckpt - Overlap area between P and Q: 0.7399741261733735
+model_7969400.ckpt - Overlap area between P and Q: 0.7076736352167975
+pitchClassHist
+model_011809.ckpt - Overlap area between P and Q: 0.7647073541910329
+model_2077006.ckpt - Overlap area between P and Q: 0.9341559465393767
+model_7969400.ckpt - Overlap area between P and Q: 0.8867710589160789
+pitchClassTransMatrix
+model_011809.ckpt - Overlap area between P and Q: 0.6504278581627821
+model_2077006.ckpt - Overlap area between P and Q: 0.9497612431090893
+model_7969400.ckpt - Overlap area between P and Q: 0.9807254219992945
+noteLengthHist
+model_011809.ckpt - Overlap area between P and Q: 0.8387843298231605
+model_2077006.ckpt - Overlap area between P and Q: 0.684154011306849
+model_7969400.ckpt - Overlap area between P and Q: 0.5388600950337359
+noteLengthTransMatrix
+model_011809.ckpt - Overlap area between P and Q: 0.895091830227363
+model_2077006.ckpt - Overlap area between P and Q: 0.9591811024113069
+model_7969400.ckpt - Overlap area between P and Q: 0.9568325969644427

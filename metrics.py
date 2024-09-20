@@ -498,8 +498,18 @@ def supportClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
 
     def func(x):
         distancesP = f_dist(PSamples - x, axis=1)
+        #get index of x in PSamples, if it is get the index and set the distance to inf 
+        idxP = np.where(PSamples == x)[0]
+        if idxP.size > 0:
+            distancesP[idxP[0]] = np.inf
+
         inP = np.any(distancesP <= PkDistances)
         distancesQ = f_dist(QSamples - x, axis=1)
+        #get index of x in QSamples, if it is get the index and set the distance to inf
+        idxQ = np.where(QSamples == x)[0]
+        if idxQ.size > 0:
+            distancesQ[idxQ[0]] = np.inf
+
         inQ = np.any(distancesQ <= QkDistances)
 
         return inP, inQ
