@@ -8,7 +8,6 @@ import matplotlib.pyplot as plt
 import glob
 import seaborn as sns
 from scipy.spatial.distance import cdist, pdist
-from fastkde import fastKDE
 
 #from time import perf_counter_ns as pc
 
@@ -432,10 +431,10 @@ def testCompareResults():
 def testButterflies():
     #load data
     n_images = 896
-    n_bins = 64
-    n_examples = 5
+    n_bins = 180
+    #n_examples = 5
 
-    metrics = [hue_histogram, saturation_histogram, hsv_histogram, rgb_histogram] #, value_histogram, grayscale_histogram]
+    metrics = [hue_histogram, saturation_histogram, hsv_histogram, rgb_histogram, value_histogram, grayscale_histogram]
     PPaths = [f"data/butterflies_train/t_{i:05d}.jpg" for i in range(n_images)]
     QPaths = [f"data/butterflies/g_{i:05d}.jpg" for i in range(n_images)]
 
@@ -447,14 +446,14 @@ def testButterflies():
             QSamples = np.array([tuple(m(image,n_bins)) for image in QPaths])
 
             #split the data
-            split_ratio = 0.8
-            Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, split_ratio)
+            #split_ratio = 0.8
+            #Dtrain, Dtest = createDtrainDtest(PSamples, QSamples, split_ratio)
             #no split
-            #Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
-            #Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+            Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+            Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
 
             #k = 3
-            k = int(np.sqrt(len(Dtrain)))
+            k = int(np.sqrt(len(Dtrain)*.5))
 
             #compute prdc
             prdc = compute_prdc([ x for x, y in Dtrain if y == 1], [ x for x, y in Dtrain if y == 0], k)
@@ -488,15 +487,15 @@ def testButterflies():
 
                 if inP and not inQ:
                     fnr += 1
-                    if len(fn_example) < n_examples:
-                        fn_example.append(val)
+                    #if len(fn_example) < n_examples:
+                    fn_example.append(val)
                         #log_message(log_file,'false negative realism score wrt QSamples', realismScore(QSamples, val, h))
                         #log_message(log_file,'false negative realism score wrt PSamples', realismScore(np.array([p for p in PSamples if not np.array_equal(p, val)]), val, h))
                 
                 elif not inP and inQ:
                     fpr += 1
-                    if len(fp_example) < n_examples:
-                        fp_example.append(val)
+                    #if len(fp_example) < n_examples:
+                    fp_example.append(val)
                         #log_message(log_file,'false positive realism score wrt PSamples', realismScore(PSamples, val, h))
                         #log_message(log_file,'false positive realism score wrt QSamples', realismScore(np.array([q for q in QSamples if not np.array_equal(q, val)]), val, h))
 
@@ -543,21 +542,23 @@ def testButterflies():
             tp_example = [i for i in set_of_indices]
 
             fp_closest_images = []
+            fp_distances = []
             for index in fp_example:
                 example = np.array(QSamples[index])
                 distances = np.linalg.norm(PSamples - example, axis=1, ord=ord_)
                 closest_image = np.argmin(distances)
-                #min_distance = distances[closest_image]
+                fp_distances.append(distances[closest_image])
                 #log_message(log_file,f"Closest image to false positive example: {closest_image}")
                 #log_message(log_file,f"Distance: {min_distance}")
                 fp_closest_images.append((QPaths[index], PPaths[closest_image]))
                 
             tp_closest_images = []
+            tp_distances = []
             for index in tp_example:
                 example = np.array(QSamples[index])
                 distances = np.linalg.norm(PSamples - example, axis=1, ord=ord_)
                 closest_image = np.argmin(distances)
-                #min_distance = distances[closest_image]
+                tp_distances.append(distances[closest_image])
                 #log_message(log_file,f"Closest image to true positive example: {closest_image}")
                 #log_message(log_file,f"Distance: {min_distance}")
                 tp_closest_images.append((QPaths[index], PPaths[closest_image]))
@@ -565,6 +566,20 @@ def testButterflies():
 
             #make a graph of false positives and closest images
             # Plot false positives and closest real images
+
+            n_examples = 5
+            #select n_examples with largest distances from fp_distances
+            fp_example = [x for _, x in sorted(zip(fp_distances, fp_example), key=lambda pair: pair[0])]
+
+            #select n_examples with smallest distances from tp_distances
+            tp_example = [x for _, x in sorted(zip(tp_distances, tp_example), key=lambda pair: pair[0], reverse=True)] 
+
+            print(fp_example[:n_examples])
+            print(sorted(fp_distances[:n_examples]))
+            print([realismScore(PSamples, fp_example[i], h, nJobs=16, f_dist=norm) for i in range(n_examples)])            
+            print(tp_example[:n_examples])
+            print(sorted(tp_distances[:n_examples], reverse=True))
+            print([realismScore(PSamples, tp_example[i], h, nJobs=16, f_dist=norm) for i in range(n_examples)])
 
             if len(tp_example) < n_examples or len(fp_example) < n_examples:
                 log_message(log_file,'not enough examples to plot')
@@ -604,7 +619,7 @@ def testButterflies():
             #plt.tight_layout()
             plt.savefig(f'./images/fp_{m.__name__}.png')
 
-            plotKDE(PSamples, QSamples, f'./images/kde_{m.__name__}.png')
+            plotKDE(PSamples, QSamples, f'./images/kde_{m.__name__}.png', 'cityblock', 'silverman', 200)
             log_message(log_file,"")  
 def testScarlattiReal():
     PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
@@ -638,7 +653,7 @@ def testScarlattiReal():
         QSamples = np.array([m(p) for p in QPaths])
 
         #dist = 'cityblock'
-        plotKDE(PSamples, QSamples, f'images/TrainVSTest_{m.__name__}.png')
+        plotKDE(PSamples, QSamples, f'images/TrainVSTest_{m.__name__}.png', 'cityblock', 'silverman', 200)
 def testScarlatti():
     PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
     models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']
@@ -665,11 +680,12 @@ def testScarlatti():
     else:
         ord_ = 2
 
-    method = 'scott'
+    method = 'silverman' #'scott'
     n_examples = 5 #want to see about all the false positives
     n_samples = 1000
     min_index_sample = 150
     max_index_sample = n_samples - min_index_sample
+    n_kde_points = 200
 
     with open('./logs/scarlatti_log.txt', 'w') as log_file:
         for m in metrics:
@@ -683,7 +699,6 @@ def testScarlatti():
 
             PSamples = np.array([m(p) for p in PPaths[:max_index_sample-min_index_sample]])
             PSamplesIntraDistances = pdist(PSamples, metric=dist)
-            pintra_kde = fastKDE.pdf(PSamplesIntraDistances)
 
             overlap_area = []
             fp = []
@@ -722,7 +737,6 @@ def testScarlatti():
                 fn_example = []
                 tp_example = []
 
-                index = 0
                 for val, res in Dtest:
                     inP, inQ = func(val)
                     N[res] += 1
@@ -765,33 +779,18 @@ def testScarlatti():
 
                 #KDE TASK
 
-                #log_message(log_file,'PSamples', PSamples.shape)
-                #log_message(log_file,'QSamples', QSamples.shape)
-
-                #cityblock
-                #log_message(log_file,'PSamplesIntraDistances', PSamplesIntraDistances.shape)
                 QSamplesIntraDistances = pdist(QSamples, metric=dist)
-                #log_message(log_file,'QSamplesIntraDistances', QSamplesIntraDistances.shape)
                 InterDistances = cdist(PSamples, QSamples, metric=dist).flatten()
 
-                qintra_kde = fastKDE.pdf(QSamplesIntraDistances)
-                inter_kde = fastKDE.pdf(InterDistances)
-                
-                #log_message(log_file,'pintra_kde', pintra_kde.shape)
-                #log_message(log_file,'qintra_kde', qintra_kde.shape)
+                min_kde = min(np.min(PSamplesIntraDistances), np.min(QSamplesIntraDistances))
+                max_kde = max(np.max(PSamplesIntraDistances), np.max(QSamplesIntraDistances))
+                std_kde = max(np.std(PSamplesIntraDistances), np.std(QSamplesIntraDistances))
+                kde_points = np.linspace(min_kde - std_kde, max_kde + std_kde, n_kde_points)
 
-                l = max(len(pintra_kde), len(qintra_kde), len(inter_kde))
-                x = np.linspace(min(PSamplesIntraDistances.min(), QSamplesIntraDistances.min(), InterDistances.min()), max(PSamplesIntraDistances.max(), QSamplesIntraDistances.max(), InterDistances.max()), l)
+                pkde = kde(PSamplesIntraDistances, kde_points, method)
+                qkde = kde(QSamplesIntraDistances, kde_points, method)
 
-                pintra_kde_interp = np.interp(x, np.linspace(PSamplesIntraDistances.min(), PSamplesIntraDistances.max(), len(pintra_kde)), pintra_kde)
-                qintra_kde_interp = np.interp(x, np.linspace(QSamplesIntraDistances.min(), QSamplesIntraDistances.max(), len(qintra_kde)), qintra_kde)
-                inter_kde_interp = np.interp(x, np.linspace(InterDistances.min(), InterDistances.max(), len(inter_kde)), inter_kde)
-
-                pintra_kde = pintra_kde_interp
-                qintra_kde = qintra_kde_interp
-                inter_kde = inter_kde_interp
-
-                overlap_area_pq = np.trapz(np.minimum(pintra_kde, qintra_kde), x)
+                overlap_area_pq = np.trapz(np.minimum(pkde, qkde), kde_points)
 
                 log_message(log_file,f'Overlap area between P and Q: {overlap_area_pq}')
                 log_message(log_file,'-------------------------------------------------------------')
@@ -848,5 +847,127 @@ def testScarlatti():
             log_message(log_file,'')
             log_message(log_file,'')
 
+def testScarlattiLOOCV():
+    PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
+    models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']
 
+    metrics = [
+        nNotesPerMeasure,
+        nPitchesPerMeasure,
+        pitchClassHist,
+        pitchClassHistPerMeasure,
+        pitchClassTransMatrix,
+        #pitchClassTransMatrixPerMeasure,
+        pitchRange,
+        avgPitchShift,
+        avgIOI,
+        noteLengthHist,
+        noteLengthHistPerMeasure,
+        noteLengthTransMatrix,
+        #noteLengthTransMatrixPerMeasure
+    ]
+
+    dist = 'cityblock' #'euclidean'
+    if dist == 'cityblock':
+        ord_ = 1
+    else:
+        ord_ = 2
+
+    method = 'silverman' #'scott'
+    n_samples = 1000
+    min_index_sample = 150
+    max_index_sample = n_samples - min_index_sample
+
+    intra_score = np.zeros((len(models), max_index_sample-min_index_sample))
+    inter_score = np.zeros((len(models), max_index_sample-min_index_sample))
+
+    matrix_intra = np.zeros((len(metrics), len(models), max_index_sample-min_index_sample))
+    matrix_inter = np.zeros((len(metrics), len(models), max_index_sample-min_index_sample))
+    tresholds_intra = np.zeros((len(metrics), len(models)))
+    tresholds_inter = np.zeros((len(metrics), len(models)))
+
+    with open('./logs/lookde_scarlatti_log.txt', 'w') as log_file:
+        for m in metrics:
+            log_message(log_file,'========================================')
+            log_message(log_file,m.__name__)
+            log_message(log_file,'========================================')
+
+            PSamples = np.array([m(p) for p in PPaths[:max_index_sample-min_index_sample]])
+
+            for i, mod in enumerate(models):
+                log_message(log_file, f'- MODEL - {mod}')
+
+                QPaths = np.array([f'data/Scarlatti/fake/{mod}/{i:010d}.mid' for i in range(min_index_sample, max_index_sample)])
+                QSamples = np.array([m(p) for p in QPaths])
+
+                loo_intra, t_intra = loocv_kde(QSamples, QSamples)
+                loo_inter, t_inter = loocv_kde(QSamples, PSamples)
+
+                log_message(log_file, f'avg Intra: {np.mean(loo_intra)}')
+                log_message(log_file, f'avg Inter: {np.mean(loo_inter)}')
+
+                log_message(log_file, f'std Intra: {np.std(loo_intra)}')
+                log_message(log_file, f'std Inter: {np.std(loo_inter)}')
+
+                log_message(log_file, f'n low likelihood intra: {np.sum(loo_intra < np.quantile(loo_intra, 0.05))}')
+                log_message(log_file, f'n low likelihood inter: {np.sum(loo_inter < np.quantile(loo_inter, 0.05))}')
+
+                matrix_intra[metrics.index(m), i] = loo_intra
+                matrix_inter[metrics.index(m), i] = loo_inter
+                tresholds_intra[metrics.index(m), i] = t_intra
+                tresholds_inter[metrics.index(m), i] = t_inter
+
+                intra_score[i] += loo_intra < t_intra
+                inter_score[i] += loo_inter < t_inter
+
+        best_inter = np.argmax(inter_score, axis=1)
+        best_inter_path = QPaths[best_inter+min_index_sample]
+        for i, p in enumerate(best_inter_path):
+            log_message(log_file, f'Best inter model {models[i]}: {p}')
+
+    np.save('./data/matrix_intra.npy', matrix_intra)
+    np.save('./data/matrix_inter.npy', matrix_inter)
+    np.save('./data/tresholds_intra.npy', tresholds_intra)
+    np.save('./data/tresholds_inter.npy', tresholds_inter)
+
+    plt.clf()
+
+    fig, axs = plt.subplots(1, 2, figsize=(20, 10))
+
+    n_bins = len(metrics)+1
+    bar_width = 0.2
+
+    for i in range(len(models)):
+        intra_binned = np.zeros(n_bins)
+        inter_binned = np.zeros(n_bins)
+
+        for j in range(n_bins-1):
+            intra_binned[j] = np.sum(intra_score[i] == j)
+            inter_binned[j] = np.sum(inter_score[i] == j)        
+
+        positions = np.arange(n_bins) + i * bar_width
+
+        axs[0].bar(positions, intra_binned, width=bar_width, label=models[i])
+        axs[1].bar(positions, inter_binned, width=bar_width, label=models[i])
+
+    group_center_positions = np.arange(n_bins) + bar_width  * len(models) - bar_width / 2
+    axs[0].set_xticks(group_center_positions)
+    axs[0].set_xticklabels([i for i in range(n_bins)])
+    axs[0].set_title('Intra Score Distribution')
+    axs[0].set_xlabel('n metrics')
+    axs[0].set_ylabel('n points')
+    axs[0].legend()
+
+    axs[1].set_xticks(group_center_positions)
+    axs[1].set_xticklabels([i for i in range(n_bins)])
+    axs[1].set_title('Inter Score Distribution')
+    axs[1].set_xlabel('n metrics')
+    axs[1].set_ylabel('n points')
+    axs[1].legend()
+
+    axs[0].grid(axis='y', linestyle='--', alpha=0.7)
+    axs[1].grid(axis='y', linestyle='--', alpha=0.7)
+
+    plt.tight_layout()
+    plt.savefig('./images/realworldexperiments/scarlatti/kde/hist.png')
 

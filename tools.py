@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import cv2
 from matplotlib.colors import LinearSegmentedColormap, Normalize
 from scipy.spatial.distance import pdist, cdist
-from fastkde import fastKDE
+from scipy.stats import gaussian_kde
 
 def kDistances(samples, k, nJobs=1, f_dist = np.linalg.norm):
 
@@ -105,7 +105,6 @@ def drawManifold(samples, hyperparam, kDistances = [], sampleColor = None, sampl
     
     plt.savefig(fileName)
 
-
 def hue_histogram(image_path, bins=256):
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
@@ -146,27 +145,23 @@ def rgb_histogram(image_path, bins=256):
     hist_b = cv2.calcHist([image], [2], None, [bins], [0, 256]).flatten()
     return np.concatenate((hist_r, hist_g, hist_b))
 
-def plotKDE(psamples, qsamples, filename, dist='euclidean'):
+def plotKDE(psamples, qsamples, filename, dist='euclidean', method='scott', n_points=500):
     #print(psamples.shape)
     #print(qsamples.shape)
     PSamplesIntraDistances = pdist(psamples, metric=dist)
     QSamplesIntraDistances = pdist(qsamples, metric=dist)
     InterDistances = cdist(psamples, qsamples, metric=dist).flatten()
 
-    pintra_kde = fastKDE.pdf(PSamplesIntraDistances)
-    qintra_kde = fastKDE.pdf(QSamplesIntraDistances)
-    inter_kde = fastKDE.pdf(InterDistances)
+    #take points from the minimum - one standard deviation to the maximum + one standard deviation
+    min_value = min(np.min(PSamplesIntraDistances), np.min(QSamplesIntraDistances), np.min(InterDistances))
+    max_value = max(np.max(PSamplesIntraDistances), np.max(QSamplesIntraDistances), np.max(InterDistances))
+    std_value = max(np.std(PSamplesIntraDistances), np.std(QSamplesIntraDistances), np.std(InterDistances))
 
-    l = max(len(pintra_kde), len(qintra_kde), len(inter_kde))
-    x = np.linspace(min(PSamplesIntraDistances.min(), QSamplesIntraDistances.min(), InterDistances.min()), max(PSamplesIntraDistances.max(), QSamplesIntraDistances.max(), InterDistances.max()), l)                       
+    x = np.linspace(min_value - std_value, max_value + std_value, n_points)
 
-    pintra_kde_interp = np.interp(x, np.linspace(PSamplesIntraDistances.min(), PSamplesIntraDistances.max(), len(pintra_kde)), pintra_kde)
-    qintra_kde_interp = np.interp(x, np.linspace(QSamplesIntraDistances.min(), QSamplesIntraDistances.max(), len(qintra_kde)), qintra_kde)
-    inter_kde_interp = np.interp(x, np.linspace(InterDistances.min(), InterDistances.max(), len(inter_kde)), inter_kde)
-
-    pintra_kde = pintra_kde_interp
-    qintra_kde = qintra_kde_interp
-    inter_kde = inter_kde_interp
+    pintra_kde = kde(PSamplesIntraDistances, x, method)
+    qintra_kde = kde(QSamplesIntraDistances, x, method)
+    inter_kde = kde(InterDistances, x, method)
 
     overlap_area_pq = np.trapz(np.minimum(pintra_kde, qintra_kde), x)
     overlap_area_pi = np.trapz(np.minimum(pintra_kde, inter_kde), x)
@@ -220,6 +215,100 @@ def plot_matrices(distribution, fidelityMatrix, diversityMatrix, fidelityMetrics
 
         fig.colorbar(axs[0].images[0], ax=axs, orientation='vertical', fraction=0.02, pad=0.04)
         plt.savefig(f'./images/{distribution}_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
+
+def channel_to_bandw(image_path, channel):
+    image = cv2.imread(image_path)
+
+    channels = ['r', 'g', 'b', 'h', 's', 'v']
+    if channel not in channels:
+        print('Invalid channel')
+        return
+    
+    index = channels.index(channel)
+    if index < 3:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+        image = image[:, :, index]
+    else:
+        image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        image = image[:, :, index-3]
+
+    return image
+
+def gaussian_kernel(u):
+    """Gaussian Kernel Function"""
+    return (1 / np.sqrt(2 * np.pi)) * np.exp(-0.5 * u**2)
+
+def scott_bandwidth(data):
+    """Scott's Rule for bandwidth"""
+    n = len(data)
+    d = 1  # Dimension of data
+    std_dev = np.std(data)
+    return n ** (-1.0 / (d + 4)) * std_dev
+
+def silverman_bandwidth(data):
+    """Silverman's Rule for bandwidth"""
+    n = len(data)
+    std_dev = np.std(data)
+    return (4 / (3 * n)) ** (1 / 5) * std_dev
+
+def kde(data, points, bandwidth_method='scott'):
+    """
+    Perform KDE on given data.
+    
+    Parameters:
+    - data: array-like, 1D array of data points.
+    - points: array-like, points where to evaluate the KDE.
+    - bandwidth_method: 'scott' or 'silverman' for bandwidth selection.
+    
+    Returns:
+    - kde_values: array of KDE values at each point.
+    """
+    n = len(data)
+    
+    # Select bandwidth
+    if bandwidth_method == 'scott':
+        h = scott_bandwidth(data)
+    elif bandwidth_method == 'silverman':
+        h = silverman_bandwidth(data)
+    else:
+        raise ValueError("Unsupported bandwidth method.")
+    
+    kde_values = np.zeros(len(points))
+    
+    # KDE formula
+    for i, x in enumerate(points):
+        kde_values[i] = (1 / (n * h)) * np.sum(gaussian_kernel((x - data) / h))
+    
+    return kde_values
+
+def loocv_kde(x, y = None, dist='cityblock', method='silverman', q=0.05):
+    if y is None:
+        y = x
+    
+    if len(x) != len(y):
+        raise ValueError('x and y must have the same length')
+    
+    n_samples = len(x)
+    dists = cdist(x, y, metric=dist)
+
+    if method == 'scott':
+        bandwidth = scott_bandwidth(dists)
+    elif method == 'silverman':
+        bandwidth = silverman_bandwidth(dists)
+    else:
+        raise ValueError('Unsupported bandwidth method')
+
+    weights = np.exp(-0.5 * (dists / bandwidth) ** 2) / (bandwidth * np.sqrt(2 * np.pi))
+    kde_values = np.sum(weights, axis=1) / n_samples
+
+    threshold = np.quantile(kde_values, q)
+
+    l = np.zeros(n_samples)
+
+    for i in range(n_samples):
+        l[i] = (np.sum(weights[i]) - weights[i, i]) / (n_samples - 1)
+
+    return l, threshold
 
 def log_message(log_file, message):
     print(message)

@@ -21,7 +21,7 @@ n of true positives/true negatives: 478
     data/Scarlatti/fake/model_011809.ckpt/0000000164.mid,
 ]
 
-Overlap area between P and Q: 0.714503558567706
+Overlap area between P and Q: 0.7153941058131573
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.8785714285714286
@@ -43,7 +43,7 @@ n of true positives/true negatives: 621
     data/Scarlatti/fake/model_516209.ckpt/0000000163.mid,
 ]
 
-Overlap area between P and Q: 0.7287270135063981
+Overlap area between P and Q: 0.7261128872719683
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.8228571428571428
@@ -65,7 +65,7 @@ n of true positives/true negatives: 589
     data/Scarlatti/fake/model_2077006.ckpt/0000000177.mid,
 ]
 
-Overlap area between P and Q: 0.8034201478418803
+Overlap area between P and Q: 0.8016983119992387
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.8342857142857143
@@ -87,7 +87,7 @@ n of true positives/true negatives: 594
     data/Scarlatti/fake/model_7083228.ckpt/0000000173.mid,
 ]
 
-Overlap area between P and Q: 0.8019232524369557
+Overlap area between P and Q: 0.8010716120567937
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.8528571428571429
@@ -109,7 +109,7 @@ n of true positives/true negatives: 612
     data/Scarlatti/fake/model_7969400.ckpt/0000000172.mid,
 ]
 
-Overlap area between P and Q: 0.7975133345301317
+Overlap area between P and Q: 0.7960915896341166
 -------------------------------------------------------------
 
 
@@ -140,7 +140,7 @@ n of true positives/true negatives: 583
     data/Scarlatti/fake/model_011809.ckpt/0000000161.mid,
 ]
 
-Overlap area between P and Q: 0.813662088314738
+Overlap area between P and Q: 0.8131633544491543
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.8714285714285714
@@ -162,7 +162,7 @@ n of true positives/true negatives: 645
     data/Scarlatti/fake/model_516209.ckpt/0000000184.mid,
 ]
 
-Overlap area between P and Q: 0.7837273162241825
+Overlap area between P and Q: 0.7837619220347871
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.8257142857142857
@@ -184,7 +184,7 @@ n of true positives/true negatives: 612
     data/Scarlatti/fake/model_2077006.ckpt/0000000187.mid,
 ]
 
-Overlap area between P and Q: 0.8610002130451243
+Overlap area between P and Q: 0.860724338533234
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.8571428571428571
@@ -206,7 +206,7 @@ n of true positives/true negatives: 634
     data/Scarlatti/fake/model_7083228.ckpt/0000000182.mid,
 ]
 
-Overlap area between P and Q: 0.9152774854763865
+Overlap area between P and Q: 0.915456751508978
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.8428571428571429
@@ -228,7 +228,7 @@ n of true positives/true negatives: 631
     data/Scarlatti/fake/model_7969400.ckpt/0000000179.mid,
 ]
 
-Overlap area between P and Q: 0.900359013750071
+Overlap area between P and Q: 0.9003367417161873
 -------------------------------------------------------------
 
 
@@ -259,7 +259,7 @@ n of true positives/true negatives: 618
     data/Scarlatti/fake/model_011809.ckpt/0000000181.mid,
 ]
 
-Overlap area between P and Q: 0.7627508802207554
+Overlap area between P and Q: 0.7599763155831609
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.9528571428571428
@@ -281,7 +281,7 @@ n of true positives/true negatives: 667
     data/Scarlatti/fake/model_516209.ckpt/0000000223.mid,
 ]
 
-Overlap area between P and Q: 0.8976133253561194
+Overlap area between P and Q: 0.900127977245779
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.9557142857142857
@@ -303,7 +303,7 @@ n of true positives/true negatives: 658
     data/Scarlatti/fake/model_2077006.ckpt/0000000233.mid,
 ]
 
-Overlap area between P and Q: 0.8223670202468578
+Overlap area between P and Q: 0.9203447948426386
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.9328571428571428
@@ -325,7 +325,7 @@ n of true positives/true negatives: 653
     data/Scarlatti/fake/model_7083228.ckpt/0000000213.mid,
 ]
 
-Overlap area between P and Q: 0.7565200035587092
+Overlap area between P and Q: 0.9229378407082022
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.9385714285714286
@@ -347,11 +347,11 @@ n of true positives/true negatives: 651
     data/Scarlatti/fake/model_7969400.ckpt/0000000203.mid,
 ]
 
-Overlap area between P and Q: 0.7249569340428091
+Overlap area between P and Q: 0.9535905730726906
 -------------------------------------------------------------
 
 
-Best by overlap area: model_516209.ckpt
+Best by overlap area: model_7969400.ckpt
 Best by numb. of false positives: model_516209.ckpt
 
 
@@ -378,7 +378,7 @@ n of true positives/true negatives: 500
     data/Scarlatti/fake/model_011809.ckpt/0000000176.mid,
 ]
 
-Overlap area between P and Q: 0.8778402377807777
+Overlap area between P and Q: 0.8537967140917565
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.71
@@ -400,7 +400,7 @@ n of true positives/true negatives: 560
     data/Scarlatti/fake/model_516209.ckpt/0000000178.mid,
 ]
 
-Overlap area between P and Q: 0.932584100134197
+Overlap area between P and Q: 0.8989459202102874
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.6871428571428572
@@ -422,7 +422,7 @@ n of true positives/true negatives: 577
     data/Scarlatti/fake/model_2077006.ckpt/0000000165.mid,
 ]
 
-Overlap area between P and Q: 0.6548794357435601
+Overlap area between P and Q: 0.9447891959550514
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.7471428571428571
@@ -444,7 +444,7 @@ n of true positives/true negatives: 601
     data/Scarlatti/fake/model_7083228.ckpt/0000000178.mid,
 ]
 
-Overlap area between P and Q: 0.44584009903349814
+Overlap area between P and Q: 0.925366486264223
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.7628571428571429
@@ -466,11 +466,11 @@ n of true positives/true negatives: 601
     data/Scarlatti/fake/model_7969400.ckpt/0000000208.mid,
 ]
 
-Overlap area between P and Q: 0.4040609228145082
+Overlap area between P and Q: 0.9463129924851817
 -------------------------------------------------------------
 
 
-Best by overlap area: model_516209.ckpt
+Best by overlap area: model_7969400.ckpt
 Best by numb. of false positives: model_7083228.ckpt
 
 
@@ -497,7 +497,7 @@ n of true positives/true negatives: 516
     data/Scarlatti/fake/model_011809.ckpt/0000000168.mid,
 ]
 
-Overlap area between P and Q: 0.6293147733017956
+Overlap area between P and Q: 0.6204117977545894
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.9371428571428572
@@ -519,7 +519,7 @@ n of true positives/true negatives: 671
     data/Scarlatti/fake/model_516209.ckpt/0000000195.mid,
 ]
 
-Overlap area between P and Q: 0.7395904583253518
+Overlap area between P and Q: 0.7316227475982794
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.9185714285714286
@@ -541,7 +541,7 @@ n of true positives/true negatives: 651
     data/Scarlatti/fake/model_2077006.ckpt/0000000197.mid,
 ]
 
-Overlap area between P and Q: 0.9240900365748459
+Overlap area between P and Q: 0.916656145147742
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.9228571428571428
@@ -563,7 +563,7 @@ n of true positives/true negatives: 657
     data/Scarlatti/fake/model_7083228.ckpt/0000000187.mid,
 ]
 
-Overlap area between P and Q: 0.9832073428775967
+Overlap area between P and Q: 0.9780049599933296
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.9
@@ -585,7 +585,7 @@ n of true positives/true negatives: 644
     data/Scarlatti/fake/model_7969400.ckpt/0000000208.mid,
 ]
 
-Overlap area between P and Q: 0.953998485181298
+Overlap area between P and Q: 0.9744370825227935
 -------------------------------------------------------------
 
 
@@ -616,7 +616,7 @@ n of true positives/true negatives: 685
     data/Scarlatti/fake/model_011809.ckpt/0000000466.mid,
 ]
 
-Overlap area between P and Q: 0.9330701621968678
+Overlap area between P and Q: 0.9509123018237848
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.04857142857142857
@@ -634,7 +634,7 @@ n of true positives/true negatives: 696
     data/Scarlatti/fake/model_516209.ckpt/0000000639.mid,
 ]
 
-Overlap area between P and Q: 0.6114592710913638
+Overlap area between P and Q: 0.9798008187178985
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.05714285714285714
@@ -648,7 +648,7 @@ n of false positives: 0
 n of false negatives: 2
 n of true positives/true negatives: 699
 
-Overlap area between P and Q: 0.38617353153753636
+Overlap area between P and Q: 0.9308874049009038
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.07
@@ -662,7 +662,7 @@ n of false positives: 0
 n of false negatives: 0
 n of true positives/true negatives: 700
 
-Overlap area between P and Q: 0.3019434207079199
+Overlap area between P and Q: 0.9649471399823533
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.08285714285714285
@@ -676,11 +676,11 @@ n of false positives: 0
 n of false negatives: 0
 n of true positives/true negatives: 700
 
-Overlap area between P and Q: 0.2972160825443244
+Overlap area between P and Q: 0.9442510762404133
 -------------------------------------------------------------
 
 
-Best by overlap area: model_011809.ckpt
+Best by overlap area: model_516209.ckpt
 Best by numb. of false positives: model_2077006.ckpt
 
 
@@ -707,7 +707,7 @@ n of true positives/true negatives: 695
     data/Scarlatti/fake/model_011809.ckpt/0000000519.mid,
 ]
 
-Overlap area between P and Q: 0.9424749770779515
+Overlap area between P and Q: 0.9486350418565676
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.9485714285714286
@@ -729,7 +729,7 @@ n of true positives/true negatives: 688
     data/Scarlatti/fake/model_516209.ckpt/0000000182.mid,
 ]
 
-Overlap area between P and Q: 0.9308126220011068
+Overlap area between P and Q: 0.9577119913596321
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.9457142857142857
@@ -751,7 +751,7 @@ n of true positives/true negatives: 692
     data/Scarlatti/fake/model_2077006.ckpt/0000000225.mid,
 ]
 
-Overlap area between P and Q: 0.9266330477758922
+Overlap area between P and Q: 0.98232843054319
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.9571428571428572
@@ -773,7 +773,7 @@ n of true positives/true negatives: 691
     data/Scarlatti/fake/model_7083228.ckpt/0000000445.mid,
 ]
 
-Overlap area between P and Q: 0.9107503542546111
+Overlap area between P and Q: 0.9562793766505404
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.9542857142857143
@@ -795,11 +795,11 @@ n of true positives/true negatives: 690
     data/Scarlatti/fake/model_7969400.ckpt/0000000380.mid,
 ]
 
-Overlap area between P and Q: 0.9063368129845457
+Overlap area between P and Q: 0.9867608241618493
 -------------------------------------------------------------
 
 
-Best by overlap area: model_011809.ckpt
+Best by overlap area: model_7969400.ckpt
 Best by numb. of false positives: model_011809.ckpt
 
 
@@ -826,7 +826,7 @@ n of true positives/true negatives: 577
     data/Scarlatti/fake/model_011809.ckpt/0000000149.mid,
 ]
 
-Overlap area between P and Q: 0.7362427457749672
+Overlap area between P and Q: 0.7385800941857307
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.41285714285714287
@@ -848,7 +848,7 @@ n of true positives/true negatives: 643
     data/Scarlatti/fake/model_516209.ckpt/0000000149.mid,
 ]
 
-Overlap area between P and Q: 0.7118959183855187
+Overlap area between P and Q: 0.7142625980096835
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.53
@@ -870,7 +870,7 @@ n of true positives/true negatives: 604
     data/Scarlatti/fake/model_2077006.ckpt/0000000149.mid,
 ]
 
-Overlap area between P and Q: 0.7086283855381386
+Overlap area between P and Q: 0.7060641978462563
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.5571428571428572
@@ -892,7 +892,7 @@ n of true positives/true negatives: 610
     data/Scarlatti/fake/model_7083228.ckpt/0000000149.mid,
 ]
 
-Overlap area between P and Q: 0.753072232573587
+Overlap area between P and Q: 0.7563815018368477
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.5142857142857142
@@ -914,7 +914,7 @@ n of true positives/true negatives: 624
     data/Scarlatti/fake/model_7969400.ckpt/0000000149.mid,
 ]
 
-Overlap area between P and Q: 0.7200924894808369
+Overlap area between P and Q: 0.722461952180128
 -------------------------------------------------------------
 
 
@@ -945,7 +945,7 @@ n of true positives/true negatives: 605
     data/Scarlatti/fake/model_011809.ckpt/0000000172.mid,
 ]
 
-Overlap area between P and Q: 0.8504661744800532
+Overlap area between P and Q: 0.8381353061895762
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.9357142857142857
@@ -967,7 +967,7 @@ n of true positives/true negatives: 656
     data/Scarlatti/fake/model_516209.ckpt/0000000175.mid,
 ]
 
-Overlap area between P and Q: 0.8846599879005131
+Overlap area between P and Q: 0.8797767865899481
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.8971428571428571
@@ -989,7 +989,7 @@ n of true positives/true negatives: 609
     data/Scarlatti/fake/model_2077006.ckpt/0000000166.mid,
 ]
 
-Overlap area between P and Q: 0.8465968424121886
+Overlap area between P and Q: 0.840688984771734
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.8628571428571429
@@ -1011,7 +1011,7 @@ n of true positives/true negatives: 619
     data/Scarlatti/fake/model_7083228.ckpt/0000000174.mid,
 ]
 
-Overlap area between P and Q: 0.8622495711574345
+Overlap area between P and Q: 0.8428989036277955
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.8642857142857143
@@ -1033,7 +1033,7 @@ n of true positives/true negatives: 620
     data/Scarlatti/fake/model_7969400.ckpt/0000000170.mid,
 ]
 
-Overlap area between P and Q: 0.8458238675184218
+Overlap area between P and Q: 0.8468465994914449
 -------------------------------------------------------------
 
 
@@ -1064,7 +1064,7 @@ n of true positives/true negatives: 579
     data/Scarlatti/fake/model_011809.ckpt/0000000192.mid,
 ]
 
-Overlap area between P and Q: 0.8680253040246992
+Overlap area between P and Q: 0.8690533850778237
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.8771428571428571
@@ -1086,7 +1086,7 @@ n of true positives/true negatives: 658
     data/Scarlatti/fake/model_516209.ckpt/0000000248.mid,
 ]
 
-Overlap area between P and Q: 0.9377928409551812
+Overlap area between P and Q: 0.9411296709955639
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.8657142857142858
@@ -1108,7 +1108,7 @@ n of true positives/true negatives: 626
     data/Scarlatti/fake/model_2077006.ckpt/0000000205.mid,
 ]
 
-Overlap area between P and Q: 0.9701820154958627
+Overlap area between P and Q: 0.9758943074900075
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.8628571428571429
@@ -1130,7 +1130,7 @@ n of true positives/true negatives: 632
     data/Scarlatti/fake/model_7083228.ckpt/0000000180.mid,
 ]
 
-Overlap area between P and Q: 0.9459756170159939
+Overlap area between P and Q: 0.9587070377900343
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.8485714285714285
@@ -1152,7 +1152,7 @@ n of true positives/true negatives: 627
     data/Scarlatti/fake/model_7969400.ckpt/0000000185.mid,
 ]
 
-Overlap area between P and Q: 0.9326535987296165
+Overlap area between P and Q: 0.9470764699493166
 -------------------------------------------------------------
 
 
@@ -1183,7 +1183,7 @@ n of true positives/true negatives: 624
     data/Scarlatti/fake/model_011809.ckpt/0000000208.mid,
 ]
 
-Overlap area between P and Q: 0.8867143784205607
+Overlap area between P and Q: 0.9019897618890629
 -------------------------------------------------------------
 - MODEL - model_516209.ckpt
 precision: 0.9857142857142858
@@ -1205,7 +1205,7 @@ n of true positives/true negatives: 678
     data/Scarlatti/fake/model_516209.ckpt/0000000339.mid,
 ]
 
-Overlap area between P and Q: 0.8857065458619413
+Overlap area between P and Q: 0.8879315358196762
 -------------------------------------------------------------
 - MODEL - model_2077006.ckpt
 precision: 0.9671428571428572
@@ -1227,7 +1227,7 @@ n of true positives/true negatives: 650
     data/Scarlatti/fake/model_2077006.ckpt/0000000238.mid,
 ]
 
-Overlap area between P and Q: 0.9441374129793227
+Overlap area between P and Q: 0.946155297988244
 -------------------------------------------------------------
 - MODEL - model_7083228.ckpt
 precision: 0.9585714285714285
@@ -1249,7 +1249,7 @@ n of true positives/true negatives: 648
     data/Scarlatti/fake/model_7083228.ckpt/0000000205.mid,
 ]
 
-Overlap area between P and Q: 0.9586989978679017
+Overlap area between P and Q: 0.9606141132864576
 -------------------------------------------------------------
 - MODEL - model_7969400.ckpt
 precision: 0.9685714285714285
@@ -1271,7 +1271,7 @@ n of true positives/true negatives: 652
     data/Scarlatti/fake/model_7969400.ckpt/0000000283.mid,
 ]
 
-Overlap area between P and Q: 0.9534357700772236
+Overlap area between P and Q: 0.9553059003929284
 -------------------------------------------------------------
 
 
