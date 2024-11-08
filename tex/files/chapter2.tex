@@ -1,0 +1,118 @@
+\chapter{Esperimenti}\label{ch:chapter2}
+
+Per la valutazione delle metriche sono stati condotti diversi esperimenti che possono essere suddivisi in due macro-categorie dipendentemente dal tipo di dataset utilizzato:
+\begin{itemize}
+    \item \textbf{Toy Dataset}: dataset generati artificialmente per testare il comportamento delle metriche in condizioni controllate.
+    \item \textbf{Real World Dataset}: dataset reali per testare il comportamento delle metriche in condizioni reali.
+\end{itemize}
+Le sezioni seguenti descrivono come sono state implementate le metriche, gli esperimenti così come le distribuzioni di dati utilizzate.\
+La ragione per cui sono stati condotti esperimenti su dateset generati artificilmente (ovvero di matrice matematica, non derivanti dalla realtà o generati da reti neurali) è che in questo modo è stato possibile osservare il comportamento delle metriche in condizioni controllate, ideali e per poter confrontare i risultati ottenuti con quelli attesi presenti nella letteratura.\
+Fanno infatti parte dei test su 'toy dataset', i test di corretta implementazione ovvero un'analisi comparativa delle diverse implementazioni in codice delle metriche. Tali test hanno il fine di verificare che le metriche restituiscano valori corretti validando gli altri esperimenti.\
+
+I dataset reali sono stati utilizzati per testare il comportamento delle metriche in condizioni reali, ovvero per verificare se le metriche si comportano come ci si aspetta in situazioni non ben definite, con distribuzioni di dati non note, ben distanti da quelle ideali. Questo infatti, come vedremo, può sollevare criticità, ad esempio dovute alla assenza di certe categorie di dati o alla presenza di dati non ben distribuiti.\
+Un altro elemento dei dataset reali è che spesso questi non sono di carattere prettamente numerico, nei dataset analizzati ad esempio, abbiamo immagini di farfalle e partiture musicali. Questo comporta la necessità di trasformare i dati per poterli utilizzare, e il processo di \textbf{estrazioni di caratteristiche} può equivalere ad una perdita di dati significativi o, al contrario, ad una sovrabbondanza di dati non significativi.\
+
+\section{Toy Dataset}
+Come detto nell'introduzione di questo capitolo, i Toy Dataset sono dataset generati artificialmente. Questo vuol dire che per la creazione di questi dataset sono state utilizzate delle funzioni matematiche che generano dati in modo casuale, ma controllato.\
+Le distribuzioni di dati utilizzate sono state: distribuzione uniforme e distribuzione normale. Per una certa categoria di esperimenti sono stati poi aggiunti degli outliers, ovvero dei dati che si discostano molto dalla distribuzione principale.\
+Ripercorrendo gli esperimenti presenti in letteratura gli esperimenti condotti volgono a testare l'influenza degli iperparametri delle metriche sulle stesse, la prezenza di outliers, la dimensione dei dataset e un'analisi comparativa delle implementazioni in codice delle diverse metriche. Quest'ultima in particolare, si suddivide in confronto delle metriche scalari e confronto delle pr-curve.\
+
+Per la generazione di dataset con distribuzione uniforme è stata utilizzata la funzione \texttt{numpy.random.uniform}, mentre per la generazione di dataset con distribuzione normale è stata utilizzata la funzione \texttt{numpy.random.multivariate\_normal} di numpy. La prima oltre alla dimensione dei sample e al numero prende come parametri anche il range di valori che i dati possono assumere, mentre la seconda prende come parametri lo shift (che di default è 0). Come media avremo quindi \texttt{shift*numpy.ones(dim)} e come covarianza la matrice identità (\texttt{numpy.eye(dim)}).\
+Sono state poi adottate una serie di funzioni per facilitare il debugging attraverso la visualizzazione dei dati. In particolare una funzione che mostri dati di due dimensioni con il corrispondente manifold e fuzioni come il \textbf{realism score} che permette di valutare la verosimiglianza dei singoli dati generati.\
+
+Per ciascun esperimento sono stati prodotti dei grafici che mostrano i risultati ottenuti (fa eccezzione solo il test di corretta implementazione delle metriche scalari). Questi grafici sono stati prodotti utilizzando la libreria \texttt{matplotlib} di python. Il grafico utilizzato dipende dall'esperimento condotto. Oltre alla produzione di grafici, data la complessità computazionale di alcuni esperimenti, sono stati salvati i risultati in file \texttt{.npy} per poterli analizzare in un secondo momento.\
+
+\subsection{Parametro k e dimensione del dataset}
+
+Come abbiamo visto, tutte le metriche di cui ci interessa l'analisi si basano sulla distanza dei dati rispetto ai loro vicini. Uno dei parametri più determinanti è l'ordine \( k \) del vicino più prossimo. Secondo la letteratura, i valori ottimali di \( k \) sono i seguenti: per l'\textbf{improved precision recall} \( k=3 \), per la \textbf{probabilistic precision recall} \( k=4 \), per la \textbf{precision recall coverage} \( k=\sqrt{\text{len}(P\text{Samples})} \), e per \textbf{density} e \textbf{coverage} \( k=5 \). Inoltre, si attende intuitivamente che l'aumento della dimensione del dataset comporti un incremento dei valori delle metriche, a condizione che vi sia corrispondenza tra le due distribuzioni.
+L'analisi è stata quindi condotta in relazione alla dimensione del dataset e sulle due distribuzioni anticipate precedentemente: distribuzione uniforme e distribuzione normale. Come per gli esperimenti successivi, i dataset su cui sono state valutate le diverse metriche sono rimasti costanti; il dataset è generato una sola volta per tutte le metriche, evitando così discrepanze nei risultati.
+I test sono stati effettuati per valori di \( k \) variabili da 1 a 10, ovvero \([1, 2, 3, 4, 5, 6, 7, 8, 9, 10]\), e per dimensioni del dataset da 500 a 16000, con valori \([500, 1000, 2000, 4000, 8000, 16000]\). Ciascun dato è rappresentato come un vettore in \( \mathbb{R}^{64} \).
+
+Per presentare i risultati, sono state utilizzate delle \textbf{heatmap}, che mostrano i valori delle metriche in relazione ai valori di \( k \) e alla dimensione del dataset, con il rosso indicante valori prossimi a 1 e il verde per valori vicini a 0. 
+Nonostante le heatmap consentano di visualizzare la matrice di valori registrati (con il parametro \( k \) in funzione della dimensione dei dati) senza la necessità di un numero eccessivo di grafici (considerando il numero di distribuzioni e metriche), questa densità di valori offre solo un'idea intuitiva delle metriche, poiché non fornisce informazioni precise a causa della difficoltà di collegare il colore del grafico a un valore numerico specifico. Tale tipologia di grafico è stata scelta principalmente per poterla confrontare con gli esperimenti presenti in letteratura.
+
+\subsection{Dimensione del dataset e dimensione dei dati}
+
+In questo caso, l'analisi condotta non ha un riscontro diretto nella letteratura esistente, ovvero non presenta antecedenti (quantomeno per gli articoli presi in analisi). L'obiettivo è determinare come la \textbf{dimensione del dataset} possa influenzare la densità dei dati della distribuzione (a dimensione dei dati fissata) e, conseguentemente, il valore delle metriche. I risultati di questa analisi costituiscono una parte fondamentale per le analisi su dati reali, dove la scelta del numero di caratteristiche da considerare può risultare determinante.
+
+In questo esperimento, abbiamo considerato una distribuzione normale (\(\mathcal{N}(0, I)\)) dei dati con \textbf{dimensione del dataset variabile} da 50 a 1600, con valori \([50, 100, 200, 400, 800, 1600]\), e \textbf{dimensione dei dati} da 2 a 64, con valori \([2, 4, 8, 16, 32, 64]\). 
+A differenza degli esperimenti precedenti, rappresentati tramite heatmap, qui l'assenza di un riscontro nella letteratura ci ha permesso di utilizzare \textbf{grafici a linee bidimensionali} per rappresentare i risultati (data la ridotta dimensionalità, almeno per le dimensioni di interesse, di uno degli iperparametri da regolare, ovvero la dimensione dei dati).
+Il valore dell'\textbf{iperparametro \( k \)} è stato scelto in accordo con quanto suggerito nei vari articoli, per garantire la massima efficacia della metrica. Le misurazioni sono state ripetute 25 volte e successivamente mediate. Anche in questo caso, il calcolo è stato effettuato in parallelo.
+
+\subsection{Outliers}
+
+Una delle proprietà più rilevanti da esaminare nelle diverse metriche è la loro \textbf{resistenza agli outliers}. In linea con la letteratura, abbiamo analizzato come i valori delle metriche cambiano in presenza di dataset con distribuzione normale, \textbf{senza outliers} e con \textbf{outliers} inseriti sia nei dati reali sia in quelli generati.
+
+L’esperimento si è svolto considerando una distribuzione reale fissa \( X \sim \mathcal{N}(0, I) \) e una distribuzione generata \( Y \sim \mathcal{N}(\mu, I) \), con uno shift della media \(\mu\) variabile in \([-1,1]\) (con \textbf{step} di \texttt{0.05}). In aggiunta, sono stati esaminati due scenari di outliers, in cui un campione estremo a \( x = +1 \) è stato aggiunto ai dati reali o a quelli generati. 
+Lo spazio di lavoro è stato definito in \( \mathbb{R}^{64} \), con vettori reali centrati sull’origine e campioni generati con media variabile lungo la direzione del vettore unitario.
+Come per gli altri esperimenti condotti, le operazioni sono state svolte in \textbf{parallelo}.
+
+Oltre alle metriche di \textbf{precision-recall} e \textbf{density-coverage} (come nel paper), i test sono stati condotti anche sulle metriche di \textbf{probabilistic precision-recall} e \textbf{improved precision-recall}. Per ciascuna metrica sono stati utilizzati i valori degli iperparametri suggeriti dai rispettivi articoli.
+
+In assenza di outliers, ci si attende che i valori delle metriche diminuiscano gradualmente man mano che \(\mu\) si allontana da zero, indicando correttamente la divergenza tra le due distribuzioni.
+
+\subsection{Comparazione con implementazioni esistenti}
+
+Non tutti i papers analizzati presentavano un'implementazione delle metriche in codice. Sono stati svolti dei test confrontando su dataset identici le diverse implementazioni delle metriche presenti in letteratura.\
+Non sono stati possibili confronti diretti per quanto riguarda la \textbf{precision-recall coverage}, in quanto non sono state trovate implementazioni in codice, mentre per la \textbf{improved precision-recall} sono state confrontate due diverse implementazioni.\
+Sono state scelte tre diverse distribuzioni di dati: distribuzione uniforme, distribuzione normale e distribuzione normale con media in \(3/\sqrt{dim}\). Ciascuna distribuzione è stata generata con dimensione del dataset pari a 10000 e dimensione dei dati pari a 64.\
+I risultati sono stati riportati su un file \texttt{log.txt} per poter essere confrontati in un secondo momento.\
+Allo scopo di velocizzare la computazione e ridurre il tempo di esecuzione, i test comparativi per la \textbf{probabilistic precision-recall} e la \textbf{density-coverage} sono stati eseguiti con ordine \( k = 3 \), nonostante i valori ottimali suggeriti dalla letteratura siano diversi. Questo hai infatti permesso di calcolare le distanze intraset una sola volta, evitando di ripeterle per ogni valore di \( k \) e dato che non eravamo interessati a valutare l'efficacia delle metriche, quanto confrontare le diverse implementazioni.
+#TODO Aggiungere bibliografia per le implementazioni in codice delle metriche.
+
+\subsection{Riproduzione delle pr-curve}
+
+Anche per la riproduzione delle pr-curve sono stati utilizzati dataset generati artificialmente. L'articolo di riferimento per questo esperimento \cite{pr-curve}, non presentava un'implementazione in codice delle metriche, ma solo i risultati ottenuti.\
+Abbiamo quindi replicato le pr-curve per i quattro classificatori presentati nel paper, vale a dire il classificatore \textbf{ipr}, \textbf{coverage}, \textbf{knn} e \textbf{parzen}, per due differenti distribuzioni di dati, in particolare distribuzioni normali con media in \(0\) per i dati reali  e \(1/\sqrt{dim}\) e \(3/\sqrt{dim}\) per i dati generati (\(dim = 64\)).\ 
+I classificatori hanno operato su un dataset di 20000 elementi, con 10000 elementi per ciascuna classe. Per gli esperimenti condotti i dati sono stati divisi in training e test set sia operando uno split del 50\% (ovvero 5000 punti effettivi per classe) sia senza split.\
+Sono stati inoltre scelti due valori di \( k \) ovvero \(k = 4\) e \(k = \sqrt{n}\) (dove \(n\) è il numero di punti nel training set).\
+Osservando i risultati del paper ci si aspetta che delle quattro pr-curve generate, la coverage-curve sia la più estrema, ovvero quella che produce un risultato migliore (più vicino al classificatore ottimale).\
+Un'altra proprietà attesa è la simmetria delle curve rispetto alla diagonale, questo è dovuto al tipo di distribuzione dei dati utilizzata e al fatto che i training set fossero bilanciati.\
+Dei test preliminari hanno poi mostrato fondamentale la scelta del range di valori e degli step per quanto riguarda la variabile \( \lambda \) (ovvero il parametro che regola la trade-off tra precision e recall). 
+Come consigliato da \cite{unifying precision-recall}, il range di valori è stato generato dalla formula \( \tan(\pi/2 * i/(g+1)) \) con \( i \in [1, g] \) e \( g = 1001\) il numero di valori generati. Questa trasformazione consente di esplorare diverse scale di \(\lambda\) con una densità variabile: i valori crescono rapidamente da 0 a 1, variano lentamente vicino a \(\pi/2\)​, e infine aumentano rapidamente verso l'infinito. Questa caratteristica rende la funzione adatta per analizzare con precisione le transizioni critiche della PR-curve in regioni chiave, bilanciando una copertura fine e una rapida esplorazione delle estremità. 
+In fase sperimentale sono state utilizzate altre funzioni per coprire il range di valori di \(\lambda\), ma la funzione sopra descritta è risultata la più adatta per l'analisi delle curve, e quella che ha prodotto i risultati più simili a quelli presenti in letteratura.
+
+\section{Real World Dataset}
+
+Come anticipato nell'introduzione di questo capitolo, oltre agli esperimenti condotti in ambienti controllati, 
+regolati e basati su dati sintetici, è fondamentale analizzare il comportamento delle metriche in condizioni reali, 
+ovvero su dataset rappresentativi di problemi pratici. Questa fase di sperimentazione consente di testare l'applicabilità 
+delle metriche in contesti che vanno oltre l’ambito strettamente numerico e teorico, avvicinandosi alle condizioni operative 
+in cui tali strumenti dovrebbero operare. In particolare, l’obiettivo finale delle metriche studiate è proprio quello 
+di fornire un supporto concreto nell’analisi della qualità dei dati generati, facilitando l’integrazione delle reti generative in applicazioni pratiche.
+
+Gli esperimenti sui dati reali sono stati condotti su due dataset distinti: un set di immagini raffiguranti farfalle 
+e una collezione di partiture musicali di Alessandro Scarlatti, compositore rappresentativo della musica barocca. 
+Questi dataset presentano specificità intrinseche che richiedono l’estrazione di caratteristiche rilevanti dal dominio dei dati (in particolare per le immagini utilizzare i \texttt{raw data} sarebbe improponibile data la loro dimensione). 
+Per le immagini delle farfalle si è scelto di lavorare con feature basilari, come istogrammi di colore e saturazione, per valutare l’abilità delle metriche nel rilevare differenze qualitative senza fare ricorso a rappresentazioni complesse o specifiche del dominio.
+Nel caso delle partiture musicali, invece, le caratteristiche estratte sono state più mirate e informate dal dominio della musica barocca seguendo quanto descritto nella letteratura \cite{music paper}. 
+Sono state utilizzate, ad esempio, informazioni di carattere ritmico e tonali. Questo approccio permette di valutare le metriche su dati complessi con maggiore precisione.
+
+Un ulteriore strumento di analisi utilizzato in questo contesto è la \textbf{Kernel Density Estimation} (\textbf{KDE}), che si è dimostrata particolarmente utile per ottenere una stima non parametrica della distribuzione dei dati. 
+La \textbf{KDE} permette di visualizzare come i dati siano distribuiti nel loro spazio delle caratteristiche, fornendo così un quadro più completo delle relazioni tra i campioni reali e quelli generati. 
+Questa informazione è cruciale per interpretare meglio il comportamento delle \textbf{metriche}, soprattutto quando si cerca di identificare regioni di alta o bassa densità che potrebbero indicare rispettivamente dati generati di alta qualità o outlier.
+
+Infine, un obiettivo centrale di questa fase sperimentale è quello di verificare l'efficacia delle metriche nel discriminare dati generati di alta qualità da dati generati di bassa qualità, 
+fungendo così da filtro ultimo per le reti generative. In questa ottica, le metriche potrebbero operare come strumento di selezione, scartando i dati che non soddisfano determinati standard di qualità e potenzialmente indicando i campioni da rigenerare.
+
+\subsection{Butterflies}
+
+Gli esperimenti condotti sul dataset di immagini di farfalle si sono basati su un'analisi semplice ma efficace delle caratteristiche visive, sfruttando estrattori di caratteristiche basati su istogrammi. In particolare, per ogni immagine sono stati calcolati sei tipi di istogrammi: 
+\begin{itemize}
+    \item \textbf{hue histogram}
+    \item \textbf{saturation histogram}
+    \item \textbf{value histogram}
+    \item \textbf{grayscale histogram} (diverso dal value histogram, in questo caso abbiamo una combinazione lineare dei valori RGB)
+    \item \textbf{rgb histogram}
+    \item \textbf{hsv histogram}
+\end{itemize}
+Ogni istogramma è stato generato utilizzando 256 \textbf{bin} (per un totale di 256*3 bin per le rappresentazioni \textbf{RGB} e \textbf{HSV}), con l’obiettivo di catturare le distribuzioni dei valori cromatici e di intensità nelle immagini.
+
+Per la rilevazione dei \textbf{falsi positivi}, è stato utilizzato un classificatore analogo a quello impiegato negli esperimenti sulle \textbf{IPR-curve}. In questo caso, le differenze tra istogrammi sono state misurate utilizzando sia la norma \(l_1\) che la norma \(l_2\)​ come funzioni di distanza. Il classificatore ha operato su un \textbf{k-nearest neighbors} (\textbf{k-NN}) con \(k=3\) e \(k=\sqrt{n}\), dove \(n\) è il numero di punti nel training set.
+​Per valutare le prestazioni del classificatore, gli esperimenti sono stati condotti utilizzando diversi schemi di divisione dei dati: uno split 80-20 per il \textbf{training} e il \textbf{test}, e un approccio senza divisione, in cui tutti i dati venivano considerati come parte di un unico set per la classificazione.
+
+\subsection{Scarlatti}
+
+
+
+

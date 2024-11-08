@@ -301,24 +301,26 @@ def testCurve(classifier, filename, l=5001, g=1001, k_mod="4", shift=1):
     print(f'calculating pr curves for {filename} ...')
 
     #plt.clf()
-    values = estimatePRCurve(PSamples, QSamples, hyperparam, classifier)
+    #values = estimatePRCurve(PSamples, QSamples, hyperparam, classifier)
     #x = [v[0] for v in values]
     #y = [v[1] for v in values]
 
     #plt.figure(figsize=(7, 7))
 
     #plt.plot(x, y, linestyle='-', label=f'{filename}')
-    np.save(f'./data/PRCurve_{filename}_k{k_mod}_s{shift}.npy', values)
+    #np.save(f'./data/PRCurve_{filename}_k{k_mod}_s{shift}.npy', values)
 
-    #plt.xlim(0, 1)
-    #plt.ylim(0, 1)
+    #no split
+    Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+    Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
 
-    #plt.legend()
-    #plt.title('PR Curve')
-    #plt.xlabel('Recall')
-    #plt.ylabel('Precision')
-    #plt.grid(True)
-    #plt.savefig(f'./images/PRCurve_{filename}.png')
+    func = classifier(Dtrain, hyperparam)
+
+    values = estimatePRD(func, Dtest, hyperparam)
+
+    np.save(f'./data/PRCurve_{filename}_nosplit_k{k_mod}_s{shift}.npy', values)
+
+
 def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     filenames = ['cov', 'ipr', 'knn', 'parzen']
     functions = [covClassifier, iprClassifier, knnClassifier, parzenClassifier]
@@ -326,7 +328,7 @@ def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     for i in range(len(filenames)):
         #check if the file exists
         try:
-            values = np.load(f'./data/PRCurve_{filenames[i]}_k{k_mod}_s{shift}.npy')
+            values = np.load(f'./data/PRCurve_{filenames[i]}_nosplit_k{k_mod}_s{shift}.npy')
         except:
             testCurve(functions[i], filenames[i], l, g, k_mod, shift)
         
@@ -334,7 +336,7 @@ def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     plt.figure(figsize=(7, 7))
 
     for file in filenames:
-        values = np.load(f'./data/PRCurve_{file}_k{k_mod}_s{shift}.npy')
+        values = np.load(f'./data/PRCurve_{file}_nosplit_k{k_mod}_s{shift}.npy')
         x = [v[0] for v in values]
         y = [v[1] for v in values]
 
@@ -348,7 +350,7 @@ def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     plt.xlabel('Recall')
     plt.ylabel('Precision')
     plt.grid(True)
-    plt.savefig(f'./images/PRCurve_k{k_mod}_s{shift}.png')
+    plt.savefig(f'./images/PRCurve_nosplit_k{k_mod}_s{shift}.png')
 def testCompareResults():
     def printComparison(log_file, test, x, y):
         if x != y:
@@ -846,7 +848,6 @@ def testScarlatti():
 
             log_message(log_file,'')
             log_message(log_file,'')
-
 def testScarlattiLOOCV():
     PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
     models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']

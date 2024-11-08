@@ -1,0 +1,30 @@
+\chapter{Introduzione}\label{ch:introduzione}
+
+Negli ultimi anni, i modelli di reti neurali generative hanno registrato notevoli progressi, trovando applicazione in vari
+ambiti quali la creazione automatica di immagini, la sintesi musicale, la generazione di testi e molto altro. 
+Algoritmi come le \textit{Generative Adversarial Networks (GANs)} hanno prodotto risultati di grande rilievo, aprendo nuove prospettive 
+sia per la ricerca scientifica che per applicazioni industriali e commerciali.
+
+Con l'avanzamento delle capacità di generazione, è emersa la necessità di sviluppare metodi oggettivi e affidabili per la valutazione della qualità dei modelli generativi,
+andando oltre la soggettività dell’ispezione visiva umana, che sebbene in ultima analisi rimane comunque il metodo più affidabile e diffuso, 
+risulta intrinsecamente non replicabile, è soggetta a variabilità tra diversi osservatori ed è difficilmente scalabile in contesti che richiedono una valutazione in larga scala.
+
+Per rispondere a questa esigenza, inizialmente sono state proposte metriche scalari, basate quindi su singoli indici, tra cui il Frechet Inception Distance (FID), 
+progettate per stimare la somiglianza statistica tra campioni generati e reali. 
+Tuttavia, tali metriche hanno mostrato limiti nel descrivere con precisione proprietà diverse delle distribuzioni dei dati generati, quali la \textit{fidelity} 
+(la somiglianza tra i campioni generati e quelli reali) e la \textit{diversity} (la varietà tra i campioni generati).
+
+Per superare questi limiti, sono state introdotte metriche più complesse, capaci di fornire una valutazione più articolata della qualità dei modelli. 
+Tra queste metriche, particolare attenzione sarà riservata all'analisi di \textit{Improved Precision and Recall}, \textit{Density and Coverage}, \textit{Probabilistic Precision and Recall} e \textit{Precision and Recall Cover}. 
+È importante sottolineare la corrispondenza concettuale tra i termini \textit{fidelity} e \textit{precision}, così come tra \textit{diversity} e \textit{recall}. 
+Tuttavia, nel contesto delle metriche di precision e recall, il calcolo si basa specificamente sulla distanza tra campioni generati e reali, 
+nonché tra ciascun campione e i suoi vicini all'interno dello spazio delle caratteristiche. 
+
+Nei capitoli che seguiranno verrà approfondita la definizione di tali metriche e le relative versioni più generali e complesse definite in tempi più recenti, vale a dire le \textit{Precision Recall Curves}.
+Veranno quindi introdotti gli esperimenti condotti e i relativi risultati.
+
+La nostra ricerca si propone di analizzare e confrontare le metriche di valutazione della qualità dei modelli generativi, 
+vale a dire caratteristiche e limiti come la dipendenza dai diversi iperparametri, la sensibilità alle dimensioni del dataset, la resistenza agli \textit{outliers}, 
+la capacità di discriminare dati generati di altà qualità da quelli di bassa qualità e quindi le possibilità di filtrare i risultati ottenuti.
+
+
