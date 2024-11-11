@@ -153,4 +153,12 @@ Caratteristiche ritmiche:
     \item \textbf{average IOI} - l'intervallo inter-onset medio, ovvero la media delle variazioni di durate di note consecutive (scalare)
 \end{itemize}
 
+Mentre per le immagini di farfalle avevamo un unico modello generativo per la generazione dei dati, per le partiture musicali sono stati utilizzati più modelli generativi, o meglio un unico modello a cinque diverse epoche di training.\
+Per la valutazione delle metriche sono stati utilizzati i dati generati da ciascuna epoca di training, confrontandoli con i dati reali. Ci si aspetta che le metriche siano sensibili alle differenze tra i dati generati a diverse epoche di training, riflettendo le variazioni qualitative dei campioni generati.\
 
+Il primo test eseguito è stato un sanity check per verificare che la kde calcolata sulle inter e intra set distance fosse corretta.\
+Per fare ciò sono state prese come distribuzioni di dati il training e test set per le varie epoche di training del modello generativo, l'obiettivo era verificare che la distribuzione dei dati, essendo essi in questo caso reali per entrambi i set, fosse pressoché identica.\
+Sono state poi operati gli stessi esperimenti fatti con il set di immagini di farfalle, ovvero la valutazione delle metriche su dati reali e generati. In questa istanza sono state calcolate e confrontate le kde per le distanze interset per i diversi modelli, così come l'\textbf{overlaped area} tra le distribuzioni.\
+Infine sono stati individuati i falsi positivi con un approccio \textbf{leave-one-out}, ovvero per ogni campione generato si è calcolato se in caso di sua rimozione la kde calcolata sulle distanze interset lo avrebbe considerato come falso positivo.\
+
+Dato che i primi dati e ultimi dati del dataset generato erano di bassa qualità, del sample di 1000 dati sono stati rimossi i primi 150 e gli ultimi 150 dati, le metriche hanno quindi operato su un dataset di 700 dati, sia per i dati reali che per quelli generati.\
