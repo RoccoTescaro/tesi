@@ -1,0 +1,40 @@
+\begin{thebibliography}{1}
+
+\bibitem{6UnifyingPrecisionRecall}
+Julien~Rabin Benjamin~Sykes, Loic~Simon.
+\newblock Unifying and extending precision recall metrics for assessing
+  generative models.
+\newblock 2024.
+
+\bibitem{4ProbabilisticPrecisionRecall}
+Suhyun~Kim Dogyun~Park.
+\newblock Probabilistic precision and recall \ towards reliable evaluation of
+  generative models.
+\newblock 2023.
+
+\bibitem{1PrecisionRecallCover}
+Ruth~Urner Fasil~Cheema.
+\newblock Precision recall cover: A method for assessing generative models.
+\newblock 206(6571-6594), 2023.
+
+\bibitem{5RevisitingPrecisionRecall}
+Julien~Rabin Loïc~Simon, Ryan~Webster.
+\newblock Revisiting precision and recall definition for generative model
+  evaluation.
+
+\bibitem{7AssessingWithPrecisionRecall}
+Mario Lucic Olivier Bousquet Sylvain~Gelly Mehdi S. M.~Sajjadi, Olivier~Bachem.
+\newblock Assessing generative models via precision and recall.
+\newblock 2018.
+
+\bibitem{3ReliableFidelityDiversityMetrics}
+Youngjung Uh Yunjey Choi Jaejun~Yoo Muhammad Ferjad~Naeem, Seong Joon~Oh.
+\newblock Reliable fidelity and diversity metrics for generative models.
+\newblock 2019.
+
+\bibitem{2ImprovedPrecisionRecall}
+Samuli Laine Jaakko Lehtinen Timo~Aila Tuomas~Kynkäänniemi, Tero~Karras.
+\newblock Improved precision and recall metric for assessing generative models.
+\newblock 2019.
+
+\end{thebibliography}
