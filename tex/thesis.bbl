@@ -17,6 +17,11 @@ Ruth~Urner Fasil~Cheema.
 \newblock Precision recall cover: A method for assessing generative models.
 \newblock 206(6571-6594), 2023.
 
+\bibitem{8OnTheEvaluationOfGenerativeModelsInMusic}
+Alexander~Lerch Li-Chia~Yang1.
+\newblock On the evaluation of generative models in music.
+\newblock 32:4773–4784, 2020.
+
 \bibitem{5RevisitingPrecisionRecall}
 Julien~Rabin Loïc~Simon, Ryan~Webster.
 \newblock Revisiting precision and recall definition for generative model

@@ -33,7 +33,7 @@ Data la complessità computazionale di alcuni esperimenti, i risultati intermedi
 Come abbiamo visto, tutte le metriche analizzate si basano sulla distanza dei dati rispetto ai loro vicini. Uno dei parametri più determinanti è l'ordine \texttt{k} del vicino più prossimo. Secondo la letteratura, i valori ottimali di \texttt{k} variano in base alla metrica analizzata: per l’\textbf{improved precision recall} \texttt{k = 3}, per la \textbf{probabilistic precision recall} \texttt{k = 4}, per la \textbf{precision recall coverage} \texttt{k=\(\sqrt{|\Phi|}\)} indicando con \(|\Phi|\) la dimensione del dataset reale e/o generato (o \texttt{k = 3} se \texttt{C = 3})
 , mentre per \textbf{density} e \textbf{coverage} \texttt{k = 5}. Questi valori riflettono un compromesso ottimale tra stabilità della metrica e sensibilità alla densità locale. Ci si aspetta che l'aumento della dimensione del dataset porti a un incremento dei valori delle metriche, poiché una maggiore quantità di dati aumenta la densità dei punti, migliorando la rappresentatività delle distribuzioni e riducendo l’effetto del rumore.
 
-L'analisi è stata condotta su dataset generati una sola volta, mantenuti costanti e identici per la valutazione di tutte le metriche, questo per garantire coerenza nei risultati. Sono state utilizzate, come anticipato precedentemente, due diverse distribuzioni: uniforme e normale. I test sono stati effettuati per valori di \texttt{k} variabili da 1 a 10 vale a dire \([[1,2,3,\dots,10]\) e per dimensioni del dataset crescenti esponenzialmente, da 500 a 16000 punti (\([500,1000,2000,\dots,16000]\)). Ogni dato è rappresentato come un vettore in \(\mathbb{R}^{64}\).
+L'analisi è stata condotta su dataset generati una sola volta, mantenuti costanti e identici per la valutazione di tutte le metriche, questo per garantire coerenza nei risultati. Sono state utilizzate, come anticipato precedentemente, due diverse distribuzioni: uniforme e normale. I test sono stati effettuati per valori di \texttt{k} variabili da 1 a 10 vale a dire \([1,2,3,\dots,8,9,10]\) e per dimensioni del dataset crescenti esponenzialmente, da 500 a 16000 punti (\([500,1000,2000,4000,8000,16000]\)). Ogni dato è rappresentato come un vettore in \(\mathbb{R}^{64}\).
 
 Per presentare i risultati, sono state utilizzate delle \textbf{heatmap}, che mostrano i valori delle metriche in funzione di \texttt{k} e della dimensione del dataset. In queste rappresentazioni, il rosso indica valori prossimi a \texttt{1.}, mentre il verde valori vicini a \texttt{0.}. Sebbene le heatmap non offrano precisione numerica immediata, forniscono una visione d’insieme sulle tendenze generali delle metriche e facilitano il confronto con gli esperimenti presenti in letteratura \cite{3ReliableFidelityDiversityMetrics}. Nel paper di riferimento, sono state prodotte heatmap solo per le metriche di \textbf{improved precision recall} e \textbf{density and coverage}, ma per completezza sono state prodotte anche per le altre metriche presentate nel capitolo precedente.
 
@@ -75,7 +75,7 @@ Sono stati inoltre scelti due valori di \( k \) ovvero \(k = 4\) e \(k = \sqrt{n
 Osservando i risultati del paper ci si aspetta che delle quattro pr-curve generate, la coverage-curve sia la più estrema, ovvero quella che produce un risultato migliore (più vicino al classificatore ottimale).\
 Un'altra proprietà attesa è la simmetria delle curve rispetto alla diagonale, questo è dovuto al tipo di distribuzione dei dati utilizzata e al fatto che i training set fossero bilanciati.\
 Dei test preliminari hanno poi mostrato fondamentale la scelta del range di valori e degli step per quanto riguarda la variabile \( \lambda \) (ovvero il parametro che regola la trade-off tra precision e recall). 
-Come consigliato da \cite{unifying precision-recall}, il range di valori è stato generato dalla formula \( \tan(\pi/2 * i/(g+1)) \) con \( i \in [1, g] \) e \( g = 1001\) il numero di valori generati. Questa trasformazione consente di esplorare diverse scale di \(\lambda\) con una densità variabile: i valori crescono rapidamente da 0 a 1, variano lentamente vicino a \(\pi/2\)​, e infine aumentano rapidamente verso l'infinito. Questa caratteristica rende la funzione adatta per analizzare con precisione le transizioni critiche della PR-curve in regioni chiave, bilanciando una copertura fine e una rapida esplorazione delle estremità. 
+Come consigliato da \cite{7AssessingWithPrecisionRecall} , il range di valori è stato generato dalla formula \( \tan(\pi/2 * i/(g+1)) \) con \( i \in [1, g] \) e \( g = 1001\) il numero di valori generati. Questa trasformazione consente di esplorare diverse scale di \(\lambda\) con una densità variabile: i valori crescono rapidamente da 0 a 1, variano lentamente vicino a \(\pi/2\)​, e infine aumentano rapidamente verso l'infinito. Questa caratteristica rende la funzione adatta per analizzare con precisione le transizioni critiche della PR-curve in regioni chiave, bilanciando una copertura fine e una rapida esplorazione delle estremità. 
 In fase sperimentale sono state utilizzate altre funzioni per coprire il range di valori di \(\lambda\), ma la funzione sopra descritta è risultata la più adatta per l'analisi delle curve, e quella che ha prodotto i risultati più simili a quelli presenti in letteratura.
 
 \section{Real World Dataset}
@@ -91,7 +91,7 @@ Gli esperimenti sui dati reali sono stati condotti su due dataset distinti: un s
 e una collezione di partiture musicali di Alessandro Scarlatti, compositore rappresentativo della musica barocca. 
 Questi dataset presentano specificità intrinseche che richiedono l’estrazione di caratteristiche rilevanti dal dominio dei dati (in particolare per le immagini utilizzare i \texttt{raw data} sarebbe improponibile data la loro dimensione). 
 Per le immagini delle farfalle si è scelto di lavorare con feature basilari, come istogrammi di colore e saturazione, per valutare l’abilità delle metriche nel rilevare differenze qualitative senza fare ricorso a rappresentazioni complesse o specifiche del dominio.
-Nel caso delle partiture musicali, invece, le caratteristiche estratte sono state più mirate e informate dal dominio della musica barocca seguendo quanto descritto nella letteratura \cite{music paper}. 
+Nel caso delle partiture musicali, invece, le caratteristiche estratte sono state più mirate e informate dal dominio della musica barocca seguendo quanto descritto nella letteratura \cite{8OnTheEvaluationOfGenerativeModelsInMusic}. 
 Sono state utilizzate, ad esempio, informazioni di carattere ritmico e tonali. Questo approccio permette di valutare le metriche su dati complessi con maggiore precisione.
 
 Un ulteriore strumento di analisi utilizzato in questo contesto è la \textbf{Kernel Density Estimation} (\textbf{KDE}), che si è dimostrata particolarmente utile per ottenere una stima non parametrica della distribuzione dei dati. 
@@ -114,11 +114,43 @@ Gli esperimenti condotti sul dataset di immagini di farfalle si sono basati su u
 \end{itemize}
 Ogni istogramma è stato generato utilizzando 256 \textbf{bin} (per un totale di 256*3 bin per le rappresentazioni \textbf{RGB} e \textbf{HSV}), con l’obiettivo di catturare le distribuzioni dei valori cromatici e di intensità nelle immagini.
 
-Per la rilevazione dei \textbf{falsi positivi}, è stato utilizzato un classificatore analogo a quello impiegato negli esperimenti sulle \textbf{IPR-curve}. In questo caso, le differenze tra istogrammi sono state misurate utilizzando sia la norma \(l_1\) che la norma \(l_2\)​ come funzioni di distanza. Il classificatore ha operato su un \textbf{k-nearest neighbors} (\textbf{k-NN}) con \(k=3\) e \(k=\sqrt{n}\), dove \(n\) è il numero di punti nel training set.
+Per la rilevazione dei \textbf{falsi positivi}, è stato utilizzato un classificatore analogo a quello impiegato negli esperimenti sulle \textbf{IPR-curve} (in questo caso però sono stati considerati tutti e soli quei dati generati che ricadevano nel manifold dei dati reali, quindi senza una variazione del parametro \(\lambda\)). In questo caso, le differenze tra istogrammi sono state misurate utilizzando sia la norma \(l_1\) che la norma \(l_2\)​ come funzioni di distanza. Il classificatore ha operato su un \textbf{k-nearest neighbors} (\textbf{k-NN}) con \(k=3\) e \(k=\sqrt{n}\), dove \(n\) è il numero di punti nel training set.
 ​Per valutare le prestazioni del classificatore, gli esperimenti sono stati condotti utilizzando diversi schemi di divisione dei dati: uno split 80-20 per il \textbf{training} e il \textbf{test}, e un approccio senza divisione, in cui tutti i dati venivano considerati come parte di un unico set per la classificazione.
+
+Il dataset di farfalle usato per l'allenamento della rete generativa e quindi comprendente dati reali era composto da 1000 immagini, mentre il dataset generato era composto da 895 immagini. Data la natura delle metriche utilizzate (alcune di esse richiedevano che la dimensione dei due dataset fosse uguale) è stato impiegato per la valutazione la dimensione minima fra le due dimensioni dei dataset considerati, ovvero 895 immagini.\
+Una rapida presa visione dei dati ha mostrato che le immagini presenti nel dataset di farfalle reali contenevano dati di qualità molto variabile, con alcune immagini contenenti impurità o artefatti di vario genere. Non sono state operate tuttavia operazioni di pulizia dei dati, in quanto l'obiettivo era valutare l'efficacia delle metriche nel discriminare tra dati reali e generati, indipendentemente dalla qualità dei dati stessi.
+
+In questo caso l'applicazione della KDE per le distanze inter e intra set è stata fondamentale per la comprensione dei risultati ottenuti, in quanto ha permesso di visualizzare le distribuzioni dei dati in uno spazio a dimensione ridotta, fornendo un quadro chiaro delle relazioni tra i campioni reali e quelli generati.\
 
 \subsection{Scarlatti}
 
+Al contrario del dataset di farfalle, oer il dataset di partiture musicali è stato adottato un approccio più mirato e informato dal dominio dei dati. Per l'estrazione delle caratteristiche infatti sono state utilizzate informazioni di carattere ritmico e tonale, seguendo quanto descritto nella letteratura \cite{8OnTheEvaluationOfGenerativeModelsInMusic}.\
+Il paper indicato, in particolare, presentava un implementazione delle metriche per l'estrazione di caratteristiche musicali basato su una rappresentazione delle partiture musicali in forma di \textbf{piano-roll}.
+Il piano-roll è una rappresentazione grafica delle note musicali in cui l'asse delle ascisse rappresenta il tempo e l'asse delle ordinate rappresenta le note. Ogni cella della matrice corrisponde a una nota suonata in un determinato istante di tempo. Presenta tuttavia delle limitazioni, in quanto in condizioni particolari può esserci perdita di informazione.\
+Invece che utilizzare il piano-roll, sono state estratte le caratteristiche direttamente dai file MIDI, quindi da una lista di note con informazioni sul tempo e sulla durata, reimplementando le metriche del paper ma con questa diversa rappresentazione.\
+Le caratteristiche estratte si dividono in due categorie: \textbf{caratteristiche ritmiche} e \textbf{caratteristiche tonali}. Le prime includono informazioni sul tempo e sulla durata delle note, mentre le seconde riguardano la tonalità delle note e le relazioni armoniche tra di esse.\
+Tra le diverse metriche sono poi presenti: metriche scalari, metriche vettoriali e persino metriche matriciali.\
 
+Con 'measure' si intende una singola battuta di musica, ovvero un'unità di tempo musicale, ad esempio se il tempo è 4/4, una battuta è composta da 4 semiminime (o 8 crome, o 16 semicrome, ecc.).\
+La maggior parte dei dati musicali di musica barocca è scritta in 4/4 con 8 battute, per quei dati in cui il tempo non era specificato è stato considerato 4/4, e in caso di battute mancanti sono state aggiunte battute vuote.\
+
+Caratteristiche tonali:
+\begin{itemize}
+    \item \textbf{number of pitches per measure} - il numero di toni diversi presenti in una singola battuta (vettore di dimensione 8)
+    \item \textbf{pitch class histogram} - l'istogramma delle classi di toni presenti in una singola battuta (vettore di dimensione 12)
+    \item \textbf{pitch class histogram per measure} - l'istogramma delle classi di toni presenti in una singola battuta (vettore di dimensione 12x8 = 96)
+    \item \textbf{pitch class transition matrix} - la matrice di transizione delle classi di toni (matrice 12x12=144)
+    \item \textbf{pitch range} - la differenza tra il tono più alto e il tono più basso (scalare)
+    \item \textbf{average pitch shift} - la media delle variazioni di tono tra note consecutive (scalare)
+\end{itemize}
+
+Caratteristiche ritmiche:
+\begin{itemize}
+    \item \textbf{number of notes per measure} - il numero di note presenti in una singola battuta (vettore di dimensione 8)
+    \item \textbf{note length histogram} - l'istogramma delle durata delle note presenti in una singola battuta (vettore di dimensione 24)
+    \item \textbf{note length histogram per measure} - l'istogramma delle durata delle note presenti in una singola battuta (vettore di dimensione 24x8 = 192)
+    \item \textbf{note length transition matrix} - la matrice di transizione delle durate delle note (matrice 24x24=576)
+    \item \textbf{average IOI} - l'intervallo inter-onset medio, ovvero la media delle variazioni di durate di note consecutive (scalare)
+\end{itemize}
 
 
