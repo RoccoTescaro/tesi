@@ -264,13 +264,15 @@ def testSampleDimN():
         axs[0].set_title(f'{fidelityMetrics[i]}')
         axs[0].set_xlabel('N')
         axs[0].set_ylabel(fidelityMetrics[i])
+        axs[0].set_ylim([0.0, 1.0])
         axs[0].legend()
 
         axs[1].set_title(f'{diversityMetrics[i]}')
         axs[1].set_xlabel('N')
         axs[1].set_ylabel(diversityMetrics[i])
+        axs[1].set_ylim([0.0, 1.0])
 
-        plt.savefig(f'./images/sampleDimN_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
+        plt.savefig(f'./images/toyexperiments/ksampledim/sampleDimN_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
 def testCurve(classifier, filename, l=5001, g=1001, k_mod="4", shift=1):
     #def f(x):
         #erf(((2x)/(m))) + ℯ^(x - m + 3)
@@ -972,3 +974,82 @@ def testScarlattiLOOCV():
     plt.tight_layout()
     plt.savefig('./images/realworldexperiments/scarlatti/kde/hist.png')
 
+def testScarlattiExamples():
+    inter_lhood = np.load('./data/matrix_inter.npy')
+    inter_thresholds = np.load('./data/tresholds_inter.npy')
+
+    n_fp_examples = 1
+    n_tp_examples = 1
+
+    n_samples = 1000
+    min_index_sample = 150
+    max_index_sample = n_samples - min_index_sample
+
+    models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']
+
+    metrics = [
+        nNotesPerMeasure,
+        nPitchesPerMeasure,
+        pitchClassHist,
+        pitchClassHistPerMeasure,
+        pitchClassTransMatrix,
+        pitchRange,
+        avgPitchShift,
+        avgIOI,
+        noteLengthHist,
+        noteLengthHistPerMeasure,
+        noteLengthTransMatrix,
+    ]
+
+    #create if does not exits a folder for the examples
+    os.makedirs('./images/realworldexperiments/scarlatti/kde/examples', exist_ok=True)
+        
+    for j, m in enumerate(metrics):
+        os.makedirs(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}', exist_ok=True)
+        
+        for i, mod in enumerate(models):
+            QPaths = np.array([f'data/Scarlatti/fake/{mod}/{i:010d}.mid' for i in range(min_index_sample, max_index_sample)])
+            os.makedirs(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples', exist_ok=True)
+            os.makedirs(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples', exist_ok=True)
+
+            os.system(f'rm ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*')
+            os.system(f'rm ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*')
+
+            #select the n_fp_examples with the lowest likelihood and the n_tp_examples with the highest likelihood
+            fp_examples = np.argsort(inter_lhood[j, i])[:n_fp_examples]
+            tp_examples = np.argsort(inter_lhood[j, i])[::-1][:n_tp_examples]
+
+            #print(fp_examples)
+            #print(tp_examples)
+
+            for index in fp_examples:
+                os.system(f'cp {QPaths[index]} ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/')
+
+            for index in tp_examples:
+                os.system(f'cp {QPaths[index]} ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/')
+
+
+    #create a markdown file with the examples playable
+
+    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as md_file:
+        for m in metrics:
+            md_file.write(f'## {m.__name__}\n')
+            for mod in models:
+                md_file.write(f'### {mod}\n')
+
+                fp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*.mid')
+                tp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*.mid')      
+
+                #print(fp_examples)
+                #print(tp_examples)
+
+                md_file.write(f'#### False Positives\n')
+                md_file.write(f'\n')
+                for fp in fp_examples:
+                    md_file.write(f'<audio controls> <source src="{fp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
+                md_file.write(f'\n')
+                md_file.write(f'#### True Positives\n')
+                md_file.write(f'\n')
+                for tp in tp_examples:
+                    md_file.write(f'<audio controls> <source src="{tp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
+                md_file.write(f'\n')

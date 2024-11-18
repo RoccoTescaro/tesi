@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.11.9)  11 NOV 2024 18:45
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.11.9)  18 NOV 2024 12:51
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -530,7 +530,7 @@ Package hyperref Info: Link coloring OFF on input line 79.
 \openout3 = `thesis.out'.
 
 \c@lstlisting=\count324
-<./img/stemma.pdf, id=111, 1622.06pt x 1673.45195pt>
+<./img/stemma.pdf, id=119, 1622.06pt x 1673.45195pt>
 File: ./img/stemma.pdf Graphic file (type pdf)
 <use ./img/stemma.pdf>
 Package pdftex.def Info: ./img/stemma.pdf  used on input line 87.
@@ -617,7 +617,7 @@ Capitolo 1.
 
 
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<../images/2_PrecisionRecallManifold_si.png, id=180, 642.90187pt x 184.43906pt>
+<../images/2_PrecisionRecallManifold_si.png, id=190, 642.90187pt x 184.43906pt>
 
 File: ../images/2_PrecisionRecallManifold_si.png Graphic file (type png)
 <use ../images/2_PrecisionRecallManifold_si.png>
@@ -834,7 +834,7 @@ Overfull \hbox (7.81181pt too wide) detected at line 94
 ^^H[]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 ^^H[]) = []
  []
 
-<../images/prdc.png, id=213, 570.63188pt x 336.50719pt>
+<../images/prdc.png, id=223, 570.63188pt x 336.50719pt>
 File: ../images/prdc.png Graphic file (type png)
 <use ../images/prdc.png>
 Package pdftex.def Info: ../images/prdc.png  used on input line 105.
@@ -912,241 +912,284 @@ You may provide a definition with
 
  (./files/conclusions.tex
 Capitolo 3.
-<../images/toyexperiments/kdim/normal_iPrecision_iRecall.png, id=345, 867.24pt 
-x 433.62pt>
+<../images/toyexperiments/kdim/normal_iPrecision_iRecall.png, id=356, 896.8707p
+t x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_iPrecision_iRecall.png Graphic file 
 (type png)
 <use ../images/toyexperiments/kdim/normal_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_iPrecision_iRecal
-l.png  used on input line 11.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/normal_density_coverage.png, id=347, 867.24pt x 
-433.62pt>
+l.png  used on input line 14.
+(pdftex.def)             Requested size: 312.00119pt x 116.657pt.
+<../images/toyexperiments/kdim/normal_density_coverage.png, id=358, 896.8707pt 
+x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_density_coverage.png Graphic file (t
 ype png)
 <use ../images/toyexperiments/kdim/normal_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_density_coverage.
-png  used on input line 16.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/normal_pPrecision_pRecall.png, id=348, 867.24pt 
-x 433.62pt>
+png  used on input line 19.
+(pdftex.def)             Requested size: 312.00119pt x 116.657pt.
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[26
+
+
+
+
+ <../images/toyexperiments/kdim/normal_iPrecision_iRecall.png>]
+<../images/toyexperiments/kdim/normal_pPrecision_pRecall.png, id=365, 896.8707p
+t x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_pPrecision_pRecall.png Graphic file 
 (type png)
 <use ../images/toyexperiments/kdim/normal_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_pPrecision_pRecal
-l.png  used on input line 21.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/normal_precision_recall.png, id=349, 867.24pt x 
-433.62pt>
+l.png  used on input line 32.
+(pdftex.def)             Requested size: 312.00119pt x 116.657pt.
+<../images/toyexperiments/kdim/normal_precision_recall.png, id=366, 896.8707pt 
+x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_precision_recall.png Graphic file (t
 ype png)
 <use ../images/toyexperiments/kdim/normal_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_precision_recall.
-png  used on input line 26.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png, id=350, 867.24pt
- x 433.62pt>
+png  used on input line 33.
+(pdftex.def)             Requested size: 312.00119pt x 116.657pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[27 <../images/toyexperiments/kdim/normal_density_coverage.png>]
+<../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png, id=372, 896.8707
+pt x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png Graphic file
  (type png)
 <use ../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_iPrecision_iReca
-ll.png  used on input line 31.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/uniform_density_coverage.png, id=351, 867.24pt x
- 433.62pt>
+ll.png  used on input line 44.
+(pdftex.def)             Requested size: 195.0pt x 72.9087pt.
+<../images/toyexperiments/kdim/uniform_density_coverage.png, id=373, 896.8707pt
+ x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_density_coverage.png Graphic file (
 type png)
 <use ../images/toyexperiments/kdim/uniform_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_density_coverage
-.png  used on input line 36.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png, id=352, 867.24pt
- x 433.62pt>
+.png  used on input line 45.
+(pdftex.def)             Requested size: 195.0pt x 72.9087pt.
+<../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png, id=374, 896.8707
+pt x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png Graphic file
  (type png)
 <use ../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_pPrecision_pReca
-ll.png  used on input line 41.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/kdim/uniform_precision_recall.png, id=353, 867.24pt x
- 433.62pt>
+ll.png  used on input line 46.
+(pdftex.def)             Requested size: 195.0pt x 72.9087pt.
+<../images/toyexperiments/kdim/uniform_precision_recall.png, id=375, 896.8707pt
+ x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_precision_recall.png Graphic file (
 type png)
 <use ../images/toyexperiments/kdim/uniform_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_precision_recall
-.png  used on input line 46.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png, id=354,
+.png  used on input line 47.
+(pdftex.def)             Requested size: 195.0pt x 72.9087pt.
+
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 44--48
+[][] []
+ []
+
+
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 44--48
+[] [] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[28 <../images/toyexperiments/kdim/normal_pPrecision_pRecall.png> <../images/to
+yexperiments/kdim/normal_precision_recall.png>]
+<../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png, id=382,
  867.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png Gra
 phic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_iPrecis
-ion_iRecall.png  used on input line 55.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png, id=355, 8
+ion_iRecall.png  used on input line 58.
+(pdftex.def)             Requested size: 195.0pt x 97.49413pt.
+<../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png, id=383, 8
 67.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png Graph
 ic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_density
-_coverage.png  used on input line 56.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png, id=356,
+_coverage.png  used on input line 59.
+(pdftex.def)             Requested size: 195.0pt x 97.49413pt.
+<../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png, id=384,
  867.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png Gra
 phic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_pPrecis
-ion_pRecall.png  used on input line 57.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png, id=357, 8
+ion_pRecall.png  used on input line 60.
+(pdftex.def)             Requested size: 195.0pt x 97.49413pt.
+<../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png, id=385, 8
 67.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png Graph
 ic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_precisi
-on_recall.png  used on input line 58.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
+on_recall.png  used on input line 61.
+(pdftex.def)             Requested size: 195.0pt x 97.49413pt.
 
-LaTeX Warning: Float too large for page by 191.00592pt on input line 59.
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 58--62
+[][] []
+ []
 
 
-LaTeX Warning: `!h' float specifier changed to `!ht'.
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 58--62
+[] [] 
+ []
 
-<../images/toyexperiments/outliers/shift_iPrecision_iRecall.png, id=358, 867.24
+[29 <../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png> <../images/t
+oyexperiments/kdim/uniform_density_coverage.png> <../images/toyexperiments/kdim
+/uniform_pPrecision_pRecall.png> <../images/toyexperiments/kdim/uniform_precisi
+on_recall.png> <../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iReca
+ll.png> <../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png> <
+../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png> <../imag
+es/toyexperiments/ksampledim/sampleDimN_precision_recall.png>] [30]
+<../images/toyexperiments/outliers/shift_iPrecision_iRecall.png, id=402, 867.24
 pt x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_iPrecision_iRecall.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/outliers/shift_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_iPrecision_iRe
-call.png  used on input line 65.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/outliers/shift_density_coverage.png, id=359, 867.24pt
+call.png  used on input line 85.
+(pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
+<../images/toyexperiments/outliers/shift_density_coverage.png, id=403, 867.24pt
  x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_density_coverage.png Graphic file
  (type png)
 <use ../images/toyexperiments/outliers/shift_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_density_covera
-ge.png  used on input line 66.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/outliers/shift_pPrecision_pRecall.png, id=360, 867.24
+ge.png  used on input line 98.
+(pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[31
+
+ <../images/toyexperiments/outliers/shift_iPrecision_iRecall.png>]
+<../images/toyexperiments/outliers/shift_pPrecision_pRecall.png, id=409, 867.24
 pt x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_pPrecision_pRecall.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/outliers/shift_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_pPrecision_pRe
-call.png  used on input line 67.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-<../images/toyexperiments/outliers/shift_precision_recall.png, id=361, 867.24pt
+call.png  used on input line 109.
+(pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
+<../images/toyexperiments/outliers/shift_precision_recall.png, id=410, 867.24pt
  x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_precision_recall.png Graphic file
  (type png)
 <use ../images/toyexperiments/outliers/shift_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_precision_reca
-ll.png  used on input line 68.
-(pdftex.def)             Requested size: 390.0pt x 195.00148pt.
-
-LaTeX Warning: Float too large for page by 191.00592pt on input line 69.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-<../images/toyexperiments/prcurves/PRCurve_k4_s1.png, id=362, 505.89pt x 505.89
+ll.png  used on input line 110.
+(pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
+ [32 <../images/toyexperiments/outliers/shift_density_coverage.png> <../images/
+toyexperiments/outliers/shift_pPrecision_pRecall.png> <../images/toyexperiments
+/outliers/shift_precision_recall.png>] [33]
+<../images/toyexperiments/prcurves/PRCurve_k4_s1.png, id=426, 505.89pt x 505.89
 pt>
 File: ../images/toyexperiments/prcurves/PRCurve_k4_s1.png Graphic file (type pn
 g)
 <use ../images/toyexperiments/prcurves/PRCurve_k4_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_k4_s1.png  u
-sed on input line 75.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_k4_s3.png, id=363, 505.89pt x 505.89
+sed on input line 134.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+<../images/toyexperiments/prcurves/PRCurve_k4_s3.png, id=427, 505.89pt x 505.89
 pt>
 File: ../images/toyexperiments/prcurves/PRCurve_k4_s3.png Graphic file (type pn
 g)
 <use ../images/toyexperiments/prcurves/PRCurve_k4_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_k4_s3.png  u
-sed on input line 76.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png, id=364, 505.89pt x 505
+sed on input line 135.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+<../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png, id=428, 505.89pt x 505
 .89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png Graphic file (type
  png)
 <use ../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png
-  used on input line 77.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png, id=365, 505.89pt x 505
+  used on input line 136.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+<../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png, id=429, 505.89pt x 505
 .89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png Graphic file (type
  png)
 <use ../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png
-  used on input line 78.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png, id=366, 505.89pt 
+  used on input line 137.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 134--138
+[][] []
+ []
+
+
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 134--138
+[] [] 
+ []
+
+<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png, id=430, 505.89pt 
 x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png Graphic file 
 (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s
-1.png  used on input line 79.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png, id=367, 505.89pt 
+1.png  used on input line 144.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png, id=431, 505.89pt 
 x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png Graphic file 
 (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s
-3.png  used on input line 80.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png, id=368, 505.89
+3.png  used on input line 145.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png, id=432, 505.89
 pt x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqr
-t_s1.png  used on input line 81.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png, id=369, 505.89
+t_s1.png  used on input line 146.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
+<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png, id=433, 505.89
 pt x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqr
-t_s3.png  used on input line 82.
-(pdftex.def)             Requested size: 390.0pt x 390.00737pt.
+t_s3.png  used on input line 147.
+(pdftex.def)             Requested size: 195.0pt x 195.00368pt.
 
-LaTeX Warning: Float too large for page by 2535.05896pt on input line 83.
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
+[][] []
+ []
+
+
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
+[] [] 
+ []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-) [26
-
-
-
-
-] [27 <../images/toyexperiments/kdim/normal_iPrecision_iRecall.png> <../images/
-toyexperiments/kdim/normal_density_coverage.png>] [28 <../images/toyexperiments
-/kdim/normal_pPrecision_pRecall.png> <../images/toyexperiments/kdim/normal_prec
-ision_recall.png>] [29 <../images/toyexperiments/kdim/uniform_iPrecision_iRecal
-l.png> <../images/toyexperiments/kdim/uniform_density_coverage.png>]
-[30 <../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png> <../images/t
-oyexperiments/kdim/uniform_precision_recall.png>] [31 <../images/toyexperiments
-/ksampledim/sampleDimN_iPrecision_iRecall.png> <../images/toyexperiments/ksampl
-edim/sampleDimN_density_coverage.png> <../images/toyexperiments/ksampledim/samp
-leDimN_pPrecision_pRecall.png> <../images/toyexperiments/ksampledim/sampleDimN_
-precision_recall.png>] [32 <../images/toyexperiments/outliers/shift_iPrecision_
-iRecall.png> <../images/toyexperiments/outliers/shift_density_coverage.png> <..
-/images/toyexperiments/outliers/shift_pPrecision_pRecall.png> <../images/toyexp
-eriments/outliers/shift_precision_recall.png>] [33 <../images/toyexperiments/pr
-curves/PRCurve_k4_s1.png> <../images/toyexperiments/prcurves/PRCurve_k4_s3.png>
- <../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png> <../images/toyexperim
-ents/prcurves/PRCurve_ksqrt_s3.png> <../images/toyexperiments/prcurves/PRCurve_
-nosplit_k4_s1.png> <../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png
-> <../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png> <../images/t
-oyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png>]
+) [34 <../images/toyexperiments/prcurves/PRCurve_k4_s1.png> <../images/toyexper
+iments/prcurves/PRCurve_k4_s3.png> <../images/toyexperiments/prcurves/PRCurve_k
+sqrt_s1.png> <../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>] [35 <../
+images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png> <../images/toyexperim
+ents/prcurves/PRCurve_nosplit_k4_s3.png> <../images/toyexperiments/prcurves/PRC
+urve_nosplit_ksqrt_s1.png> <../images/toyexperiments/prcurves/PRCurve_nosplit_k
+sqrt_s3.png>]
 \openout2 = `files/notes.aux'.
 
  (./files/notes.tex
@@ -1157,16 +1200,16 @@ Overfull \hbox (63.18233pt too wide) in paragraph at lines 3--5
  \T1/cmtt/m/n/12 numpy.random.multivariate_normal
  []
 
-) [34
+) [36
 
 
 
 
-] (./thesis.bbl [35
+] (./thesis.bbl [37
 
 
 
-]) [36] (./thesis.aux (./files/introduction.aux)
+]) [38] (./thesis.aux (./files/introduction.aux)
 (./files/chapter1.aux) (./files/chapter2.aux) (./files/conclusions.aux)
 (./files/notes.aux))
  ***********
@@ -1178,14 +1221,14 @@ L3 programming layer <2024-02-20>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 9658CE915EDCF0275FE6DBFD75C78455;5160.
+(rerunfilecheck)             Checksum: E79594F9B4B649BEDA5CF3D69A2AD743;5384.
  )
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 14671 strings out of 474116
- 235069 string characters out of 5750249
+ 14677 strings out of 474116
+ 235151 string characters out of 5750249
  1935187 words of memory out of 5000000
- 36658 multiletter control sequences out of 15000+600000
+ 36660 multiletter control sequences out of 15000+600000
  579039 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  90i,9n,93p,859b,640s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1212,10 +1255,10 @@ xmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/
 type1/public/cm-super/sfsl1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm
 -super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200
 .pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb>
-Output written on thesis.pdf (41 pages, 1979004 bytes).
+Output written on thesis.pdf (43 pages, 1901201 bytes).
 PDF statistics:
- 583 PDF objects out of 1000 (max. 8388607)
- 428 compressed objects within 5 object streams
- 98 named destinations out of 1000 (max. 500000)
- 352 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 606 PDF objects out of 1000 (max. 8388607)
+ 449 compressed objects within 5 object streams
+ 102 named destinations out of 1000 (max. 500000)
+ 368 words of extra memory for PDF output out of 10000 (max. 10000000)
 

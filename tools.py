@@ -6,6 +6,7 @@ from joblib import Parallel, delayed
 import matplotlib.pyplot as plt
 import cv2
 from matplotlib.colors import LinearSegmentedColormap, Normalize
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy.spatial.distance import pdist, cdist
 from scipy.stats import gaussian_kde
 
@@ -189,6 +190,9 @@ def generate_samples(distribution, dim, n):
     elif distribution == 'normal':
         PSamples = normalData(dim, n)
         QSamples = normalData(dim, n)
+    elif distribution == 'normalwshift':
+        PSamples = normalData(dim, n)
+        QSamples = normalData(dim, n, 3/8)
     return PSamples, QSamples
 
 def plot_matrices(distribution, fidelityMatrix, diversityMatrix, fidelityMetrics, diversityMetrics, N, K):
@@ -203,18 +207,30 @@ def plot_matrices(distribution, fidelityMatrix, diversityMatrix, fidelityMetrics
         ax.set_xlabel('k')
         ax.set_ylabel('Samples')
         return im
-    
+
     for i in range(len(fidelityMetrics)):
         plt.clf()
         cmap = LinearSegmentedColormap.from_list('custom_cmap', ['green', 'yellow', 'red'])
         fig, axs = plt.subplots(1, 2, figsize=(12, 6))
         fig.suptitle(f'{distribution} {fidelityMetrics[i]} and {diversityMetrics[i]}')
 
-        plot_matrix(axs[0], fidelityMatrix[:, :, i], fidelityMetrics[i], N, K, cmap)
-        plot_matrix(axs[1], diversityMatrix[:, :, i], diversityMetrics[i], N, K, cmap)
+        im1 = plot_matrix(axs[0], fidelityMatrix[:, :, i], fidelityMetrics[i], N, K, cmap)
+        im2 = plot_matrix(axs[1], diversityMatrix[:, :, i], diversityMetrics[i], N, K, cmap)
 
-        fig.colorbar(axs[0].images[0], ax=axs, orientation='vertical', fraction=0.02, pad=0.04)
-        plt.savefig(f'./images/{distribution}_{fidelityMetrics[i]}_{diversityMetrics[i]}.png')
+        # Adjust the layout for better spacing
+        fig.tight_layout(rect=[0, 0, 1., 1.25])
+
+        # Create a divider for the right subplot and add a colorbar
+        divider = make_axes_locatable(axs[1])
+        cax = divider.append_axes("right", size="5%", pad=0.1)
+
+        # Add colorbar to the last subplot (common for both)
+        cbar = fig.colorbar(im2, cax=cax)
+
+        # Save the figure ensuring nothing is cut off
+        plt.savefig(f'./images/{distribution}_{fidelityMetrics[i]}_{diversityMetrics[i]}.png', 
+                    bbox_inches='tight', pad_inches=0.2)
+
 
 def channel_to_bandw(image_path, channel):
     image = cv2.imread(image_path)
