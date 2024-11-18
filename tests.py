@@ -1029,27 +1029,62 @@ def testScarlattiExamples():
                 os.system(f'cp {QPaths[index]} ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/')
 
 
-    #create a markdown file with the examples playable
+    #create a markdown file which plays the examples using javascript and html
 
-    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as md_file:
-        for m in metrics:
-            md_file.write(f'## {m.__name__}\n')
-            for mod in models:
-                md_file.write(f'### {mod}\n')
+    midi_files = glob.glob('./images/realworldexperiments/scarlatti/kde/examples/*/*/*/*.mid')
 
-                fp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*.mid')
-                tp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*.mid')      
+    content = """
+# MIDI Player Example
 
-                #print(fp_examples)
-                #print(tp_examples)
+This Markdown file contains an embedded MIDI player using HTML and JavaScript.
 
-                md_file.write(f'#### False Positives\n')
-                md_file.write(f'\n')
-                for fp in fp_examples:
-                    md_file.write(f'<audio controls> <source src="{fp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
-                md_file.write(f'\n')
-                md_file.write(f'#### True Positives\n')
-                md_file.write(f'\n')
-                for tp in tp_examples:
-                    md_file.write(f'<audio controls> <source src="{tp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
-                md_file.write(f'\n')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/midi.js/1.0.0/MIDI.min.js"></script>
+<div id="midi-player-container"></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const midiFiles = {files_list};
+    const container = document.getElementById("midi-player-container");
+
+    midiFiles.forEach((file, index) => {
+        const playerDiv = document.createElement("div");
+        playerDiv.innerHTML = `
+            <h3>MIDI File: ${file}</h3>
+            <audio id="midi-player-${index}" controls>
+                <source src="${file}" type="audio/midi">
+                Your browser does not support the audio element.
+            </audio>
+        `;
+        container.appendChild(playerDiv);
+    });
+});
+</script>
+    """.replace("{files_list}", str(midi_files))
+
+    # Save to markdown file
+    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as file:
+        file.write(content)
+
+#    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as md_file:
+#        for m in metrics:
+#            md_file.write(f'## {m.__name__}\n')
+#            for mod in models:
+#                md_file.write(f'### {mod}\n')
+#
+#                fp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*.mid')
+#                tp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*.mid')      
+#
+#                #print(fp_examples)
+#                #print(tp_examples)
+#
+#                md_file.write(f'#### False Positives\n')
+#                md_file.write(f'\n')
+#                for fp in fp_examples:
+#                    md_file.write(f'<audio controls> <source src="{fp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
+#                md_file.write(f'\n')
+#                md_file.write(f'#### True Positives\n')
+#                md_file.write(f'\n')
+#                for tp in tp_examples:
+#                    md_file.write(f'<audio controls> <source src="{tp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
+#                md_file.write(f'\n')
+#
