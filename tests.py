@@ -20,6 +20,9 @@ from papers.improved_precision_and_recall_metric.precision_recall import *
 from papers.Probablistic_precision_recall.pp_pr import *
 from papers.precision_recall_distributions.prd_score import *
 
+from midi2audio import FluidSynth
+import requests
+
 def testKSamples(distribution_):
     def calculate_fidelity_metrics(PSamples, QSamples, hyperparams, PkDistances, QkDistances, nJobs):
         return [
@@ -978,8 +981,8 @@ def testScarlattiExamples():
     inter_lhood = np.load('./data/matrix_inter.npy')
     inter_thresholds = np.load('./data/tresholds_inter.npy')
 
-    n_fp_examples = 1
-    n_tp_examples = 1
+    n_fp_examples = 3
+    n_tp_examples = 3
 
     n_samples = 1000
     min_index_sample = 150
@@ -1001,9 +1004,9 @@ def testScarlattiExamples():
         noteLengthTransMatrix,
     ]
 
-    #create if does not exits a folder for the examples
+    # Create folder for examples if it doesn't exist
     os.makedirs('./images/realworldexperiments/scarlatti/kde/examples', exist_ok=True)
-        
+    
     for j, m in enumerate(metrics):
         os.makedirs(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}', exist_ok=True)
         
@@ -1015,76 +1018,53 @@ def testScarlattiExamples():
             os.system(f'rm ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*')
             os.system(f'rm ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*')
 
-            #select the n_fp_examples with the lowest likelihood and the n_tp_examples with the highest likelihood
+            # Select the n_fp_examples with the lowest likelihood and the n_tp_examples with the highest likelihood
             fp_examples = np.argsort(inter_lhood[j, i])[:n_fp_examples]
             tp_examples = np.argsort(inter_lhood[j, i])[::-1][:n_tp_examples]
 
-            #print(fp_examples)
-            #print(tp_examples)
+             # Initialize FluidSynth with the SoundFont from /usr/share/soundfonts/
+            soundfont_path = '/usr/share/soundfonts/FluidR3_GM.sf2'
+            if not os.path.exists(soundfont_path):
+                print(f"SoundFont not found at {soundfont_path}. Please make sure it is installed.")
+                return
 
+            fs = FluidSynth(soundfont_path)
+            
             for index in fp_examples:
-                os.system(f'cp {QPaths[index]} ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/')
+                # Convert MIDI to MP3 for false positive examples
+                wav_path = f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/{index}.wav'
+                fs.midi_to_audio(f'{QPaths[index]}', wav_path)
 
             for index in tp_examples:
-                os.system(f'cp {QPaths[index]} ./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/')
+                # Convert MIDI to MP3 for true positive examples
+                wav_path = f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/{index}.wav'
+                fs.midi_to_audio(f'{QPaths[index]}', wav_path)
 
+    #create a markdown file with the playable examples
 
-    #create a markdown file which plays the examples using javascript and html
+    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as md_file:
+        for m in metrics:
+            md_file.write(f'## {m.__name__}\n')
+            for mod in models:
+                md_file.write(f'### {mod}\n')
 
-    midi_files = glob.glob('./images/realworldexperiments/scarlatti/kde/examples/*/*/*/*.mid')
+                fp_paths = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*.wav')
+                tp_paths = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*.wav')
 
-    content = """
-# MIDI Player Example
-
-This Markdown file contains an embedded MIDI player using HTML and JavaScript.
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/midi.js/1.0.0/MIDI.min.js"></script>
-<div id="midi-player-container"></div>
-
-<script>
-document.addEventListener("DOMContentLoaded", function() {
-    const midiFiles = {files_list};
-    const container = document.getElementById("midi-player-container");
-
-    midiFiles.forEach((file, index) => {
-        const playerDiv = document.createElement("div");
-        playerDiv.innerHTML = `
-            <h3>MIDI File: ${file}</h3>
-            <audio id="midi-player-${index}" controls>
-                <source src="${file}" type="audio/midi">
-                Your browser does not support the audio element.
-            </audio>
-        `;
-        container.appendChild(playerDiv);
-    });
-});
-</script>
-    """.replace("{files_list}", str(midi_files))
-
-    # Save to markdown file
-    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as file:
-        file.write(content)
-
-#    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as md_file:
-#        for m in metrics:
-#            md_file.write(f'## {m.__name__}\n')
-#            for mod in models:
-#                md_file.write(f'### {mod}\n')
-#
-#                fp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*.mid')
-#                tp_examples = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*.mid')      
-#
-#                #print(fp_examples)
-#                #print(tp_examples)
-#
-#                md_file.write(f'#### False Positives\n')
-#                md_file.write(f'\n')
-#                for fp in fp_examples:
-#                    md_file.write(f'<audio controls> <source src="{fp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
-#                md_file.write(f'\n')
-#                md_file.write(f'#### True Positives\n')
-#                md_file.write(f'\n')
-#                for tp in tp_examples:
-#                    md_file.write(f'<audio controls> <source src="{tp}" type="audio/midi"> Your browser does not support the audio element. </audio>\n')
-#                md_file.write(f'\n')
-#
+                md_file.write(f'#### False Positives\n')
+                for fp in fp_paths:
+                    md_file.write(f'\n')
+                    md_file.write(f'<audio controls>\n')
+                    md_file.write(f'  <source src="{fp}" type="audio/wav">\n')
+                    md_file.write(f'  Your browser does not support the audio element.\n')
+                    md_file.write(f'</audio>\n')
+                    md_file.write(f'\n')
+                md_file.write(f'#### True Positives\n')
+                for tp in tp_paths:
+                    md_file.write(f'\n')
+                    md_file.write(f'<audio controls>\n')
+                    md_file.write(f'  <source src="{tp}">\n')
+                    md_file.write(f'  Your browser does not support the audio element.\n')
+                    md_file.write(f'</audio>\n')
+                    md_file.write(f'\n')
+            md_file.write(f'\n')
