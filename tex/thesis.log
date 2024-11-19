@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.11.9)  18 NOV 2024 12:51
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.11.9)  19 NOV 2024 17:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -928,9 +928,6 @@ ype png)
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_density_coverage.
 png  used on input line 19.
 (pdftex.def)             Requested size: 312.00119pt x 116.657pt.
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
 [26
 
 
@@ -953,11 +950,7 @@ ype png)
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_precision_recall.
 png  used on input line 33.
 (pdftex.def)             Requested size: 312.00119pt x 116.657pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[27 <../images/toyexperiments/kdim/normal_density_coverage.png>]
+ [27 <../images/toyexperiments/kdim/normal_density_coverage.png>]
 <../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png, id=372, 896.8707
 pt x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png Graphic file
@@ -999,9 +992,6 @@ Overfull \hbox (2.61049pt too wide) in paragraph at lines 44--48
 Overfull \hbox (2.61049pt too wide) in paragraph at lines 44--48
 [] [] 
  []
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [28 <../images/toyexperiments/kdim/normal_pPrecision_pRecall.png> <../images/to
 yexperiments/kdim/normal_precision_recall.png>]
@@ -1070,11 +1060,7 @@ File: ../images/toyexperiments/outliers/shift_density_coverage.png Graphic file
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_density_covera
 ge.png  used on input line 98.
 (pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
-
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-[31
+ [31
 
  <../images/toyexperiments/outliers/shift_iPrecision_iRecall.png>]
 <../images/toyexperiments/outliers/shift_pPrecision_pRecall.png, id=409, 867.24
@@ -1180,19 +1166,131 @@ Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
 [] [] 
  []
 
-
-LaTeX Warning: `!h' float specifier changed to `!ht'.
-
-) [34 <../images/toyexperiments/prcurves/PRCurve_k4_s1.png> <../images/toyexper
-iments/prcurves/PRCurve_k4_s3.png> <../images/toyexperiments/prcurves/PRCurve_k
-sqrt_s1.png> <../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>] [35 <../
-images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png> <../images/toyexperim
-ents/prcurves/PRCurve_nosplit_k4_s3.png> <../images/toyexperiments/prcurves/PRC
-urve_nosplit_ksqrt_s1.png> <../images/toyexperiments/prcurves/PRCurve_nosplit_k
-sqrt_s3.png>]
+[34 <../images/toyexperiments/prcurves/PRCurve_k4_s1.png> <../images/toyexperim
+ents/prcurves/PRCurve_k4_s3.png> <../images/toyexperiments/prcurves/PRCurve_ksq
+rt_s1.png> <../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>] [35 <../im
+ages/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png> <../images/toyexperimen
+ts/prcurves/PRCurve_nosplit_k4_s3.png> <../images/toyexperiments/prcurves/PRCur
+ve_nosplit_ksqrt_s1.png> <../images/toyexperiments/prcurves/PRCurve_nosplit_ksq
+rt_s3.png>]
+<../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.png, id
+=450, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.pn
+g Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.png
+>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_gra
+yscale_histogram.png  used on input line 162.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png, id=451, 
+505.89pt x 505.89pt>
+File: ../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png Grap
+hic file (type png)
+<use ../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_hsv
+_histogram.png  used on input line 163.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png, id=452, 
+505.89pt x 505.89pt>
+File: ../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png Grap
+hic file (type png)
+<use ../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_hue
+_histogram.png  used on input line 164.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png, id=453, 
+505.89pt x 505.89pt>
+File: ../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png Grap
+hic file (type png)
+<use ../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_rgb
+_histogram.png  used on input line 168.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.png, i
+d=454, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.p
+ng Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.pn
+g>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_sat
+uration_histogram.png  used on input line 169.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/butterflies/kde/kde_value_histogram.png, id=455
+, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/butterflies/kde/kde_value_histogram.png Gr
+aphic file (type png)
+<use ../images/realworldexperiments/butterflies/kde/kde_value_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_val
+ue_histogram.png  used on input line 170.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+ [36 <../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.pn
+g> <../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png> <../i
+mages/realworldexperiments/butterflies/kde/kde_hue_histogram.png> <../images/re
+alworldexperiments/butterflies/kde/kde_rgb_histogram.png> <../images/realworlde
+xperiments/butterflies/kde/kde_saturation_histogram.png> <../images/realworldex
+periments/butterflies/kde/kde_value_histogram.png>]
+<../images/realworldexperiments/butterflies/examples/fp_grayscale_histogram.png
+, id=467, 1806.75pt x 1445.4pt>
+File: ../images/realworldexperiments/butterflies/examples/fp_grayscale_histogra
+m.png Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/examples/fp_grayscale_histogram
+.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
+_grayscale_histogram.png  used on input line 185.
+(pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
+<../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png, id=4
+68, 1806.75pt x 1445.4pt>
+File: ../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png 
+Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
+_hsv_histogram.png  used on input line 186.
+(pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
+<../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png, id=4
+69, 1806.75pt x 1445.4pt>
+File: ../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png 
+Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
+_hue_histogram.png  used on input line 190.
+(pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
+<../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png, id=4
+70, 1806.75pt x 1445.4pt>
+File: ../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png 
+Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
+_rgb_histogram.png  used on input line 191.
+(pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
+<../images/realworldexperiments/butterflies/examples/fp_saturation_histogram.pn
+g, id=471, 1806.75pt x 1445.4pt>
+File: ../images/realworldexperiments/butterflies/examples/fp_saturation_histogr
+am.png Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/examples/fp_saturation_histogra
+m.png>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
+_saturation_histogram.png  used on input line 192.
+(pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
+<../images/realworldexperiments/butterflies/examples/fp_value_histogram.png, id
+=472, 1806.75pt x 1445.4pt>
+File: ../images/realworldexperiments/butterflies/examples/fp_value_histogram.pn
+g Graphic file (type png)
+<use ../images/realworldexperiments/butterflies/examples/fp_value_histogram.png
+>
+Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
+_value_histogram.png  used on input line 193.
+(pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
+) [37 <../images/realworldexperiments/butterflies/examples/fp_grayscale_histogr
+am.png> <../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.p
+ng>] [38 <../images/realworldexperiments/butterflies/examples/fp_hue_histogram.
+png> <../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png>
+ <../images/realworldexperiments/butterflies/examples/fp_saturation_histogram.p
+ng> <../images/realworldexperiments/butterflies/examples/fp_value_histogram.png
+>]
 \openout2 = `files/notes.aux'.
 
- (./files/notes.tex
+
+(./files/notes.tex
 Capitolo 4.
 
 Overfull \hbox (63.18233pt too wide) in paragraph at lines 3--5
@@ -1200,16 +1298,16 @@ Overfull \hbox (63.18233pt too wide) in paragraph at lines 3--5
  \T1/cmtt/m/n/12 numpy.random.multivariate_normal
  []
 
-) [36
+) [39
 
 
 
 
-] (./thesis.bbl [37
+] (./thesis.bbl [40
 
 
 
-]) [38] (./thesis.aux (./files/introduction.aux)
+]) [41] (./thesis.aux (./files/introduction.aux)
 (./files/chapter1.aux) (./files/chapter2.aux) (./files/conclusions.aux)
 (./files/notes.aux))
  ***********
@@ -1225,10 +1323,10 @@ Package rerunfilecheck Info: File `thesis.out' has not changed.
  )
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 14677 strings out of 474116
- 235151 string characters out of 5750249
+ 14768 strings out of 474116
+ 241884 string characters out of 5750249
  1935187 words of memory out of 5000000
- 36660 multiletter control sequences out of 15000+600000
+ 36746 multiletter control sequences out of 15000+600000
  579039 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  90i,9n,93p,859b,640s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1255,10 +1353,10 @@ xmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/
 type1/public/cm-super/sfsl1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm
 -super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200
 .pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb>
-Output written on thesis.pdf (43 pages, 1901201 bytes).
+Output written on thesis.pdf (46 pages, 30547550 bytes).
 PDF statistics:
- 606 PDF objects out of 1000 (max. 8388607)
- 449 compressed objects within 5 object streams
- 102 named destinations out of 1000 (max. 500000)
- 368 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 645 PDF objects out of 1000 (max. 8388607)
+ 461 compressed objects within 5 object streams
+ 107 named destinations out of 1000 (max. 500000)
+ 428 words of extra memory for PDF output out of 10000 (max. 10000000)
 

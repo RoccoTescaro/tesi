@@ -9,12 +9,12 @@ in particolare si voleva riprodurre i grafici presenti in \cite{3ReliableFidelit
 
 Valutiamo in primo luogo i grafici presenti anche nel paper:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/kdim/normal_iPrecision_iRecall.png} 
 \end{figure}
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/kdim/normal_density_coverage.png} 
 \end{figure}
@@ -27,7 +27,7 @@ La coverage risulta anch'essa molto stabile, non dando valori molto diversi da \
 
 Si riportano quindi i risultati per le due metriche ignorate dal paper sempre per distribuzioni normali di dati:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/kdim/normal_pPrecision_pRecall.png} 
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/kdim/normal_precision_recall.png} 
@@ -40,7 +40,7 @@ Inoltre si può apprezzare la somiglianza fra i grafici della coverage e della p
 
 I risultati degli esperimenti su distribuzioni uniformi identiche sono i seguenti:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png} 
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/kdim/uniform_density_coverage.png} 
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png}
@@ -54,7 +54,7 @@ Unica eccezione è l'improved precision-recall che presenta risultati migliori i
 
 Per quanto riguarda gli esperimenti sulla dimensione dei dati i risultati sono i seguenti:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png} 
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png} 
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png} 
@@ -80,7 +80,7 @@ I risultati ottenuti per l'improved precision-recall sono i seguenti:
 %need to go to the next page
 \clearpage
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/outliers/shift_iPrecision_iRecall.png} 
 \end{figure}
@@ -93,7 +93,7 @@ Un altro problema grave delle due metriche è che quando lo shift fra le due dis
 
 I risultati ottenuti per la density-coverage sono i seguenti:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/outliers/shift_density_coverage.png} 
 \end{figure}
@@ -104,7 +104,7 @@ Al contrario dell'improved precision recall, la density e la coverage hanno valo
 
 Per le altre due metriche non indagate nel paper i risultati sono i seguenti:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \centering
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/outliers/shift_pPrecision_pRecall.png} 
     \includegraphics[width=0.8\textwidth]{../images/toyexperiments/outliers/shift_precision_recall.png} 
@@ -130,7 +130,7 @@ e nei nostri esperimenti risulta che anche la misura di questa distanza risulta 
 Passiamo ora alla comparazione delle pr-curves. In questo caso le pr-curves riprodotte dipendevano dalla scelta del parametro \texttt{k}, dallo shift fra le due distribuzioni e dallo split del traing set e del test set.
 Per i dataset normali con split del 50\% abbiamo ottenuto i seguenti risultati:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_k4_s1.png} 
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_k4_s3.png}
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png} 
@@ -140,15 +140,58 @@ Per i dataset normali con split del 50\% abbiamo ottenuto i seguenti risultati:
 
 Per i dataset normali senza split abbiamo ottenuto i seguenti risultati:
 
-\begin{figure}[h!]
+\begin{figure}[!ht]
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png}
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png}
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png}
     \includegraphics[width=0.5\textwidth]{../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png}
 \end{figure}
 
+Anche in questo caso i risultati ottenuti sono conformi a quelli attesi e presenti nei paper. Le conclusioni che si possono trarre sono pertanto le stesse di quelle presenti nei paper, vale a dire che si nota una maggiore stabilità delle pr-curves in presenza di uno split del dataset e con \texttt{k = \(\sqrt{|\Phi|}\)}.
+
 \section{Risultati degli esperimenti su dataset reali}
 
 \subsection{Butterflies}
+
+Prima di condurre gli esperimenti per identificare se le metriche possano operare correttamente da filtro per la selezione di dati generati di alta qualità, abbiamo condotto degli esperimenti preliminari per studiare il dominio in cui avrebbero operato le metriche.
+In particolare abbiamo analizzato le kde delle divese caratterristiche proposte per le distanze inter e intra set. L'obbiettivo era quello di verificare che tali caratterristiche fossero sufficientemente descrittive per poter distinguere dati generati di alta qualità da dati generati di bassa qualità.
+I risultati ottenuti sono i seguenti:
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.3\textwidth]{../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.png}
+    \includegraphics[width=0.3\textwidth]{../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png}
+    \includegraphics[width=0.3\textwidth]{../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.3\textwidth]{../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png}
+    \includegraphics[width=0.3\textwidth]{../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.png}
+    \includegraphics[width=0.3\textwidth]{../images/realworldexperiments/butterflies/kde/kde_value_histogram.png}
+    \caption{l'ordine delle immagini da sinistra a destra e dall'alto in basso è: grayscale, hsv, hue, rgb, saturation, value}
+\end{figure}
+
+Come si può notare rapidamente per nessuna delle caratterristiche proposte si ha una buona sovrapposizione fra i dati reali e i dati generati. Questo è un segnale che le metriche proposte potrebbero non essere sufficientemente descrittive per poter distinguere i dati generati di alta qualità da quelli generati di bassa qualità,
+di fatto un dato generato che risulti outlier per una delle kde calcolate potrebbe comunque essere un dato di alta qualità. Questo è un problema che si ripercuoterà anche nei risultati degli esperimenti successivi.
+Come era chiaro fin dall'inizio, un'estrattore che si basa esclusivamente sulle caratteristiche cromatiche e non spaziali non è sufficientemente potente.
+L'unica caratteristica in cui abbiamo una sostanziale sovrapposizione fra i dati reali e i dati generati è la value.
+
+A questo punto sono state identificati degli esemplari di falsi positivi con rispettive immagini reali più simili e veri positivi. I risultati ottenuti sono i seguenti:
+La selezione si è basata interamente su quei dati che ricadevano o meno nel manifold definito dall'improved precision recall, che come visto dagli esperimenti sui toy dataset soffre della presenza di outliers.
+I risultati ottenuti sono i seguenti:
+
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{../images/realworldexperiments/butterflies/examples/fp_grayscale_histogram.png}
+    \includegraphics[width=0.45\textwidth]{../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png}
+\end{figure}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[width=0.45\textwidth]{../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png}
+    \includegraphics[width=0.45\textwidth]{../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png}
+    \includegraphics[width=0.45\textwidth]{../images/realworldexperiments/butterflies/examples/fp_saturation_histogram.png}
+    \includegraphics[width=0.45\textwidth]{../images/realworldexperiments/butterflies/examples/fp_value_histogram.png}
+    \caption{l'ordine delle immagini da sinistra verso destra e dall'alto in basso è: grayscale, hsv, hue, rgb, saturation, value}
+\end{figure}
 
 \subsection{Scarlatti}

@@ -24,8 +24,8 @@
 \contentsline {subsection}{\numberline {3.1.2}Dimensione del dataset e dimensione dei dati}{29}{subsection.3.1.2}%
 \contentsline {subsection}{\numberline {3.1.3}Outliers}{30}{subsection.3.1.3}%
 \contentsline {subsection}{\numberline {3.1.4}Comparazione con implementazioni esistenti e riproduzione delle pr-curves}{33}{subsection.3.1.4}%
-\contentsline {section}{\numberline {3.2}Risultati degli esperimenti su dataset reali}{35}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Butterflies}{35}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Scarlatti}{35}{subsection.3.2.2}%
-\contentsline {chapter}{\numberline {4}Note Implementative}{36}{chapter.4}%
-\contentsline {chapter}{Bibliografia}{37}{chapter.4}%
+\contentsline {section}{\numberline {3.2}Risultati degli esperimenti su dataset reali}{36}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Butterflies}{36}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Scarlatti}{37}{subsection.3.2.2}%
+\contentsline {chapter}{\numberline {4}Note Implementative}{39}{chapter.4}%
+\contentsline {chapter}{Bibliografia}{40}{chapter.4}%

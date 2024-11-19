@@ -21,7 +21,6 @@ from papers.Probablistic_precision_recall.pp_pr import *
 from papers.precision_recall_distributions.prd_score import *
 
 from midi2audio import FluidSynth
-import requests
 
 def testKSamples(distribution_):
     def calculate_fidelity_metrics(PSamples, QSamples, hyperparams, PkDistances, QkDistances, nJobs):
@@ -324,8 +323,6 @@ def testCurve(classifier, filename, l=5001, g=1001, k_mod="4", shift=1):
     values = estimatePRD(func, Dtest, hyperparam)
 
     np.save(f'./data/PRCurve_{filename}_nosplit_k{k_mod}_s{shift}.npy', values)
-
-
 def testUnifyPrCurve(l=5001, g=1001, k_mod="4", shift=1):
     filenames = ['cov', 'ipr', 'knn', 'parzen']
     functions = [covClassifier, iprClassifier, knnClassifier, parzenClassifier]
@@ -976,7 +973,6 @@ def testScarlattiLOOCV():
 
     plt.tight_layout()
     plt.savefig('./images/realworldexperiments/scarlatti/kde/hist.png')
-
 def testScarlattiExamples():
     inter_lhood = np.load('./data/matrix_inter.npy')
     inter_thresholds = np.load('./data/tresholds_inter.npy')
@@ -1030,41 +1026,154 @@ def testScarlattiExamples():
 
             fs = FluidSynth(soundfont_path)
             
-            for index in fp_examples:
+            for k, index in enumerate(fp_examples):
                 # Convert MIDI to MP3 for false positive examples
-                wav_path = f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/{index}.wav'
+                wav_path = f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/{k}.wav'
                 fs.midi_to_audio(f'{QPaths[index]}', wav_path)
 
-            for index in tp_examples:
+            for k, index in enumerate(tp_examples):
                 # Convert MIDI to MP3 for true positive examples
-                wav_path = f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/{index}.wav'
+                wav_path = f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/{k}.wav'
                 fs.midi_to_audio(f'{QPaths[index]}', wav_path)
+def testScarlattiPrCurve():
+    PPaths = np.array(glob.glob('data/Scarlatti/real/train/**/*.mid', recursive=True))
+    models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']
 
-    #create a markdown file with the playable examples
+    metrics = [
+        nNotesPerMeasure,
+        nPitchesPerMeasure,
+        pitchClassHist,
+        pitchClassHistPerMeasure,
+        pitchClassTransMatrix,
+        pitchRange,
+        avgPitchShift,
+        avgIOI,
+        noteLengthHist,
+        noteLengthHistPerMeasure,
+        noteLengthTransMatrix,
+    ]
 
-    with open('./images/realworldexperiments/scarlatti/kde/examples/examples.md', 'w') as md_file:
+    classifiers = [
+        iprClassifier,
+        covClassifier,
+        knnClassifier,
+        parzenClassifier,
+    ]
+
+    n_samples = 1000
+    min_index_sample = 150
+    max_index_sample = n_samples - min_index_sample
+
+    n_fp_examples = 3
+    n_tp_examples = 3
+    fp_examples_matrix = np.zeros((len(metrics), len(models), n_fp_examples))
+    tp_examples_matrix = np.zeros((len(metrics), len(models), n_tp_examples))
+
+    g = 1001
+    l = 5001
+    gammas = [np.tan(np.pi/2 * i / (g + 1)) for i in range(1, g)]
+    lambdas = [np.tan(np.pi/2 * i / (l + 1)) for i in range(1, l)]
+    gammas.insert(0, 0)
+    gammas.append(100000000)
+
+    k = int(np.sqrt(max_index_sample - min_index_sample))
+    hyperparam = {'Lambda': lambdas, 'Gamma': gammas, 'k': k, 'nJobs': 16}
+
+    with open('./logs/prcurves_scarlatti_log.txt', 'w') as log_file:
         for m in metrics:
-            md_file.write(f'## {m.__name__}\n')
+            log_message(log_file, '========================================')
+            log_message(log_file, m.__name__)
+            log_message(log_file, '========================================')
+
+            PSamples = np.array([m(p) for p in PPaths[:max_index_sample - min_index_sample]])
+
+            plt.clf()
+            plt.figure(figsize=(7, 7))
+
             for mod in models:
-                md_file.write(f'### {mod}\n')
+                log_message(log_file, f'- MODEL - {mod}')
 
-                fp_paths = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/fp_examples/*.wav')
-                tp_paths = glob.glob(f'./images/realworldexperiments/scarlatti/kde/examples/{m.__name__}/{mod}/tp_examples/*.wav')
+                QPaths = np.array([f'data/Scarlatti/fake/{mod}/{i:010d}.mid' for i in range(min_index_sample, max_index_sample)])
+                QSamples = np.array([m(p) for p in QPaths])
 
-                md_file.write(f'#### False Positives\n')
-                for fp in fp_paths:
-                    md_file.write(f'\n')
-                    md_file.write(f'<audio controls>\n')
-                    md_file.write(f'  <source src="{fp}" type="audio/wav">\n')
-                    md_file.write(f'  Your browser does not support the audio element.\n')
-                    md_file.write(f'</audio>\n')
-                    md_file.write(f'\n')
-                md_file.write(f'#### True Positives\n')
-                for tp in tp_paths:
-                    md_file.write(f'\n')
-                    md_file.write(f'<audio controls>\n')
-                    md_file.write(f'  <source src="{tp}">\n')
-                    md_file.write(f'  Your browser does not support the audio element.\n')
-                    md_file.write(f'</audio>\n')
-                    md_file.write(f'\n')
-            md_file.write(f'\n')
+                QSamplesScore = np.zeros(len(QSamples))
+
+                Dtrain = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+                Dtest = [(val, 1) for val in PSamples] + [(val, 0) for val in QSamples]
+
+                PRD_matrix = []  # Initialize PRD matrix for this metric and model
+
+                for c in classifiers:
+                    print(f'- CLASSIFIER - {c.__name__}')
+
+                    func = c(Dtrain, hyperparam)
+
+                    PRD = []
+                    errRates = []
+
+                    for g in hyperparam['Gamma']:
+                        N = [0, 0]
+                        fpr = 0
+                        fnr = 0
+
+                        for idx, (val, res) in enumerate(Dtest):
+                            fVal = func(val, g)
+                            N[res] += 1
+
+                            if fVal == 1 and res == 0:
+                                fpr += 1
+                                if idx >= len(PSamples):  # Update QSamplesScore for false positives
+                                    QSamplesScore[idx - len(PSamples)] += 1
+                            if fVal == 0 and res == 1:
+                                fnr += 1
+
+                        fpr = fpr / N[0]
+                        fnr = fnr / N[1]
+                        errRates.append((fpr, fnr))
+
+                    for l in hyperparam['Lambda']:
+                        alpha_l = min(l * fpr + fnr for fpr, fnr in errRates)
+                        PRD.append((max(0, min(1, alpha_l)), max(0, min(1, alpha_l / l))))
+
+                    PRD_matrix.append(PRD)  # Append the PRD values for this classifier
+
+                np.save(f'./data/PRD_{m.__name__}_{mod}.npy', PRD_matrix)
+
+                #log fp examples index and tp examples index
+                fp_examples = np.argsort(QSamplesScore)[::-1][:n_fp_examples]
+                tp_examples = np.argsort(QSamplesScore)[:n_tp_examples]
+
+                fp_examples_matrix[metrics.index(m), models.index(mod)] = fp_examples+[min_index_sample]*n_fp_examples
+                tp_examples_matrix[metrics.index(m), models.index(mod)] = tp_examples+[min_index_sample]*n_tp_examples
+
+                log_message(log_file, f'False positive examples: {fp_examples+[min_index_sample]*n_fp_examples}')
+                log_message(log_file, f'False positive scores: {QSamplesScore[fp_examples]}')
+                log_message(log_file, f'True positive examples: {tp_examples+[min_index_sample]*n_tp_examples}')
+                log_message(log_file, f'True positive scores: {QSamplesScore[tp_examples]}')
+
+                # iterating trough Lambda, take the best PRD value min(l*v[0] + v[1]) between the classifiers
+                resulting_PRD = []
+                for i, l in enumerate(hyperparam['Lambda']):
+                    values = [l*PRD_matrix[k][i][0] + PRD_matrix[k][i][1] for k in range(len(classifiers))]
+                    min_index = np.argmin(values)
+                    resulting_PRD.append(PRD_matrix[min_index][i])
+
+                plt.plot([v[0] for v in resulting_PRD], [v[1] for v in resulting_PRD], label=mod)
+
+            plt.xlim(0, 1)
+            plt.ylim(0, 1)
+
+            plt.legend()
+            plt.title('PR Curve')
+            plt.xlabel('Recall')
+            plt.ylabel('Precision')
+            plt.grid(True)
+            plt.savefig(f'./images/PRCurveScarlatti_{m.__name__}.png')
+
+    np.save('./data/fp_examples_matrix.npy', fp_examples_matrix)
+    np.save('./data/tp_examples_matrix.npy', tp_examples_matrix)
+    updateIndexHtml(json_file='images/realworldexperiments/scarlatti/kde/examples/data.json',
+                    metrics=[m.__name__ for m in metrics],
+                    models=models,
+                    fp_file='./data/fp_examples_matrix.npy',
+                    tp_file='./data/tp_examples_matrix.npy')

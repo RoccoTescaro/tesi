@@ -9,6 +9,10 @@ from matplotlib.colors import LinearSegmentedColormap, Normalize
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 from scipy.spatial.distance import pdist, cdist
 from scipy.stats import gaussian_kde
+import json
+import os
+import glob
+from midi2audio import FluidSynth
 
 def kDistances(samples, k, nJobs=1, f_dist = np.linalg.norm):
 
@@ -231,7 +235,6 @@ def plot_matrices(distribution, fidelityMatrix, diversityMatrix, fidelityMetrics
         plt.savefig(f'./images/{distribution}_{fidelityMetrics[i]}_{diversityMetrics[i]}.png', 
                     bbox_inches='tight', pad_inches=0.2)
 
-
 def channel_to_bandw(image_path, channel):
     image = cv2.imread(image_path)
 
@@ -329,3 +332,51 @@ def loocv_kde(x, y = None, dist='cityblock', method='silverman', q=0.05):
 def log_message(log_file, message):
     print(message)
     log_file.write(message + '\n')
+
+def updateIndexHtml(json_file, metrics, models, fp_file, tp_file):
+
+    relative_example_path = "/fake_wav/"
+
+    # Load example matrices
+    fp_examples_matrix = np.load(fp_file)
+    tp_examples_matrix = np.load(tp_file)
+
+    # Structure the data as a dictionary
+    data = {
+        "metrics": metrics,
+        "models": models,
+        "examples": {}
+    }
+
+    for metric in metrics:
+        data["examples"][metric] = {}
+        for model in models:
+            
+            fp_paths = []
+            for example in fp_examples_matrix[metrics.index(metric)][models.index(model)]:
+                fp_paths.append(f"{relative_example_path}{model}/{int(example):010d}.wav")
+
+            tp_paths = []
+            for example in tp_examples_matrix[metrics.index(metric)][models.index(model)]:
+                tp_paths.append(f"{relative_example_path}{model}/{int(example):010d}.wav")
+
+            data["examples"][metric][model] = {
+                "false_positives": fp_paths,
+                "true_positives": tp_paths
+            }
+
+    # Write to JSON for the HTML
+    with open(json_file, "w") as f:
+        json.dump(data, f)
+
+def convertToWav():
+    soundfont_path = '/usr/share/soundfonts/FluidR3_GM.sf2'
+    fs = FluidSynth(soundfont_path)
+    models = ['model_011809.ckpt', 'model_516209.ckpt', 'model_2077006.ckpt', 'model_7083228.ckpt', 'model_7969400.ckpt']
+    for mod in models:
+        paths = glob.glob(f'./data/Scarlatti/fake/{mod}/*.mid')        
+        if not os.path.exists(f'./data/Scarlatti/fake_wav/{mod}'):
+            os.makedirs(f'./data/Scarlatti/fake_wav/{mod}')
+        for path in paths:
+            new_path = path.replace('.mid', '.wav').replace('fake', 'fake_wav')
+            fs.midi_to_audio(path, new_path)

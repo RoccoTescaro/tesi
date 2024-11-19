@@ -1,0 +1,308 @@
+========================================
+nNotesPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [822 733 150]
+False positive scores: [3031. 2935. 2908.]
+True positive examples: [606 639 505]
+True positive scores: [ 0. 32. 62.]
+- MODEL - model_516209.ckpt
+False positive examples: [846 172 813]
+False positive scores: [3454. 3132. 3090.]
+True positive examples: [528 353 675]
+True positive scores: [ 55.  94. 101.]
+- MODEL - model_2077006.ckpt
+False positive examples: [831 822 759]
+False positive scores: [3373. 3353. 3207.]
+True positive examples: [285 398 355]
+True positive scores: [ 96. 100. 104.]
+- MODEL - model_7083228.ckpt
+False positive examples: [831 845 798]
+False positive scores: [3497. 3401. 3252.]
+True positive examples: [732 313 673]
+True positive scores: [171. 176. 184.]
+- MODEL - model_7969400.ckpt
+False positive examples: [841 830 826]
+False positive scores: [3600. 3582. 3426.]
+True positive examples: [560 364 311]
+True positive scores: [200. 232. 256.]
+========================================
+nPitchesPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [187 697 761]
+False positive scores: [3299. 3253. 3218.]
+True positive examples: [356 567 492]
+True positive scores: [177. 178. 180.]
+- MODEL - model_516209.ckpt
+False positive examples: [767 756 831]
+False positive scores: [3451. 3428. 3327.]
+True positive examples: [528 451 445]
+True positive scores: [129. 158. 244.]
+- MODEL - model_2077006.ckpt
+False positive examples: [828 769 844]
+False positive scores: [3710. 3694. 3530.]
+True positive examples: [773 369 274]
+True positive scores: [33. 41. 42.]
+- MODEL - model_7083228.ckpt
+False positive examples: [834 752 812]
+False positive scores: [3616. 3446. 3377.]
+True positive examples: [194 182 239]
+True positive scores: [ 76. 120. 187.]
+- MODEL - model_7969400.ckpt
+False positive examples: [777 700 782]
+False positive scores: [3612. 3508. 3463.]
+True positive examples: [346 456 695]
+True positive scores: [198. 244. 252.]
+========================================
+pitchClassHist
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [250 157 325]
+False positive scores: [3530. 3514. 3493.]
+True positive examples: [578 783 448]
+True positive scores: [434. 512. 526.]
+- MODEL - model_516209.ckpt
+False positive examples: [442 729 186]
+False positive scores: [3328. 3315. 3307.]
+True positive examples: [358 249 230]
+True positive scores: [513. 586. 595.]
+- MODEL - model_2077006.ckpt
+False positive examples: [155 380 571]
+False positive scores: [3190. 3062. 2946.]
+True positive examples: [745 231 395]
+True positive scores: [613. 637. 653.]
+- MODEL - model_7083228.ckpt
+False positive examples: [490 786 365]
+False positive scores: [3036. 2932. 2876.]
+True positive examples: [171 684 693]
+True positive scores: [521. 645. 686.]
+- MODEL - model_7969400.ckpt
+False positive examples: [256 171 380]
+False positive scores: [2879. 2862. 2837.]
+True positive examples: [303 317 678]
+True positive scores: [584. 625. 776.]
+========================================
+pitchClassHistPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [250 775 237]
+False positive scores: [3493. 3470. 3271.]
+True positive examples: [217 171 399]
+True positive scores: [190. 577. 585.]
+- MODEL - model_516209.ckpt
+False positive examples: [344 253 187]
+False positive scores: [3239. 3165. 3137.]
+True positive examples: [543 185 363]
+True positive scores: [408. 491. 561.]
+- MODEL - model_2077006.ckpt
+False positive examples: [176 412 746]
+False positive scores: [3098. 2905. 2844.]
+True positive examples: [192 453 444]
+True positive scores: [434. 442. 572.]
+- MODEL - model_7083228.ckpt
+False positive examples: [741 465 820]
+False positive scores: [2718. 2691. 2689.]
+True positive examples: [432 496 611]
+True positive scores: [549. 725. 738.]
+- MODEL - model_7969400.ckpt
+False positive examples: [218 198 575]
+False positive scores: [3150. 3045. 2942.]
+True positive examples: [264 290 393]
+True positive scores: [700. 736. 743.]
+========================================
+pitchClassTransMatrix
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [548 755 563]
+False positive scores: [2943. 2943. 2906.]
+True positive examples: [433 829 596]
+True positive scores: [105. 583. 599.]
+- MODEL - model_516209.ckpt
+False positive examples: [356 219 193]
+False positive scores: [3080. 3014. 3003.]
+True positive examples: [634 517 230]
+True positive scores: [444. 468. 685.]
+- MODEL - model_2077006.ckpt
+False positive examples: [380 240 424]
+False positive scores: [2830. 2827. 2823.]
+True positive examples: [806 202 230]
+True positive scores: [380. 421. 474.]
+- MODEL - model_7083228.ckpt
+False positive examples: [168 192 249]
+False positive scores: [3075. 3061. 3035.]
+True positive examples: [557 684 393]
+True positive scores: [461. 640. 665.]
+- MODEL - model_7969400.ckpt
+False positive examples: [770 434 308]
+False positive scores: [3505. 2915. 2784.]
+True positive examples: [586 565 203]
+True positive scores: [530. 624. 651.]
+========================================
+pitchRange
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [234 536 187]
+False positive scores: [3644. 3044. 3044.]
+True positive examples: [518 541 326]
+True positive scores: [97. 97. 97.]
+- MODEL - model_516209.ckpt
+False positive examples: [379 615 485]
+False positive scores: [3094. 3094. 3061.]
+True positive examples: [849 680 658]
+True positive scores: [900. 900. 900.]
+- MODEL - model_2077006.ckpt
+False positive examples: [692 836 390]
+False positive scores: [2580. 2580. 2580.]
+True positive examples: [769 848 413]
+True positive scores: [529. 953. 953.]
+- MODEL - model_7083228.ckpt
+False positive examples: [582 355 457]
+False positive scores: [2616. 2616. 2616.]
+True positive examples: [718 339 181]
+True positive scores: [864. 864. 864.]
+- MODEL - model_7969400.ckpt
+False positive examples: [564 538 607]
+False positive scores: [3165. 3165. 3165.]
+True positive examples: [173 186 839]
+True positive scores: [701. 701. 701.]
+========================================
+avgPitchShift
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [532 744 233]
+False positive scores: [2949. 2947. 2928.]
+True positive examples: [702 847 183]
+True positive scores: [ 972. 1013. 1031.]
+- MODEL - model_516209.ckpt
+False positive examples: [475 251 216]
+False positive scores: [3253. 3252. 3114.]
+True positive examples: [322 155 175]
+True positive scores: [1024. 1049. 1050.]
+- MODEL - model_2077006.ckpt
+False positive examples: [733 703 382]
+False positive scores: [2965. 2956. 2945.]
+True positive examples: [612 580 669]
+True positive scores: [1112. 1112. 1124.]
+- MODEL - model_7083228.ckpt
+False positive examples: [455 322 396]
+False positive scores: [2712. 2699. 2697.]
+True positive examples: [481 238 675]
+True positive scores: [648. 685. 685.]
+- MODEL - model_7969400.ckpt
+False positive examples: [385 431 583]
+False positive scores: [2898. 2849. 2849.]
+True positive examples: [294 305 772]
+True positive scores: [954. 988. 988.]
+========================================
+avgIOI
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [831 835 842]
+False positive scores: [3734. 3632. 3624.]
+True positive examples: [308 211 223]
+True positive scores: [648. 648. 739.]
+- MODEL - model_516209.ckpt
+False positive examples: [646 162 528]
+False positive scores: [3903. 3864. 3789.]
+True positive examples: [370 334 465]
+True positive scores: [1094. 1215. 1276.]
+- MODEL - model_2077006.ckpt
+False positive examples: [714 158 549]
+False positive scores: [3879. 3783. 3472.]
+True positive examples: [418 426 445]
+True positive scores: [928. 928. 928.]
+- MODEL - model_7083228.ckpt
+False positive examples: [313 258 627]
+False positive scores: [3755. 3749. 3736.]
+True positive examples: [199 176 196]
+True positive scores: [979. 979. 980.]
+- MODEL - model_7969400.ckpt
+False positive examples: [167 277 374]
+False positive scores: [3914. 3865. 3738.]
+True positive examples: [207 695 369]
+True positive scores: [ 914.  914. 1031.]
+========================================
+noteLengthHist
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [801 823 794]
+False positive scores: [3244. 3148. 3139.]
+True positive examples: [337 394 197]
+True positive scores: [349. 367. 382.]
+- MODEL - model_516209.ckpt
+False positive examples: [837 647 216]
+False positive scores: [3163. 3106. 3102.]
+True positive examples: [150 483 189]
+True positive scores: [332. 601. 626.]
+- MODEL - model_2077006.ckpt
+False positive examples: [831 814 848]
+False positive scores: [3015. 2961. 2947.]
+True positive examples: [504 371 214]
+True positive scores: [536. 596. 625.]
+- MODEL - model_7083228.ckpt
+False positive examples: [172 691 837]
+False positive scores: [3073. 2981. 2963.]
+True positive examples: [309 414 367]
+True positive scores: [471. 518. 554.]
+- MODEL - model_7969400.ckpt
+False positive examples: [827 796 777]
+False positive scores: [3135. 3103. 3103.]
+True positive examples: [170 670 154]
+True positive scores: [507. 522. 611.]
+========================================
+noteLengthHistPerMeasure
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [371 173 242]
+False positive scores: [3554. 3437. 3420.]
+True positive examples: [213 405 571]
+True positive scores: [472. 501. 551.]
+- MODEL - model_516209.ckpt
+False positive examples: [283 654 346]
+False positive scores: [3199. 2901. 2891.]
+True positive examples: [532 188 222]
+True positive scores: [424. 630. 673.]
+- MODEL - model_2077006.ckpt
+False positive examples: [449 312 741]
+False positive scores: [3089. 3010. 2939.]
+True positive examples: [284 425 501]
+True positive scores: [633. 666. 733.]
+- MODEL - model_7083228.ckpt
+False positive examples: [563 549 599]
+False positive scores: [3243. 2986. 2892.]
+True positive examples: [598 327 825]
+True positive scores: [389. 594. 679.]
+- MODEL - model_7969400.ckpt
+False positive examples: [256 321 644]
+False positive scores: [3287. 2784. 2752.]
+True positive examples: [466 338 625]
+True positive scores: [561. 596. 646.]
+========================================
+noteLengthTransMatrix
+========================================
+- MODEL - model_011809.ckpt
+False positive examples: [202 843 452]
+False positive scores: [3926. 3769. 3671.]
+True positive examples: [197 487 710]
+True positive scores: [480. 575. 606.]
+- MODEL - model_516209.ckpt
+False positive examples: [214 315 611]
+False positive scores: [3437. 3416. 3316.]
+True positive examples: [789 738 330]
+True positive scores: [946. 988. 989.]
+- MODEL - model_2077006.ckpt
+False positive examples: [183 803 506]
+False positive scores: [3338. 3207. 3198.]
+True positive examples: [177 371 340]
+True positive scores: [779. 882. 888.]
+- MODEL - model_7083228.ckpt
+False positive examples: [685 714 315]
+False positive scores: [3090. 3068. 3059.]
+True positive examples: [213 817 528]
+True positive scores: [900. 974. 987.]
+- MODEL - model_7969400.ckpt
+False positive examples: [537 532 489]
+False positive scores: [3455. 3291. 3104.]
+True positive examples: [584 463 367]
+True positive scores: [1038. 1057. 1100.]
