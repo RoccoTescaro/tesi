@@ -14,26 +14,14 @@ import os
 import glob
 from midi2audio import FluidSynth
 
-def kDistances(samples, k, nJobs=1, f_dist = np.linalg.norm):
+def kDistances(samples, k, nJobs=1, f_dist = "euclidean"):
 
-    if f_dist == np.linalg.norm:    
-
-        nbrs = NearestNeighbors(n_neighbors=k, algorithm='auto', n_jobs=nJobs).fit(samples)
-        
-        distances, _ = nbrs.kneighbors(samples, n_neighbors=k+1, return_distance=True)
-        
-        return distances[:, -1]
+    nbrs = NearestNeighbors(n_neighbors=k, algorithm='auto', n_jobs=nJobs, metric=f_dist).fit(samples)
     
-    def kWorker(i):
-        distances = []
-        for j in range(len(samples)):
-            distances.append(f_dist(samples[i]-samples[j]))
-        distances.sort()
-        return distances[k]
+    distances, _ = nbrs.kneighbors(samples, n_neighbors=k+1, return_distance=True)
     
-    kth_distances = Parallel(n_jobs=nJobs)(delayed(kWorker)(i) for i in range(samples.shape[0]))
+    return distances[:, -1]
 
-    return kth_distances
 
     #nbrs = NearestNeighbors(n_neighbors=k+1, algorithm='auto').fit(samples)
     #
@@ -69,8 +57,8 @@ def realismScore(PSamples, QSample, hyperparam, PkDistances = [], nJobs = 1, f_d
    
     for i in range(len(PSamples)):
 
-        nom = f_dist(PSamples[i]-PkDistances[i])
-        den = f_dist(PSamples[i]-QSample)
+        nom = np.linalg.norm(PSamples[i]-PkDistances[i], ord=2-(f_dist=="cityblock")) 
+        den = np.linalg.norm(PSamples[i]-QSample, ord=2-(f_dist=="cityblock"))
 
         value = nom/den
 
@@ -135,6 +123,7 @@ def grayscale_histogram(image_path, bins=256):
     return hist
 
 def hsv_histogram(image_path, bins=256):
+    bins = int(bins/3)
     image = cv2.imread(image_path)
     image = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
     hist_h = cv2.calcHist([image], [0], None, [bins], [0, 256]).flatten()
@@ -268,7 +257,8 @@ def silverman_bandwidth(data):
     """Silverman's Rule for bandwidth"""
     n = len(data)
     std_dev = np.std(data)
-    return (4 / (3 * n)) ** (1 / 5) * std_dev
+    iqr = np.percentile(data, 75) - np.percentile(data, 25)
+    return 0.9 * np.min([std_dev, iqr/1.34]) * pow(n, -0.2)
 
 def kde(data, points, bandwidth_method='scott'):
     """
@@ -300,7 +290,7 @@ def kde(data, points, bandwidth_method='scott'):
     
     return kde_values
 
-def loocv_kde(x, y = None, dist='cityblock', method='silverman', q=0.05):
+def loocv_kde(x, y = None, dist='cityblock', bandwidth=None, q=0.05):
     if y is None:
         y = x
     
@@ -310,36 +300,35 @@ def loocv_kde(x, y = None, dist='cityblock', method='silverman', q=0.05):
     n_samples = len(x)
     dists = cdist(x, y, metric=dist)
 
-    if method == 'scott':
+    if bandwidth == None:
+        bandwidth = 'silverman'
+    elif isinstance(bandwidth, float):
+        pass
+    elif bandwidth == 'scott':
         bandwidth = scott_bandwidth(dists)
-    elif method == 'silverman':
+    elif bandwidth == 'silverman':
         bandwidth = silverman_bandwidth(dists)
     else:
         raise ValueError('Unsupported bandwidth method')
 
     weights = np.exp(-0.5 * (dists / bandwidth) ** 2) / (bandwidth * np.sqrt(2 * np.pi))
-    kde_values = np.sum(weights, axis=1) / n_samples
-
-    threshold = np.quantile(kde_values, q)
-
-    l = np.zeros(n_samples)
+    kde_values = np.zeros(n_samples)
 
     for i in range(n_samples):
-        l[i] = (np.sum(weights[i]) - weights[i, i]) / (n_samples - 1)
+        kde_values[i] = (np.sum(weights[i]) - weights[i, i]) / (n_samples - 1)
+    return kde_values
 
-    return l, threshold
 
 def log_message(log_file, message):
     print(message)
     log_file.write(message + '\n')
 
-def updateIndexHtml(json_file, metrics, models, fp_file, tp_file):
+def updateIndexHtml(json_file, metrics, models, example_file, n_examples = 3):
 
-    relative_example_path = "/fake_wav/"
+    relative_example_path = "/fake/"
 
-    # Load example matrices
-    fp_examples_matrix = np.load(fp_file)
-    tp_examples_matrix = np.load(tp_file)
+    # Load the example data
+    examples = np.load(example_file, allow_pickle=True).item()
 
     # Structure the data as a dictionary
     data = {
@@ -348,17 +337,21 @@ def updateIndexHtml(json_file, metrics, models, fp_file, tp_file):
         "examples": {}
     }
 
+    #print(examples)
+
     for metric in metrics:
         data["examples"][metric] = {}
         for model in models:
             
             fp_paths = []
-            for example in fp_examples_matrix[metrics.index(metric)][models.index(model)]:
-                fp_paths.append(f"{relative_example_path}{model}/{int(example):010d}.wav")
+            temp_n_examples = np.min([n_examples, len(examples[metric][model]["false_positives"])])
+            for example in examples[metric][model]['false_positives'][:temp_n_examples]:
+                fp_paths.append(f"{relative_example_path}{model}/{int(example):010d}.mid")
 
             tp_paths = []
-            for example in tp_examples_matrix[metrics.index(metric)][models.index(model)]:
-                tp_paths.append(f"{relative_example_path}{model}/{int(example):010d}.wav")
+            temp_n_examples = np.min([n_examples, len(examples[metric][model]["true_positives"])]) 
+            for example in examples[metric][model]['true_positives'][:temp_n_examples]:
+                tp_paths.append(f"{relative_example_path}{model}/{int(example):010d}.mid")
 
             data["examples"][metric][model] = {
                 "false_positives": fp_paths,
@@ -368,7 +361,6 @@ def updateIndexHtml(json_file, metrics, models, fp_file, tp_file):
     # Write to JSON for the HTML
     with open(json_file, "w") as f:
         json.dump(data, f)
-
 def convertToWav():
     soundfont_path = '/usr/share/soundfonts/FluidR3_GM.sf2'
     fs = FluidSynth(soundfont_path)

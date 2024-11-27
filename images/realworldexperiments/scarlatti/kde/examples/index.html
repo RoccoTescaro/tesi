@@ -10,11 +10,19 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Score visualizer -->
+    <script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.4.0"></script>
+
     <style>
         /* Light theme styles */
         body {
             background-color: #ffffff;
             color: #000000;
+        }
+
+        .container
+        {
+            margin-bottom: 200px;
         }
 
         .audio-player {
@@ -93,6 +101,58 @@
         .file-number {
             margin-left: 10px;
         }
+
+        #score-container {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f8f9fa; /* Light background color */
+            padding: 10px;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            color: #000000;
+            display: none;
+            text-align: center;
+        }
+
+        .dark-mode #score-container {
+            background-color: #3a3a3a; /* Dark background color */
+            color: #ffffff;
+        }
+
+        midi-player {
+            color: #000000;
+        }
+
+        .temp-loading-btn {
+            width: 300px;
+            height: 50.1333px;
+            box-shadow: none;
+            border: none;
+            border-radius: 100px;   
+            margin: 3px;
+            display: flex;
+            background-color: rgb(242, 245, 246);
+            margin-bottom: 10px;
+        }
+
+        .play
+        {
+            border-radius: 100%;
+            width: 32px;
+            height: 32px;
+            text-align: center;
+            margin: 0.8em 0.45em;
+        }
+
+        .load-text
+        {
+            display: flex;
+            margin: 0.8em 0.45em;
+            text-align: center;
+            vertical-align: middle;
+        }
+
     </style>
 </head>
 <body>
@@ -112,6 +172,19 @@
     </button>
 
     <div id="metrics-list"></div>
+</div>
+
+<div id="score-container">
+    <button id="close-score" class="btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-down" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M1.553 6.776a.5.5 0 0 1 .67-.223L8 9.44l5.776-2.888a.5.5 0 1 1 .448.894l-6 3a.5.5 0 0 1-.448 0l-6-3a.5.5 0 0 1-.223-.67"/>
+        </svg>
+    </button>
+    <div class="d-flex justify-content-center mb-3">
+        <div style="text-align: left;">   
+            <midi-visualizer type="staff" id="myStaffVisualizer"></midi-visualizer>
+        </div>
+    </div>
 </div>
 
 <!-- Scripts -->
@@ -149,14 +222,34 @@
                 
                 data.examples[metric][model].false_positives.forEach(function(file) {
                     let fileNumber = file.slice(-7, -4);
-                    htmlContent += `<div class="audio-container"><audio class="audio-player" controls><source src="${file}" type="audio/wav"></audio> <div class="file-number">${fileNumber}</div></div>`;
+                    htmlContent += `<div class="audio-container">
+                                        <button class="temp-loading-btn" src="${file}">
+                                            <div class="play">
+                                            <span class="icon play-icon"><svg width="24" height="24" version="1.1" viewBox="0 0 6.35 6.35" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4.4979 3.175-2.1167 1.5875v-3.175z" stroke-width=".70201"></path>
+                                            </svg>
+                                            </span>
+                                            </div>
+                                            <div class="d-flex w-100 load-text">Load</div>
+                                        </button>
+                                        <div class="file-number">${fileNumber}</div></div>`;
                 });
                 htmlContent += '</td>';
 
                 htmlContent += '<td>';
                 data.examples[metric][model].true_positives.forEach(function(file) {
                     let fileNumber = file.slice(-7, -4);
-                    htmlContent += `<div class="audio-container"><audio class="audio-player" controls><source src="${file}" type="audio/wav"></audio> <div class="file-number">${fileNumber}</div></div>`;
+                    htmlContent += `<div class="audio-container">
+                                        <button class="temp-loading-btn" src="${file}">
+                                            <div class="play">
+                                            <span class="icon play-icon"><svg width="24" height="24" version="1.1" viewBox="0 0 6.35 6.35" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="m4.4979 3.175-2.1167 1.5875v-3.175z" stroke-width=".70201"></path>
+                                            </svg>
+                                            </span>
+                                            </div>
+                                            <div class="d-flex w-100 load-text">Load</div>
+                                        </button>
+                                        <div class="file-number">${fileNumber}</div></div>`;
                 });
                 
                 htmlContent += '</td>';
@@ -169,6 +262,38 @@
 
         // Insert the generated HTML into the metrics-list container
         $('#metrics-list').html(htmlContent);
+
+        // Add event listener to the play buttons
+        $('.temp-loading-btn').click(function() {
+            let path = $(this).attr('src');
+            console.log('Play button clicked:', path);
+            //get this object parent
+            let parent = $(this).parent();
+            //add the midi player as first parent child
+            parent.prepend(`<midi-player
+                            class="audio-player"
+                            src="${path}"
+                            sound-font visualizer="#myStaffVisualizer">
+                            </midi-player>`);
+
+            let midiPlayer = parent.find('.audio-player')
+            midiPlayer.on('start', function() {
+                console.log('Audio player started');
+                // Load the score for the current audio file
+                //let path = $(this).attr('src');
+                //console.log('Score path:', path);
+                $('#score-container').show();
+                $('#myStaffVisualizer').attr('src', path);
+            });
+
+            //remove the button
+            $(this).remove();
+        });
+
+        $('#close-score').click(function() {
+            $('#score-container').hide();
+        });
+
     }
 
     // Dark mode toggle
@@ -183,6 +308,8 @@
         loadJSONAndGenerate();
     });
 </script>
+
+<script src="https://cdn.jsdelivr.net/combine/npm/tone@14.7.58,npm/@magenta/music@1.23.1/es6/core.js,npm/focus-visible@5,npm/html-midi-player@1.5.0"></script>
 </body>
 </html>
 

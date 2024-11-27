@@ -23,6 +23,7 @@ si basa su un calcolo simile dipendente dalla distanza tra campioni generati e r
     \includegraphics[width=\linewidth]{../images/2_PrecisionRecallManifold_si.png}
     %\label{fig:precision-recall-manifold}
     %\source{\cite{2ImprovedPrecisionRecall} Figure 1}
+    \caption{Esempio di supporto stimato tratto da Improved Precision and Recall Metric for Assessing Generative Models \cite{2ImprovedPrecisionRecall}}
 \end{figure}
 
 Sebbene \textit{fidelity} e \textit{diversity} siano concetti centrali per la valutazione della qualità dei modelli generativi, risultano difficili da quantificare direttamente a causa della loro natura astratta.
@@ -37,7 +38,7 @@ In questo contesto la stima del supporto è detta \textbf{manifold}.
 
 Nonostante il nome \textit{Improved Precision and Recall} possa suggerire un miglioramento rispetto a una versione precedente e meno sofisticata di \textit{precision and recall}, 
 la metrica proposta da Tuomas Kynkäänniemi et al., 2019 \cite{2ImprovedPrecisionRecall}, precede temporalmente, in realtà, quella che sarà presentata successivamente, ovvero la metrica denominata più semplicemente \textit{Precision and Recall Coverage}. 
-Di fatto, si tratta della forma più semplice di \textit{precision-recall} analizzata in questo lavoro, e rappresenta il punto di partenza per la nostra analisi.
+Di fatto, si tratta della forma più semplice di precision-recall analizzata in questo lavoro, e rappresenta il punto di partenza per la nostra analisi.
 
 Sia \(R\) il dataset di campioni reali (in genere dati usati per l'addestramento della rete) e \(G\) il dataset di campioni generati dalla rete neurale, identifichiamo con \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G} (tendenzialmente con \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}) lo spazio delle caratteristiche e \(\Phi_R\) e \(\Phi_G\) i vettori di feature estratti da \(R\) e \(G\) rispettivamente.
 
@@ -48,6 +49,7 @@ determinato da un iperparametro \texttt{k} che rappresenta il numero dei \textbf
 
 Possiamo quindi definire una funzione binaria che determini se un certo punto appartiene al manifold o meno:
 \begin{equation}
+    \label{eq:f-ipr}
     f_{ipr}(x, \Phi) = 
     \begin{cases}
         1 & \text{if }~~ \exists ~ y \in \Phi \text{ such that } ||x - y||_2 \leq ||y - NN_k(y, \Phi)||_2 \\
@@ -67,25 +69,26 @@ La Precision e la Recall possono essere quindi definite come:
 
 Nominalmente la Precision misura la percentuale di punti di \(\Phi_G\) che ricadono nel manifold di \(\Phi_R\) e la Recall la percentuale dei punti di \(\Phi_R\) che ricadono nel manifold di \(\Phi_G\).
 Come tali le due metriche sono quindi normalizzate e assumono valori compresi tra \texttt{0} e \texttt{1}.
-Come ripeteremo in seguito la metrica risulta dipendente dall'iperparametro \texttt{k} e in particolare pare che per \texttt{k = 3} si ottengano i risultati migliori.
+Come ripeteremo in seguito \ref{subsec:k-dataset-dimension} la metrica risulta dipendente dall'iperparametro \texttt{k} e in particolare pare che per \texttt{k = 3} si ottengano i risultati migliori.
 
 \section{Density and Coverage}
 \label{sec:density-and-coverage}
 
-Come vedremo nel capitolo seguente l'\textit{Improved Precision Recall} soffre la presenza di \textit{outliers} nei datasets, vale a dire che il manifold stimato da \(R\) e \(G\) può essere fortemente influenzato da pochi punti molto distanti dalla distribuzione principale e quindi la presenza di molti dati generati in una zona vicina a questi outliers può portare a un errata alta stima della \textit{fidelity-precision}.
+Come vedremo nel capitolo seguente \ref{ch:chapter2} l'\textit{Improved Precision Recall} soffre la presenza di \textit{outliers} nei datasets, vale a dire che il manifold stimato da \(R\) e \(G\) può essere fortemente influenzato da pochi punti molto distanti dalla distribuzione principale e quindi la presenza di molti dati generati in una zona vicina a questi outliers può portare a un errata alta stima della \textit{fidelity-precision}.
 La \textit{Density and Coverage} è una metrica che cerca di mitigare questo problema (come analizzato da Muhammad Ferjad Naeem et al., 2019 \cite{3ReliableFidelityDiversityMetrics}). 
 
-Invece che contare se le varie ipersfere in $\Phi_R$ contengono almeno un punto di $\Phi_G$, la \textit{Density} conta quanti punti di $\Phi_G$ sono inclusi in ciascuna ipersfera centrata su $\Phi_R$. Viene quindi scalato il risultato per il numero di ipersfere totali per il valore di \texttt{k} (si suppone che ciascuna ipersfera contenga almeno \texttt{k} punti).
-Questo conporta però che la \textit{density} non è una metrica normalizzata e in certi casi assume valori maggiori di \texttt{1}. La formula è la seguente: 
+Invece che contare se le varie ipersfere in $\Phi_R$ contengono almeno un punto di $\Phi_G$, la density conta quanti punti di $\Phi_G$ sono inclusi in ciascuna ipersfera centrata su $\Phi_R$. Viene quindi scalato il risultato per il numero di ipersfere totali per il valore di \texttt{k} (si suppone che ciascuna ipersfera contenga almeno \texttt{k} punti).
+Questo conporta però che la density non è una metrica normalizzata e in certi casi assume valori maggiori di \texttt{1}. La formula è la seguente: 
 \begin{equation}
     Density(\Phi_R, \Phi_G) = \frac{1}{k|\Phi_G|} \sum_{g \in \Phi_G} \sum_{r \in \Phi_R} \mathbbm{1}_{||r - g||_2 \leq ||g - NN_k(g, \Phi_G)||_2}
 \end{equation}
 
-Rispetto alle altre metriche in cui si poteva apprezzare la simmetria fra le formule per la stima di \textit{fidelity} e \textit{diversity}, in questo caso la \textit{Coverage} è una metrica completamente diversa dalla \textit{Density}. Questo perchè rispetto a $\Phi_G$, $\Phi_R$ non dovrebbe presentare \textit{outliers}.
-La Coverage valuta se ogni dato reale \(r \in \Phi_R \)​ è rappresentato da almeno un punto generato \(g \in \Phi_G \)​, costruendo il manifold in \(\Phi_R\) e verificando se esiste almeno un punto di \(\Phi_G\) in ciascuna ipersfera. 
+Rispetto alle altre metriche in cui si poteva apprezzare la simmetria fra le formule per la stima di \textit{fidelity} e \textit{diversity}, in questo caso la coverage è una metrica completamente diversa dalla density. Questo perchè rispetto a $\Phi_G$, $\Phi_R$ non dovrebbe presentare outliers.
+La coverage valuta se ogni dato reale \(r \in \Phi_R \)​ è rappresentato da almeno un punto generato \(g \in \Phi_G \)​, costruendo il manifold in \(\Phi_R\) e verificando se esiste almeno un punto di \(\Phi_G\) in ciascuna ipersfera. 
 
-Anticipando la sezione che seguirà \textit{Precision Recall Curve}, è utile definire una funzione binaria che determini per la \textit{Coverage} se un certo punto appartiene a questa nuova definzione di manifold:
+Anticipando la sezione che seguirà \textit{Precision Recall Curve} \ref{sec:precision-recall-curve}, è utile definire una funzione binaria che determini per la coverage se un certo punto appartiene a questa nuova definzione di manifold:
 \begin{equation}
+    \label{eq:f-cov}
     f_{cov}(x, \Phi_x, \Phi_y) = 
     \begin{cases}
         1 & \text{if }~~ \exists ~ y \in \Phi_y \text{ such that } ||x - y||_2 \leq ||x - NN_k(x, \Phi_x)||_2 \\
@@ -105,6 +108,7 @@ La formula potrebbe sembrare molto simile a quella dell'Improved Precision ma co
     \includegraphics[width=\linewidth]{../images/prdc.png}
     %\label{fig:precision-recall-manifold}
     %\source{\cite{2ImprovedPrecisionRecall} Figure 1}
+    \caption{Esempio di applicazione di Improved Precision and Recall e Density and Coverage tratto da Reliable Fidelity and Diversity Metrics for Generative Models \cite{3ReliableFidelityDiversityMetrics}}
 \end{figure}
 
 Al contrario della Density, la Coverage è una metrica normalizzata e assume valori compresi tra 0 e 1.
@@ -142,6 +146,7 @@ Per la precision, la somma itera \(x\) su \(\Phi_G\) con manifold calcolato su \
 
 La variabile \(\rho\) gioca un ruolo cruciale in questo approccio, rappresentando il raggio delle ipersfere usate per stimare i sottosupporti locali. Per evitare sovrastime, si adotta una strategia simile alla \textit{Kernel Density Estimation} con varianza fissata, definendo \(\rho\) come segue:  
 \begin{equation}
+    \label{eq:rho}
     \rho(\Phi) = \alpha \cdot \frac{1}{|\Phi|} \sum_{x \in \Phi} ||x - NN_k(x, \Phi)||_2
 \end{equation}
 
@@ -162,7 +167,7 @@ le aree da considerare trascurabilmente piccole e quelle sufficientemente grandi
 e contare il numero di ipersfere che contengono almeno \texttt{k} punti di \(\Phi_R\), si divide quindi per il numero di ipersfere totali (la dimensione di \(\Phi_G\)). 
 Per la Recall si procede in modo analogo ma invertendo i ruoli di \(\Phi_R\) e \(\Phi_G\).
 
-È importante notare come la metrica sia fondamentalmente la stessa della Coverage ma non è più sufficiente che esista un unico punto di \(\Phi_R\) in un ipersfera di \(\Phi_G\) ma è necessario invece che ce ne siano almeno \texttt{k}.
+È importante notare come la metrica sia fondamentalmente la stessa della coverage ma non è più sufficiente che esista un unico punto di \(\Phi_R\) in un ipersfera di \(\Phi_G\) ma è necessario invece che ce ne siano almeno \texttt{k}.
 \begin{equation}
     Precision(\Phi_R, \Phi_G) = \frac{1}{|\Phi_G|} \sum_{g \in \Phi_G} \mathbbm{1}_{|\{ r \in \Phi_R, \text{s.t.} ||r - g||_2 \leq ||r - NN_{k'}(r, \Phi_R)||_2 \}| \geq k}
 \end{equation}
@@ -188,7 +193,7 @@ I classificatori per la costruzione della curva Precision-Recall si basano sui m
     f_{\lambda}^{cov}(x) = \mathbbm{1}_{\lambda \cdot |\{ r \in \Phi_R, \text{s.t.} ||r - x||_2 \leq ||r - NN_k(x, \Phi_G)||_2 \}| \geq |\{ g \in \Phi_G, \text{s.t.} ||g - x||_2 \leq ||g - NN_k(x, \Phi_R)||_2 \}|}
 \end{equation}
 
-È interessante notare come le condizioni di appartenenza agli insiemi la cui cardinalità viene confrontata siano analoghe alle condizioni per \(f_{ipr}\) e \(f_{cov}\) con la differenza che qui andiamo a contare il numero di punti che soddisfano la condizione e non se esiste almeno un punto che la soddisfi.
+È interessante notare come le condizioni di appartenenza agli insiemi la cui cardinalità viene confrontata siano analoghe alle condizioni per \(f_{ipr}\) \ref{eq:f-ipr} e \(f_{cov}\) \ref{eq:f-cov} con la differenza che qui andiamo a contare il numero di punti che soddisfano la condizione e non se esiste almeno un punto che la soddisfi.
 
 La formula per \(f_{\lambda}^{ipr}\) può essere interpretata come una forma di Kernel Density Estimation (KDE) con bandwidth variabile.
 
@@ -216,7 +221,7 @@ Tra questi risulta il knn classifier e il parzen classifier.
     f_{\lambda}^{parzen}(x) = \mathbbm{1}_{\lambda |\{ r \in \Phi_R, \text{s.t.} ||r - x||_2 \leq \rho(\Phi_G) \}| \geq |\{ g \in \Phi_G, \text{s.t.} ||g - x||_2 \leq \rho(\Phi_R) \}|}
 \end{equation}
 
-con \(\Phi_U = \Phi_G \cup \Phi_R \) e \(\rho(\Phi)\) definito come nella sezione relativa a \textit{Probabilistic Precision and Recall} (\(\alpha = 1\)), vale a dire che il raggio delle ipersfere è fissato alla media delle distanze \texttt{k}-NN.
+con \(\Phi_U = \Phi_G \cup \Phi_R \) e \(\rho(\Phi)\) definito come nella sezione relativa a \textit{Probabilistic Precision and Recall} \ref{eq:rho} (\(\alpha = 1\)), vale a dire che il raggio delle ipersfere è fissato alla media delle distanze \texttt{k}-NN.
 
 \(f_{\lambda}^{knn}\) è fondamentalmente analogo al \(f_{\lambda}^{cov}\) classifier ma costruisce l'ipersfera su entrambi i dataset.
 Il \(f_{\lambda}^{parzen}\) classifier invece nutre delle somiglianze con il \(f_{\lambda}^{ipr}\) classifier ma costruisce l'ipersfera con un raggio fisso, è quindi per transitività simile ad una KDE con bandwidth costante.
@@ -251,4 +256,4 @@ Un ultima funzione che è stata utilizzata per valutare la qualità dei singoli 
 
 Un punto che ha realism score \(\ge 1\) è molto simile ai dati reali, viceversa un punto con realism score in [0,1) è molto diverso dai dati reali.
 
-Per quanto riguarda l'applicazione dei classificatori per la costruzione della Precision Recall Curve, i dataset sono stati divisi in training e testing set con split specificati nella parte sperimentale. Mentre per gli estrattori di caratteristiche sono state utilizzate metriche \textbf{informate} e \textbf{non informate} del dominio dei dati (per queste chiariremo meglio in seguito).
+Per quanto riguarda l'applicazione dei classificatori per la costruzione della Precision Recall Curve, i dataset sono stati divisi in training e testing set con split specificati nella parte sperimentale. Mentre per gli estrattori di caratteristiche sono state utilizzate metriche \textbf{informate} e \textbf{non informate} del dominio dei dati (per queste chiariremo meglio in seguito \ref{sec:real-world-dataset}).

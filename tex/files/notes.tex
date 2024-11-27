@@ -1,6 +1,0 @@
-\chapter{Note Implementative}\label{ch:notes}
-
-Per la generazione di dataset con distribuzione uniforme è stata utilizzata la funzione \texttt{numpy.random.uniform}, mentre per la generazione di dataset con distribuzione normale è stata utilizzata la funzione \texttt{numpy.random.multivariate\_normal} di numpy. La prima oltre alla dimensione dei sample e al numero prende come parametri anche il range di valori che i dati possono assumere, mentre la seconda prende come parametri lo shift (che di default è 0). Come media avremo quindi \texttt{shift*numpy.ones(dim)} e come covarianza la matrice identità (\texttt{numpy.eye(dim)}).\
-Sono state poi adottate una serie di funzioni per facilitare il debugging attraverso la visualizzazione dei dati. In particolare una funzione che mostri dati di due dimensioni con il corrispondente manifold e fuzioni come il \textbf{realism score} che permette di valutare la verosimiglianza dei singoli dati generati.\
-
-Questi grafici sono stati prodotti utilizzando la libreria \texttt{matplotlib} di python.

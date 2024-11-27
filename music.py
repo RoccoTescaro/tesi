@@ -101,7 +101,7 @@ def pitchClassHist(path):
     hist, _ = np.histogram(cloud[:,1] % 12, bins = 12)
     return hist / len(cloud)
 
-def pitchClassHistPerMeasure(path):
+def pitchClassHistPerMeasure(path): 
     cloud, time_signatures, resolution = midi2np(path)
     hist = []
     measures_ = measures(cloud, time_signatures, resolution)
@@ -120,7 +120,9 @@ def pitchClassHistPerMeasure(path):
     hist = np.array(hist).flatten()
     return hist
     
-def pitchClassTransMatrix(path):
+def pitchClassTransMatrix(path): 
+    #TODO fix this, should calculate the pitch shift checking if next note in the cloud is not played with current note
+    #maybe by grouping notes by time and then calculating the pitch shift between the highest (to the lowest) notes in each group
     cloud, _, _ = midi2np(path)
     transition_matrix = np.zeros((12,12))
     for i in range(len(cloud)-1):
@@ -187,6 +189,8 @@ def noteLengthHistPerMeasure(path):
     return hist
 
 def noteLengthTransMatrix(path):
+    #TODO fix this, should calculate the pitch shift checking if next note in the cloud is not played with current note
+    # maybe by grouping notes by time and then calculating the pitch shift between the highest (to the lowest) notes in each group    
     cloud, _, _ = midi2np(path)
     bins = 24
     transition_matrix = np.zeros((bins,bins))

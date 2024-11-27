@@ -484,8 +484,8 @@ def estimatePRCurve(PSamples, QSamples, hyperparam, classifier, f_dist = np.lina
     func = classifier(Dtrain, hyperparam, f_dist)
     return estimatePRD(func, Dtest, hyperparam)
 
-def supportClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
-    #return a tuple of boolean values if the sample is in the support of P or Q
+def supportClassifier(Dtrain, hyperparam, f_dist="euclidean"):
+    # Return a tuple of boolean values if the sample is in the support of P or Q
 
     PSamples = np.array([x for x, y in Dtrain if y == 1])
     QSamples = np.array([x for x, y in Dtrain if y == 0])
@@ -493,25 +493,33 @@ def supportClassifier(Dtrain, hyperparam, f_dist = np.linalg.norm):
     k = hyperparam['k']
     nJobs = hyperparam['nJobs']
 
-    PkDistances = kDistances(PSamples, k, nJobs, f_dist)
-    QkDistances = kDistances(QSamples, k, nJobs, f_dist)
-
     def func(x):
-        distancesP = f_dist(PSamples - x, axis=1)
-        #get index of x in PSamples, if it is get the index and set the distance to inf 
-        idxP = np.where(PSamples == x)[0]
+        # Check if x is in PSamples and remove it
+        idxP = np.where((PSamples == x).all(axis=1))[0]
         if idxP.size > 0:
-            distancesP[idxP[0]] = np.inf
+            PSamples_ = np.delete(PSamples, idxP[0], axis=0)
+        else:
+            PSamples_ = PSamples
 
-        inP = np.any(distancesP <= PkDistances)
-        distancesQ = f_dist(QSamples - x, axis=1)
-        #get index of x in QSamples, if it is get the index and set the distance to inf
-        idxQ = np.where(QSamples == x)[0]
+        # Check if x is in QSamples and remove it
+        idxQ = np.where((QSamples == x).all(axis=1))[0]
         if idxQ.size > 0:
-            distancesQ[idxQ[0]] = np.inf
+            QSamples_ = np.delete(QSamples, idxQ[0], axis=0)
+        else:
+            QSamples_ = QSamples
 
+        # Recalculate kDistances without x
+        PkDistances = kDistances(PSamples_, k, nJobs, f_dist)
+        QkDistances = kDistances(QSamples_, k, nJobs, f_dist)
+
+        # Calculate distances and check if x is in the manifold
+        #distancesP = f_dist(PSamples_ - x, axis=1) #todo fix
+        distancesP = np.linalg.norm(PSamples_ - x, axis=1, ord=2-(f_dist=="cityblock"))
+        inP = np.any(distancesP <= PkDistances)
+
+        distancesQ = np.linalg.norm(QSamples_ - x, axis=1, ord=2-(f_dist=="cityblock"))
         inQ = np.any(distancesQ <= QkDistances)
 
         return inP, inQ
-    
+
     return func

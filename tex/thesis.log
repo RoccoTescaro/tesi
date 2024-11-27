@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.11.9)  19 NOV 2024 17:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2024/Arch Linux) (preloaded format=pdflatex 2024.11.9)  26 NOV 2024 21:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -465,55 +465,81 @@ LaTeX Font Info:    Overwriting math alphabet `\mathbbm' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathbbmss' in version `bold'
 (Font)                  U/bbmss/m/n --> U/bbmss/bx/n on input line 35.
 )
-\c@teorema=\count315
-\c@definizione=\count316
-Package hyperref Info: Option `plainpages' set `false' on input line 77.
-Package hyperref Info: Option `breaklinks' set `true' on input line 77.
-Package hyperref Info: Option `colorlinks' set `false' on input line 77.
+(/usr/share/texmf-dist/tex/latex/colortbl/colortbl.sty
+Package: colortbl 2024/02/20 v1.0g Color table columns (DPC)
+
+(/usr/share/texmf-dist/tex/latex/tools/array.sty
+Package: array 2023/10/16 v2.5g Tabular extension package (FMi)
+\col@sep=\dimen174
+\ar@mcellbox=\box68
+\extrarowheight=\dimen175
+\NC@list=\toks31
+\extratabsurround=\skip84
+\backup@length=\skip85
+\ar@cellbox=\box69
+)
+(/usr/share/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
+
+(/usr/share/texmf-dist/tex/latex/graphics-cfg/color.cfg
+File: color.cfg 2016/01/02 v1.6 sample color configuration
+)
+Package color Info: Driver file: pdftex.def on input line 149.
+
+(/usr/share/texmf-dist/tex/latex/graphics/mathcolor.ltx))
+\everycr=\toks32
+\minrowclearance=\skip86
+\rownum=\count315
+)
+\c@teorema=\count316
+\c@definizione=\count317
+Package hyperref Info: Option `plainpages' set `false' on input line 80.
+Package hyperref Info: Option `breaklinks' set `true' on input line 80.
+Package hyperref Info: Option `colorlinks' set `false' on input line 80.
 
 (/usr/share/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
 File: l3backend-pdftex.def 2024-02-20 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count317
-\l__pdf_internal_box=\box68
+\l__color_backend_stack_int=\count318
+\l__pdf_internal_box=\box70
 ) (./thesis.aux
 (./files/introduction.aux) (./files/chapter1.aux) (./files/chapter2.aux)
-(./files/conclusions.aux) (./files/notes.aux))
+(./files/conclusions.aux))
 \openout1 = `thesis.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 79.
-LaTeX Font Info:    ... okay on input line 79.
-LaTeX Info: Redefining \it@ocap on input line 79.
-LaTeX Info: Redefining \it@ccap on input line 79.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 82.
+LaTeX Font Info:    ... okay on input line 82.
+LaTeX Info: Redefining \it@ocap on input line 82.
+LaTeX Info: Redefining \it@ccap on input line 82.
 
 (/usr/share/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count318
-\scratchdimen=\dimen174
-\scratchbox=\box69
-\nofMPsegments=\count319
-\nofMParguments=\count320
-\everyMPshowfont=\toks31
-\MPscratchCnt=\count321
-\MPscratchDim=\dimen175
-\MPnumerator=\count322
-\makeMPintoPDFobject=\count323
-\everyMPtoPDFconversion=\toks32
+\scratchcounter=\count319
+\scratchdimen=\dimen176
+\scratchbox=\box71
+\nofMPsegments=\count320
+\nofMParguments=\count321
+\everyMPshowfont=\toks33
+\MPscratchCnt=\count322
+\MPscratchDim=\dimen177
+\MPnumerator=\count323
+\makeMPintoPDFobject=\count324
+\everyMPtoPDFconversion=\toks34
 ) (/usr/share/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
@@ -523,23 +549,23 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 4
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
 ))
-Package hyperref Info: Link coloring OFF on input line 79.
+Package hyperref Info: Link coloring OFF on input line 82.
  (./thesis.out)
 (./thesis.out)
 \@outlinefile=\write3
 \openout3 = `thesis.out'.
 
-\c@lstlisting=\count324
-<./img/stemma.pdf, id=119, 1622.06pt x 1673.45195pt>
+\c@lstlisting=\count325
+<./img/stemma.pdf, id=116, 1622.06pt x 1673.45195pt>
 File: ./img/stemma.pdf Graphic file (type pdf)
 <use ./img/stemma.pdf>
-Package pdftex.def Info: ./img/stemma.pdf  used on input line 87.
+Package pdftex.def Info: ./img/stemma.pdf  used on input line 90.
 (pdftex.def)             Requested size: 82.71654pt x 85.35826pt.
 
-./thesis.tex:87: Undefined control sequence.
+./thesis.tex:90: Undefined control sequence.
 \maketitle ...elatore}\newline \fi {\@correlatori 
                                                   } \end {minipage}\hfil \vf...
-l.87 \maketitle
+l.90 \maketitle
                 % crea il frontespizio (ricordati di copiare "stemma.eps" ne...
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -548,7 +574,7 @@ spelling (e.g., `I\hbox'). Otherwise just continue,
 and I'll forget about whatever was undefined.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 87--87
+Underfull \hbox (badness 10000) in paragraph at lines 90--90
 
  []
 
@@ -577,7 +603,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.i}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.21 ...\numberline {3}Conclusioni}{26}{chapter.3}
+l.21 ...\numberline {3}Conclusioni}{29}{chapter.3}
                                                   % [1
 
 ])
@@ -604,7 +630,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.ii}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.107 \include{files/introduction}
+l.110 \include{files/introduction}
                                    [2]
 \openout2 = `files/chapter1.aux'.
 
@@ -617,7 +643,7 @@ Capitolo 1.
 
 
 {/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-ts1.enc}]
-<../images/2_PrecisionRecallManifold_si.png, id=190, 642.90187pt x 184.43906pt>
+<../images/2_PrecisionRecallManifold_si.png, id=186, 642.90187pt x 184.43906pt>
 
 File: ../images/2_PrecisionRecallManifold_si.png Graphic file (type png)
 <use ../images/2_PrecisionRecallManifold_si.png>
@@ -625,18 +651,18 @@ Package pdftex.def Info: ../images/2_PrecisionRecallManifold_si.png  used on in
 put line 23.
 (pdftex.def)             Requested size: 390.0pt x 111.8885pt.
  [2 <../images/2_PrecisionRecallManifold_si.png (PNG copy)>]
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ...le, identifichiamo con \boldsymbol{\Phi_R}
+l.43 ...le, identifichiamo con \boldsymbol{\Phi_R}
                                                    e \boldsymbol{\Phi_G} (te...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./files/chapter1.tex:42: Extra }, or forgotten $.
+./files/chapter1.tex:43: Extra }, or forgotten $.
 \math@atom #1#2->\binrel@ {#1}\binrel@@ {#2}
                                             
-l.42 ...le, identifichiamo con \boldsymbol{\Phi_R}
+l.43 ...le, identifichiamo con \boldsymbol{\Phi_R}
                                                    e \boldsymbol{\Phi_G} (te...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -644,10 +670,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ...le, identifichiamo con \boldsymbol{\Phi_R}
+l.43 ...le, identifichiamo con \boldsymbol{\Phi_R}
                                                    e \boldsymbol{\Phi_G} (te...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -655,10 +681,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing } inserted.
+./files/chapter1.tex:43: Missing } inserted.
 <inserted text> 
                 }
-l.42 ...le, identifichiamo con \boldsymbol{\Phi_R}
+l.43 ...le, identifichiamo con \boldsymbol{\Phi_R}
                                                    e \boldsymbol{\Phi_G} (te...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -666,18 +692,18 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
                                                    (tendenzialmente con \bol...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./files/chapter1.tex:42: Extra }, or forgotten $.
+./files/chapter1.tex:43: Extra }, or forgotten $.
 \math@atom #1#2->\binrel@ {#1}\binrel@@ {#2}
                                             
-l.42 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
                                                    (tendenzialmente con \bol...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -685,10 +711,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
                                                    (tendenzialmente con \bol...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -696,10 +722,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing } inserted.
+./files/chapter1.tex:43: Missing } inserted.
 <inserted text> 
                 }
-l.42 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} e \boldsymbol{\Phi_G}
                                                    (tendenzialmente con \bol...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -707,18 +733,18 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ...} (tendenzialmente con \boldsymbol{\Phi_R}
+l.43 ...} (tendenzialmente con \boldsymbol{\Phi_R}
                                                    = \boldsymbol{\Phi_G}) lo...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./files/chapter1.tex:42: Extra }, or forgotten $.
+./files/chapter1.tex:43: Extra }, or forgotten $.
 \math@atom #1#2->\binrel@ {#1}\binrel@@ {#2}
                                             
-l.42 ...} (tendenzialmente con \boldsymbol{\Phi_R}
+l.43 ...} (tendenzialmente con \boldsymbol{\Phi_R}
                                                    = \boldsymbol{\Phi_G}) lo...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -726,10 +752,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ...} (tendenzialmente con \boldsymbol{\Phi_R}
+l.43 ...} (tendenzialmente con \boldsymbol{\Phi_R}
                                                    = \boldsymbol{\Phi_G}) lo...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -737,10 +763,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing } inserted.
+./files/chapter1.tex:43: Missing } inserted.
 <inserted text> 
                 }
-l.42 ...} (tendenzialmente con \boldsymbol{\Phi_R}
+l.43 ...} (tendenzialmente con \boldsymbol{\Phi_R}
                                                    = \boldsymbol{\Phi_G}) lo...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -748,18 +774,18 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
                                                   ) lo spazio delle caratter...
 I've inserted a begin-math/end-math symbol since I think
 you left one out. Proceed, with fingers crossed.
 
-./files/chapter1.tex:42: Extra }, or forgotten $.
+./files/chapter1.tex:43: Extra }, or forgotten $.
 \math@atom #1#2->\binrel@ {#1}\binrel@@ {#2}
                                             
-l.42 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
                                                   ) lo spazio delle caratter...
 I've deleted a group-closing symbol because it seems to be
 spurious, as in `$x}$'. But perhaps the } is legitimate and
@@ -767,10 +793,10 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-./files/chapter1.tex:42: Missing $ inserted.
+./files/chapter1.tex:43: Missing $ inserted.
 <inserted text> 
                 $
-l.42 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
                                                   ) lo spazio delle caratter...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -778,10 +804,10 @@ With luck, this will get me unwedged. But if you
 really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
-./files/chapter1.tex:42: Missing } inserted.
+./files/chapter1.tex:43: Missing } inserted.
 <inserted text> 
                 }
-l.42 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
+l.43 ... \boldsymbol{\Phi_R} = \boldsymbol{\Phi_G}
                                                   ) lo spazio delle caratter...
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
@@ -790,54 +816,54 @@ really didn't forget anything, try typing `2' now; then
 my insertion and my current dilemma will both disappear.
 
 LaTeX Font Info:    Trying to load font information for T1+cmtt on input line 4
-7.
+8.
 (/usr/share/texmf-dist/tex/latex/base/t1cmtt.fd
 File: t1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 ) [3]
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 81.
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 83.
 
 
 (/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 ) [4]
 
-./files/chapter1.tex:85: LaTeX Error: Unicode character ​ (U+200B)
+./files/chapter1.tex:87: LaTeX Error: Unicode character ​ (U+200B)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.85 ...ta se ogni dato reale \(r \in \Phi_R \)​
+l.87 ...ta se ogni dato reale \(r \in \Phi_R \)​
                                                    è rappresentato da almen...
 
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 
-./files/chapter1.tex:85: LaTeX Error: Unicode character ​ (U+200B)
+./files/chapter1.tex:87: LaTeX Error: Unicode character ​ (U+200B)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.85 ...eno un punto generato \(g \in \Phi_G \)​
+l.87 ...eno un punto generato \(g \in \Phi_G \)​
                                                   , costruendo il manifold i...
 
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 
-Overfull \hbox (7.81181pt too wide) detected at line 94
+Overfull \hbox (7.81181pt too wide) detected at line 97
 [][][]\OML/cmm/m/it/12 f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 x; \OT1/cmr/m/n/12 
 ^^H[]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 ^^H[]) = []
  []
 
-<../images/prdc.png, id=223, 570.63188pt x 336.50719pt>
+<../images/prdc.png, id=225, 570.63188pt x 336.50719pt>
 File: ../images/prdc.png Graphic file (type png)
 <use ../images/prdc.png>
-Package pdftex.def Info: ../images/prdc.png  used on input line 105.
+Package pdftex.def Info: ../images/prdc.png  used on input line 108.
 (pdftex.def)             Requested size: 390.0pt x 229.98741pt.
 [5] [6 <../images/prdc.png (PNG copy)>] [7] [8] [9] [10]) [11]
 \openout2 = `files/chapter2.aux'.
@@ -850,77 +876,99 @@ Capitolo 2.
 
 
 
-] [13] [14] [15] [16]
-./files/chapter2.tex:67: You can't use `macro parameter character #' in horizon
-tal mode.
-l.67 #
-      TODO Aggiungere bibliografia per le implementazioni in codice delle me...
-Sorry, but I'm not programmed to handle this case;
-I'll just pretend that you didn't ask for it.
-If you're in the wrong mode, you might be able to
-return to the right one by typing `I}' or `I$' or `I\par'.
+] [13] [14] [15] [16] [17] [18]
 
-[17]
-
-LaTeX Warning: Citation `pr-curve' on page 18 undefined on input line 71.
-
-
-./files/chapter2.tex:78: LaTeX Error: Unicode character ​ (U+200B)
+./files/chapter2.tex:87: LaTeX Error: Unicode character ​ (U+200B)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.78 ..., variano lentamente vicino a \(\pi/2\)​
+l.87 ... 1, variano lentamente fino a \(\pi/2\)​
                                                   , e infine aumentano rapid...
 
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[18] [19] [20]
+[19] [20] [21] [22]
 
-./files/chapter2.tex:117: LaTeX Error: Unicode character ​ (U+200B)
+./files/chapter2.tex:133: LaTeX Error: Unicode character ​ (U+200B)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.117 ... la norma \(l_1\) che la norma \(l_2\)​
-                                                   come funzioni di distanza...
+l.133 ... misurata utilizzando la norma \(l_1\)​
+                                                   (distanza di \textbf{Manh...
 
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
 
-./files/chapter2.tex:118: LaTeX Error: Unicode character ​ (U+200B)
+./files/chapter2.tex:133: LaTeX Error: Unicode character ​ (U+200B)
                not set up for use with LaTeX.
 
 See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.118 ​
-         Per valutare le prestazioni del classificatore, gli esperimenti son...
+l.133 ...{cityblock}) anziché la norma \(l_2\)​
+                                                   (distanza euclidea). La n...
 
 You may provide a definition with
 \DeclareUnicodeCharacter 
 
-[21] [22] [23] [24]) [25]
+
+./files/chapter2.tex:133: LaTeX Error: Unicode character ​ (U+200B)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.133 ... (distanza euclidea). La norma \(l_1\)​
+                                                   è risultata più adeguat...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+
+./files/chapter2.tex:135: LaTeX Error: Unicode character ​ (U+200B)
+               not set up for use with LaTeX.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.135 ...catore \texttt{k}-NN, configurato con ​
+                                                  \(k=\sqrt{n/2}\), dove \(n...
+
+You may provide a definition with
+\DeclareUnicodeCharacter 
+
+[23]
+<../images/piano_roll.png, id=360, 256.70906pt x 158.09062pt>
+File: ../images/piano_roll.png Graphic file (type png)
+<use ../images/piano_roll.png>
+Package pdftex.def Info: ../images/piano_roll.png  used on input line 151.
+(pdftex.def)             Requested size: 195.0pt x 120.0898pt.
+ [24 <../images/piano_roll.png (PNG copy)>] [25] [26] [27]) [28]
 \openout2 = `files/conclusions.aux'.
 
- (./files/conclusions.tex
+
+(./files/conclusions.tex
 Capitolo 3.
-<../images/toyexperiments/kdim/normal_iPrecision_iRecall.png, id=356, 896.8707p
+<../images/toyexperiments/kdim/normal_iPrecision_iRecall.png, id=387, 896.8707p
 t x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_iPrecision_iRecall.png Graphic file 
 (type png)
 <use ../images/toyexperiments/kdim/normal_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_iPrecision_iRecal
-l.png  used on input line 14.
+l.png  used on input line 13.
 (pdftex.def)             Requested size: 312.00119pt x 116.657pt.
-<../images/toyexperiments/kdim/normal_density_coverage.png, id=358, 896.8707pt 
+<../images/toyexperiments/kdim/normal_density_coverage.png, id=389, 896.8707pt 
 x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_density_coverage.png Graphic file (t
 ype png)
@@ -928,408 +976,713 @@ ype png)
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_density_coverage.
 png  used on input line 19.
 (pdftex.def)             Requested size: 312.00119pt x 116.657pt.
-[26
+[29
 
 
 
 
- <../images/toyexperiments/kdim/normal_iPrecision_iRecall.png>]
-<../images/toyexperiments/kdim/normal_pPrecision_pRecall.png, id=365, 896.8707p
+ <../images/toyexperiments/kdim/normal_iPrecision_iRecall.png>] [30 <../images/
+toyexperiments/kdim/normal_density_coverage.png>]
+<../images/toyexperiments/kdim/normal_pPrecision_pRecall.png, id=404, 896.8707p
 t x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_pPrecision_pRecall.png Graphic file 
 (type png)
 <use ../images/toyexperiments/kdim/normal_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_pPrecision_pRecal
-l.png  used on input line 32.
+l.png  used on input line 35.
 (pdftex.def)             Requested size: 312.00119pt x 116.657pt.
-<../images/toyexperiments/kdim/normal_precision_recall.png, id=366, 896.8707pt 
+<../images/toyexperiments/kdim/normal_precision_recall.png, id=405, 896.8707pt 
 x 335.3328pt>
 File: ../images/toyexperiments/kdim/normal_precision_recall.png Graphic file (t
 ype png)
 <use ../images/toyexperiments/kdim/normal_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/normal_precision_recall.
-png  used on input line 33.
+png  used on input line 36.
 (pdftex.def)             Requested size: 312.00119pt x 116.657pt.
- [27 <../images/toyexperiments/kdim/normal_density_coverage.png>]
-<../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png, id=372, 896.8707
+ [31 <../images/toyexperiments/kdim/normal_pPrecision_pRecall.png> <../images/t
+oyexperiments/kdim/normal_precision_recall.png>]
+<../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png, id=413, 896.8707
 pt x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png Graphic file
  (type png)
 <use ../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_iPrecision_iReca
-ll.png  used on input line 44.
+ll.png  used on input line 48.
 (pdftex.def)             Requested size: 195.0pt x 72.9087pt.
-<../images/toyexperiments/kdim/uniform_density_coverage.png, id=373, 896.8707pt
+<../images/toyexperiments/kdim/uniform_density_coverage.png, id=414, 896.8707pt
  x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_density_coverage.png Graphic file (
 type png)
 <use ../images/toyexperiments/kdim/uniform_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_density_coverage
-.png  used on input line 45.
+.png  used on input line 49.
 (pdftex.def)             Requested size: 195.0pt x 72.9087pt.
-<../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png, id=374, 896.8707
+<../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png, id=415, 896.8707
 pt x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png Graphic file
  (type png)
 <use ../images/toyexperiments/kdim/uniform_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_pPrecision_pReca
-ll.png  used on input line 46.
+ll.png  used on input line 50.
 (pdftex.def)             Requested size: 195.0pt x 72.9087pt.
-<../images/toyexperiments/kdim/uniform_precision_recall.png, id=375, 896.8707pt
+<../images/toyexperiments/kdim/uniform_precision_recall.png, id=416, 896.8707pt
  x 335.3328pt>
 File: ../images/toyexperiments/kdim/uniform_precision_recall.png Graphic file (
 type png)
 <use ../images/toyexperiments/kdim/uniform_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/kdim/uniform_precision_recall
-.png  used on input line 47.
+.png  used on input line 51.
 (pdftex.def)             Requested size: 195.0pt x 72.9087pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 44--48
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 48--52
 [][] []
  []
 
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 44--48
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 48--52
 [] [] 
  []
 
-[28 <../images/toyexperiments/kdim/normal_pPrecision_pRecall.png> <../images/to
-yexperiments/kdim/normal_precision_recall.png>]
-<../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png, id=382,
+<../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png, id=417,
  867.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png Gra
 phic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_iPrecis
-ion_iRecall.png  used on input line 58.
+ion_iRecall.png  used on input line 64.
 (pdftex.def)             Requested size: 195.0pt x 97.49413pt.
-<../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png, id=383, 8
+<../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png, id=418, 8
 67.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png Graph
 ic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_density
-_coverage.png  used on input line 59.
+_coverage.png  used on input line 65.
 (pdftex.def)             Requested size: 195.0pt x 97.49413pt.
-<../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png, id=384,
+<../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png, id=419,
  867.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png Gra
 phic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_pPrecis
-ion_pRecall.png  used on input line 60.
+ion_pRecall.png  used on input line 66.
 (pdftex.def)             Requested size: 195.0pt x 97.49413pt.
-<../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png, id=385, 8
+<../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png, id=420, 8
 67.24pt x 433.62pt>
 File: ../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png Graph
 ic file (type png)
 <use ../images/toyexperiments/ksampledim/sampleDimN_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/ksampledim/sampleDimN_precisi
-on_recall.png  used on input line 61.
+on_recall.png  used on input line 67.
 (pdftex.def)             Requested size: 195.0pt x 97.49413pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 58--62
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 64--68
 [][] []
  []
 
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 58--62
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 64--68
 [] [] 
  []
 
-[29 <../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png> <../images/t
+[32 <../images/toyexperiments/kdim/uniform_iPrecision_iRecall.png> <../images/t
 oyexperiments/kdim/uniform_density_coverage.png> <../images/toyexperiments/kdim
 /uniform_pPrecision_pRecall.png> <../images/toyexperiments/kdim/uniform_precisi
-on_recall.png> <../images/toyexperiments/ksampledim/sampleDimN_iPrecision_iReca
-ll.png> <../images/toyexperiments/ksampledim/sampleDimN_density_coverage.png> <
-../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png> <../imag
-es/toyexperiments/ksampledim/sampleDimN_precision_recall.png>] [30]
-<../images/toyexperiments/outliers/shift_iPrecision_iRecall.png, id=402, 867.24
+on_recall.png>] [33 <../images/toyexperiments/ksampledim/sampleDimN_iPrecision_
+iRecall.png> <../images/toyexperiments/ksampledim/sampleDimN_density_coverage.p
+ng> <../images/toyexperiments/ksampledim/sampleDimN_pPrecision_pRecall.png> <..
+/images/toyexperiments/ksampledim/sampleDimN_precision_recall.png>]
+<../images/toyexperiments/outliers/shift_iPrecision_iRecall.png, id=442, 867.24
 pt x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_iPrecision_iRecall.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/outliers/shift_iPrecision_iRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_iPrecision_iRe
-call.png  used on input line 85.
+call.png  used on input line 92.
 (pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
-<../images/toyexperiments/outliers/shift_density_coverage.png, id=403, 867.24pt
+ [34]
+<../images/toyexperiments/outliers/shift_density_coverage.png, id=449, 867.24pt
  x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_density_coverage.png Graphic file
  (type png)
 <use ../images/toyexperiments/outliers/shift_density_coverage.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_density_covera
-ge.png  used on input line 98.
+ge.png  used on input line 106.
 (pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
- [31
 
- <../images/toyexperiments/outliers/shift_iPrecision_iRecall.png>]
-<../images/toyexperiments/outliers/shift_pPrecision_pRecall.png, id=409, 867.24
+[35 <../images/toyexperiments/outliers/shift_iPrecision_iRecall.png> <../images
+/toyexperiments/outliers/shift_density_coverage.png>]
+<../images/toyexperiments/outliers/shift_pPrecision_pRecall.png, id=460, 867.24
 pt x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_pPrecision_pRecall.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/outliers/shift_pPrecision_pRecall.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_pPrecision_pRe
-call.png  used on input line 109.
+call.png  used on input line 118.
 (pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
-<../images/toyexperiments/outliers/shift_precision_recall.png, id=410, 867.24pt
+<../images/toyexperiments/outliers/shift_precision_recall.png, id=461, 867.24pt
  x 433.62pt>
 File: ../images/toyexperiments/outliers/shift_precision_recall.png Graphic file
  (type png)
 <use ../images/toyexperiments/outliers/shift_precision_recall.png>
 Package pdftex.def Info: ../images/toyexperiments/outliers/shift_precision_reca
-ll.png  used on input line 110.
+ll.png  used on input line 119.
 (pdftex.def)             Requested size: 312.00119pt x 156.00383pt.
- [32 <../images/toyexperiments/outliers/shift_density_coverage.png> <../images/
-toyexperiments/outliers/shift_pPrecision_pRecall.png> <../images/toyexperiments
-/outliers/shift_precision_recall.png>] [33]
-<../images/toyexperiments/prcurves/PRCurve_k4_s1.png, id=426, 505.89pt x 505.89
+ [36 <../images/toyexperiments/outliers/shift_pPrecision_pRecall.png> <../image
+s/toyexperiments/outliers/shift_precision_recall.png>] [37]
+<../images/toyexperiments/prcurves/PRCurve_k4_s1.png, id=478, 505.89pt x 505.89
 pt>
 File: ../images/toyexperiments/prcurves/PRCurve_k4_s1.png Graphic file (type pn
 g)
 <use ../images/toyexperiments/prcurves/PRCurve_k4_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_k4_s1.png  u
-sed on input line 134.
+sed on input line 144.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
-<../images/toyexperiments/prcurves/PRCurve_k4_s3.png, id=427, 505.89pt x 505.89
+<../images/toyexperiments/prcurves/PRCurve_k4_s3.png, id=479, 505.89pt x 505.89
 pt>
 File: ../images/toyexperiments/prcurves/PRCurve_k4_s3.png Graphic file (type pn
 g)
 <use ../images/toyexperiments/prcurves/PRCurve_k4_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_k4_s3.png  u
-sed on input line 135.
+sed on input line 145.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
-<../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png, id=428, 505.89pt x 505
+<../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png, id=480, 505.89pt x 505
 .89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png Graphic file (type
  png)
 <use ../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s1.png
-  used on input line 136.
+  used on input line 146.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
-<../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png, id=429, 505.89pt x 505
+<../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png, id=481, 505.89pt x 505
 .89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png Graphic file (type
  png)
 <use ../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png
-  used on input line 137.
+  used on input line 147.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 134--138
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
 [][] []
  []
 
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 134--138
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
 [] [] 
  []
 
-<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png, id=430, 505.89pt 
+<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png, id=482, 505.89pt 
 x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png Graphic file 
 (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s
-1.png  used on input line 144.
+1.png  used on input line 155.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png, id=431, 505.89pt 
+<../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png, id=483, 505.89pt 
 x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png Graphic file 
 (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_k4_s
-3.png  used on input line 145.
+3.png  used on input line 156.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png, id=432, 505.89
+<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png, id=484, 505.89
 pt x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s1.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqr
-t_s1.png  used on input line 146.
+t_s1.png  used on input line 157.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
-<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png, id=433, 505.89
+<../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png, id=485, 505.89
 pt x 505.89pt>
 File: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png Graphic fi
 le (type png)
 <use ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqrt_s3.png>
 Package pdftex.def Info: ../images/toyexperiments/prcurves/PRCurve_nosplit_ksqr
-t_s3.png  used on input line 147.
+t_s3.png  used on input line 158.
 (pdftex.def)             Requested size: 195.0pt x 195.00368pt.
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 155--159
 [][] []
  []
 
 
-Overfull \hbox (2.61049pt too wide) in paragraph at lines 144--148
+Overfull \hbox (2.61049pt too wide) in paragraph at lines 155--159
 [] [] 
  []
 
-[34 <../images/toyexperiments/prcurves/PRCurve_k4_s1.png> <../images/toyexperim
+[38 <../images/toyexperiments/prcurves/PRCurve_k4_s1.png> <../images/toyexperim
 ents/prcurves/PRCurve_k4_s3.png> <../images/toyexperiments/prcurves/PRCurve_ksq
-rt_s1.png> <../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>] [35 <../im
+rt_s1.png> <../images/toyexperiments/prcurves/PRCurve_ksqrt_s3.png>] [39 <../im
 ages/toyexperiments/prcurves/PRCurve_nosplit_k4_s1.png> <../images/toyexperimen
 ts/prcurves/PRCurve_nosplit_k4_s3.png> <../images/toyexperiments/prcurves/PRCur
 ve_nosplit_ksqrt_s1.png> <../images/toyexperiments/prcurves/PRCurve_nosplit_ksq
 rt_s3.png>]
 <../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.png, id
-=450, 505.89pt x 505.89pt>
+=505, 505.89pt x 505.89pt>
 File: ../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.pn
 g Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.png
 >
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_gra
-yscale_histogram.png  used on input line 162.
+yscale_histogram.png  used on input line 175.
 (pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
-<../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png, id=451, 
+<../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png, id=506, 
 505.89pt x 505.89pt>
 File: ../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png Grap
 hic file (type png)
 <use ../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_hsv
-_histogram.png  used on input line 163.
+_histogram.png  used on input line 176.
 (pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
-<../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png, id=452, 
+<../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png, id=507, 
 505.89pt x 505.89pt>
 File: ../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png Grap
 hic file (type png)
 <use ../images/realworldexperiments/butterflies/kde/kde_hue_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_hue
-_histogram.png  used on input line 164.
+_histogram.png  used on input line 177.
 (pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
-<../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png, id=453, 
+<../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png, id=508, 
 505.89pt x 505.89pt>
 File: ../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png Grap
 hic file (type png)
 <use ../images/realworldexperiments/butterflies/kde/kde_rgb_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_rgb
-_histogram.png  used on input line 168.
+_histogram.png  used on input line 181.
 (pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
 <../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.png, i
-d=454, 505.89pt x 505.89pt>
+d=509, 505.89pt x 505.89pt>
 File: ../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.p
 ng Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/kde/kde_saturation_histogram.pn
 g>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_sat
-uration_histogram.png  used on input line 169.
+uration_histogram.png  used on input line 182.
 (pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
-<../images/realworldexperiments/butterflies/kde/kde_value_histogram.png, id=455
+<../images/realworldexperiments/butterflies/kde/kde_value_histogram.png, id=510
 , 505.89pt x 505.89pt>
 File: ../images/realworldexperiments/butterflies/kde/kde_value_histogram.png Gr
 aphic file (type png)
 <use ../images/realworldexperiments/butterflies/kde/kde_value_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/kde/kde_val
-ue_histogram.png  used on input line 170.
+ue_histogram.png  used on input line 183.
 (pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
- [36 <../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.pn
+ [40 <../images/realworldexperiments/butterflies/kde/kde_grayscale_histogram.pn
 g> <../images/realworldexperiments/butterflies/kde/kde_hsv_histogram.png> <../i
 mages/realworldexperiments/butterflies/kde/kde_hue_histogram.png> <../images/re
 alworldexperiments/butterflies/kde/kde_rgb_histogram.png> <../images/realworlde
 xperiments/butterflies/kde/kde_saturation_histogram.png> <../images/realworldex
 periments/butterflies/kde/kde_value_histogram.png>]
 <../images/realworldexperiments/butterflies/examples/fp_grayscale_histogram.png
-, id=467, 1806.75pt x 1445.4pt>
+, id=523, 1806.75pt x 1445.4pt>
 File: ../images/realworldexperiments/butterflies/examples/fp_grayscale_histogra
 m.png Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/examples/fp_grayscale_histogram
 .png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
-_grayscale_histogram.png  used on input line 185.
+_grayscale_histogram.png  used on input line 195.
 (pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
-<../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png, id=4
-68, 1806.75pt x 1445.4pt>
+<../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png, id=5
+24, 1806.75pt x 1445.4pt>
 File: ../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png 
 Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
-_hsv_histogram.png  used on input line 186.
+_hsv_histogram.png  used on input line 196.
 (pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
-<../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png, id=4
-69, 1806.75pt x 1445.4pt>
+<../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png, id=5
+25, 1806.75pt x 1445.4pt>
 File: ../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png 
 Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/examples/fp_hue_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
-_hue_histogram.png  used on input line 190.
+_hue_histogram.png  used on input line 197.
 (pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
-<../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png, id=4
-70, 1806.75pt x 1445.4pt>
+<../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png, id=5
+26, 1806.75pt x 1445.4pt>
 File: ../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png 
 Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
-_rgb_histogram.png  used on input line 191.
+_rgb_histogram.png  used on input line 198.
 (pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
 <../images/realworldexperiments/butterflies/examples/fp_saturation_histogram.pn
-g, id=471, 1806.75pt x 1445.4pt>
+g, id=527, 1806.75pt x 1445.4pt>
 File: ../images/realworldexperiments/butterflies/examples/fp_saturation_histogr
 am.png Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/examples/fp_saturation_histogra
 m.png>
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
-_saturation_histogram.png  used on input line 192.
+_saturation_histogram.png  used on input line 199.
 (pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
 <../images/realworldexperiments/butterflies/examples/fp_value_histogram.png, id
-=472, 1806.75pt x 1445.4pt>
+=528, 1806.75pt x 1445.4pt>
 File: ../images/realworldexperiments/butterflies/examples/fp_value_histogram.pn
 g Graphic file (type png)
 <use ../images/realworldexperiments/butterflies/examples/fp_value_histogram.png
 >
 Package pdftex.def Info: ../images/realworldexperiments/butterflies/examples/fp
-_value_histogram.png  used on input line 193.
+_value_histogram.png  used on input line 200.
 (pdftex.def)             Requested size: 175.49881pt x 140.38007pt.
-) [37 <../images/realworldexperiments/butterflies/examples/fp_grayscale_histogr
-am.png> <../images/realworldexperiments/butterflies/examples/fp_hsv_histogram.p
-ng>] [38 <../images/realworldexperiments/butterflies/examples/fp_hue_histogram.
-png> <../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png>
- <../images/realworldexperiments/butterflies/examples/fp_saturation_histogram.p
-ng> <../images/realworldexperiments/butterflies/examples/fp_value_histogram.png
->]
-\openout2 = `files/notes.aux'.
+ [41] [42 <../images/realworldexperiments/butterflies/examples/fp_grayscale_his
+togram.png> <../images/realworldexperiments/butterflies/examples/fp_hsv_histogr
+am.png> <../images/realworldexperiments/butterflies/examples/fp_hue_histogram.p
+ng> <../images/realworldexperiments/butterflies/examples/fp_rgb_histogram.png> 
+<../images/realworldexperiments/butterflies/examples/fp_saturation_histogram.pn
+g> <../images/realworldexperiments/butterflies/examples/fp_value_histogram.png>
+] [43]
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_avgIOI.png, id=5
+52, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_avgIOI.png 
+Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_avgIOI.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_avgIOI.png  used on input line 245.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_avgPitchShift.pn
+g, id=553, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_avgPitchShi
+ft.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_avgPitchShif
+t.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_avgPitchShift.png  used on input line 246.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_nNotesPerMeasure
+.png, id=554, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_nNotesPerMe
+asure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_nNotesPerMea
+sure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_nNotesPerMeasure.png  used on input line 247.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_noteLengthHist.p
+ng, id=555, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_noteLengthH
+ist.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_noteLengthHi
+st.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_noteLengthHist.png  used on input line 248.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_noteLengthTransM
+atrix.png, id=556, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_noteLengthT
+ransMatrix.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_noteLengthTr
+ansMatrix.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_noteLengthTransMatrix.png  used on input line 249.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_nPitchesPerMeasu
+re.png, id=557, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_nPitchesPer
+Measure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_nPitchesPerM
+easure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_nPitchesPerMeasure.png  used on input line 250.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassHist.p
+ng, id=558, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassH
+ist.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassHi
+st.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_pitchClassHist.png  used on input line 251.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassHistPe
+rMeasure.png, id=559, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassH
+istPerMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassHi
+stPerMeasure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_pitchClassHistPerMeasure.png  used on input line 252.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassTransM
+atrix.png, id=560, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassT
+ransMatrix.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchClassTr
+ansMatrix.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_pitchClassTransMatrix.png  used on input line 253.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchRange.png, 
+id=561, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchRange.
+png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/realdata/TrainVsTest_pitchRange.p
+ng>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/realdata/Trai
+nVsTest_pitchRange.png  used on input line 254.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_avgIOI.png, i
+d=563, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_avgIOI.p
+ng Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_avgIOI.pn
+g>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_avgIOI.png  used on input line 265.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgIOI.png,
+ id=564, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgIOI
+.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgIOI.
+png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_avgIOI.png  used on input line 266.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_avgPitchShift
+.png, id=565, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_avgPitch
+Shift.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_avgPitchS
+hift.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_avgPitchShift.png  used on input line 270.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgPitchShi
+ft.png, id=566, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgPit
+chShift.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgPitc
+hShift.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_avgPitchShift.png  used on input line 271.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_nNotesPerMeas
+ure.png, id=567, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_nNotesPe
+rMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_nNotesPer
+Measure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_nNotesPerMeasure.png  used on input line 275.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_nNotesPerMe
+asure.png, id=568, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_nNotes
+PerMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_nNotesP
+erMeasure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_nNotesPerMeasure.png  used on input line 276.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_noteLengthHis
+t.png, id=569, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_noteLeng
+thHist.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_noteLengt
+hHist.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_noteLengthHist.png  used on input line 280.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLengthH
+ist.png, id=570, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLe
+ngthHist.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLen
+gthHist.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_noteLengthHist.png  used on input line 281.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_noteLengthTra
+nsMatrix.png, id=571, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_noteLeng
+thTransMatrix.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_noteLengt
+hTransMatrix.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_noteLengthTransMatrix.png  used on input line 285.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLengthT
+ransMatrix.png, id=572, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLe
+ngthTransMatrix.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLen
+gthTransMatrix.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_noteLengthTransMatrix.png  used on input line 286.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_nPitchesPerMe
+asure.png, id=573, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_nPitches
+PerMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_nPitchesP
+erMeasure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_nPitchesPerMeasure.png  used on input line 290.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_nPitchesPer
+Measure.png, id=574, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_nPitch
+esPerMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_nPitche
+sPerMeasure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_nPitchesPerMeasure.png  used on input line 291.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchClassHis
+t.png, id=575, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchCla
+ssHist.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchClas
+sHist.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_pitchClassHist.png  used on input line 295.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchClassH
+ist.png, id=576, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchC
+lassHist.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchCl
+assHist.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_pitchClassHist.png  used on input line 296.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchClassHis
+tPerMeasure.png, id=577, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchCla
+ssHistPerMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchClas
+sHistPerMeasure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_pitchClassHistPerMeasure.png  used on input line 300.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchClassH
+istPerMeasure.png, id=578, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchC
+lassHistPerMeasure.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchCl
+assHistPerMeasure.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_pitchClassHistPerMeasure.png  used on input line 301.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchClassTra
+nsMatrix.png, id=579, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchCla
+ssTransMatrix.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchClas
+sTransMatrix.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_pitchClassTransMatrix.png  used on input line 305.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchClassT
+ransMatrix.png, id=580, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchC
+lassTransMatrix.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchCl
+assTransMatrix.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_pitchClassTransMatrix.png  used on input line 306.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+<../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchRange.pn
+g, id=581, 1084.05pt x 578.16pt>
+File: ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchRan
+ge.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/violinplots/TrainVsFake_pitchRang
+e.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/violinplots/T
+rainVsFake_pitchRange.png  used on input line 311.
+(pdftex.def)             Requested size: 234.00238pt x 124.796pt.
+<../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchRange.
+png, id=582, 505.89pt x 505.89pt>
+File: ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchR
+ange.png Graphic file (type png)
+<use ../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchRa
+nge.png>
+Package pdftex.def Info: ../images/realworldexperiments/scarlatti/prcurves/PRCu
+rveScarlatti_pitchRange.png  used on input line 312.
+(pdftex.def)             Requested size: 117.00119pt x 117.00066pt.
+ [44]
+
+LaTeX Warning: Text page 45 contains only floats.
+
+[45 <../images/realworldexperiments/scarlatti/realdata/TrainVSTest_avgIOI.png> 
+<../images/realworldexperiments/scarlatti/realdata/TrainVSTest_avgPitchShift.pn
+g> <../images/realworldexperiments/scarlatti/realdata/TrainVSTest_nNotesPerMeas
+ure.png> <../images/realworldexperiments/scarlatti/realdata/TrainVSTest_noteLen
+gthHist.png> <../images/realworldexperiments/scarlatti/realdata/TrainVSTest_not
+eLengthTransMatrix.png> <../images/realworldexperiments/scarlatti/realdata/Trai
+nVSTest_nPitchesPerMeasure.png> <../images/realworldexperiments/scarlatti/reald
+ata/TrainVSTest_pitchClassHist.png> <../images/realworldexperiments/scarlatti/r
+ealdata/TrainVSTest_pitchClassHistPerMeasure.png> <../images/realworldexperimen
+ts/scarlatti/realdata/TrainVSTest_pitchClassTransMatrix.png> <../images/realwor
+ldexperiments/scarlatti/realdata/TrainVSTest_pitchRange.png>]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-(./files/notes.tex
-Capitolo 4.
-
-Overfull \hbox (63.18233pt too wide) in paragraph at lines 3--5
-\T1/cmr/m/n/12 di-stri-bu-zio-ne nor-ma-le � sta-ta uti-liz-za-ta la fun-zio-ne
- \T1/cmtt/m/n/12 numpy.random.multivariate_normal
- []
-
-) [39
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
+LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-] (./thesis.bbl [40
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[46 <../images/realworldexperiments/scarlatti/violinplots/TrainVSFake_avgIOI.pn
+g> <../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_avgIOI.p
+ng> <../images/realworldexperiments/scarlatti/violinplots/TrainVSFake_avgPitchS
+hift.png> <../images/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_a
+vgPitchShift.png> <../images/realworldexperiments/scarlatti/violinplots/TrainVS
+Fake_nNotesPerMeasure.png> <../images/realworldexperiments/scarlatti/prcurves/P
+RCurveScarlatti_nNotesPerMeasure.png> <../images/realworldexperiments/scarlatti
+/violinplots/TrainVSFake_noteLengthHist.png> <../images/realworldexperiments/sc
+arlatti/prcurves/PRCurveScarlatti_noteLengthHist.png>] [47 <../images/realworld
+experiments/scarlatti/violinplots/TrainVSFake_noteLengthTransMatrix.png> <../im
+ages/realworldexperiments/scarlatti/prcurves/PRCurveScarlatti_noteLengthTransMa
+trix.png> <../images/realworldexperiments/scarlatti/violinplots/TrainVSFake_nPi
+tchesPerMeasure.png> <../images/realworldexperiments/scarlatti/prcurves/PRCurve
+Scarlatti_nPitchesPerMeasure.png> <../images/realworldexperiments/scarlatti/vio
+linplots/TrainVSFake_pitchClassHist.png> <../images/realworldexperiments/scarla
+tti/prcurves/PRCurveScarlatti_pitchClassHist.png> <../images/realworldexperimen
+ts/scarlatti/violinplots/TrainVSFake_pitchClassHistPerMeasure.png> <../images/r
+ealworldexperiments/scarlatti/prcurves/PRCurveScarlatti_pitchClassHistPerMeasur
+e.png>]
+
+LaTeX Warning: Text page 48 contains only floats.
+
+[48 <../images/realworldexperiments/scarlatti/violinplots/TrainVSFake_pitchClas
+sTransMatrix.png> <../images/realworldexperiments/scarlatti/prcurves/PRCurveSca
+rlatti_pitchClassTransMatrix.png> <../images/realworldexperiments/scarlatti/vio
+linplots/TrainVSFake_pitchRange.png> <../images/realworldexperiments/scarlatti/
+prcurves/PRCurveScarlatti_pitchRange.png>] [49] [50]) [51] (./thesis.bbl
+[52
 
 
 
-]) [41] (./thesis.aux (./files/introduction.aux)
-(./files/chapter1.aux) (./files/chapter2.aux) (./files/conclusions.aux)
-(./files/notes.aux))
+]) [53] (./thesis.aux (./files/introduction.aux) (./files/chapter1.aux)
+(./files/chapter2.aux) (./files/conclusions.aux))
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-02-20>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: E79594F9B4B649BEDA5CF3D69A2AD743;5384.
+(rerunfilecheck)             Checksum: E46F4A59BB8A0CED288F32DB1409E854;5242.
  )
 (\end occurred when \ifx on line 2 was incomplete) 
 Here is how much of TeX's memory you used:
- 14768 strings out of 474116
- 241884 string characters out of 5750249
- 1935187 words of memory out of 5000000
- 36746 multiletter control sequences out of 15000+600000
+ 15244 strings out of 474116
+ 265082 string characters out of 5750249
+ 1966187 words of memory out of 5000000
+ 37188 multiletter control sequences out of 15000+600000
  579039 words of font info for 87 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 90i,9n,93p,859b,640s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 90i,10n,93p,1015b,641s stack positions out of 10000i,1000n,20000p,200000b,200000s
  </home/roccotescaro/.texlive
 /texmf-var/fonts/pk/ljfour/public/bbm/bbm12.600pk></usr/share/texmf-dist/fonts/
 type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-dist/fonts/type1/public/a
@@ -1353,10 +1706,10 @@ xmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf-dist/fonts/
 type1/public/cm-super/sfsl1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm
 -super/sfti1200.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sftt1200
 .pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfxc1728.pfb>
-Output written on thesis.pdf (46 pages, 30547550 bytes).
+Output written on thesis.pdf (58 pages, 9996271 bytes).
 PDF statistics:
- 645 PDF objects out of 1000 (max. 8388607)
- 461 compressed objects within 5 object streams
- 107 named destinations out of 1000 (max. 500000)
- 428 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 809 PDF objects out of 1000 (max. 8388607)
+ 546 compressed objects within 6 object streams
+ 135 named destinations out of 1000 (max. 500000)
+ 575 words of extra memory for PDF output out of 10000 (max. 10000000)
 

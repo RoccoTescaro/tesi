@@ -37,6 +37,11 @@ Youngjung Uh Yunjey Choi Jaejun~Yoo Muhammad Ferjad~Naeem, Seong Joon~Oh.
 \newblock Reliable fidelity and diversity metrics for generative models.
 \newblock 2019.
 
+\bibitem{9LeaveOneOut}
+Rob J.~Hyndman Sevvandi~Kandanaarachchi.
+\newblock Leave-one-out kernel density estimates for outlier detection.
+\newblock 2021.
+
 \bibitem{2ImprovedPrecisionRecall}
 Samuli Laine Jaakko Lehtinen Timo~Aila Tuomas~Kynkäänniemi, Tero~Karras.
 \newblock Improved precision and recall metric for assessing generative models.
